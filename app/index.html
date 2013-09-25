@@ -22,7 +22,10 @@
         <div class="wrapper960">
             
         </div>
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+
+    <script type="text/template" id="modals-template">
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -30,20 +33,46 @@
                   <h4 class="modal-title">New User</h4>
                 </div>
                 <div class="modal-body">
-                    <button type="button" class="btn btn-primary" id="add-more-inputs">Add More Users...</button>
+                    <button type="button" class="btn btn-primary" id="add-more-user-inputs">Add More Users...</button>
                   <input type="text" class="form-control" placeholder="Github Username">
-                  <input type="text" class="form-control" placeholder="Github Username">
-                  <input type="text" class="form-control" placeholder="Github Username">
+                  
                   
                 </div>
                 <div class="modal-footer">
 
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="submit-request" data-dismiss="modal">Submit</button>
+                  <button type="button" class="btn btn-primary" id="submit-user-request" data-dismiss="modal">Submit</button>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
+
+
+
+          <!-- add repos modal -->
+          <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">New Repo</h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary" id="add-more-repo-inputs">Add More Repos...</button>
+                  <input type="text" class="form-control" placeholder="Github Repo Name">
+                 
+                  
+                </div>
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="submit-repo-request" data-dismiss="modal">Submit</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+          </script>
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
@@ -54,34 +83,49 @@
         <script type="text/template" id="input-template">
             <input type="text" class="form-control"  placeholder="Github Username">
         </script>
-        <script type="text/template" id="add-user-button">
-            <button data-toggle="modal" href="#myModal" type="button" class="btn btn-primary btn-lg" id="add-user">Add Users</button>
+        <script type="text/template" id="repo-input-template">
+            <input type="text" class="form-control"  placeholder="Github Repo name">
         </script>
 
-        <script type="text/template" id="display-stage-button">
+
+        <script type="text/template" id="display-stage-buttons">
+            <div class="logo"><h1>GithubView</h1></div>
+            
+            <div class="btn-group" id="add-users">
+              <button type="button" class="btn btn-primary" data-toggle="modal" href="#myModal1"><span class="glyphicon glyphicon-plus"></span> Users</button>
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a data-toggle="modal" href="#myModal1">Add Users</a></li>
+                <li><a data-toggle="modal" href="#myModal2">Add Repos</a></li>
+              </ul>
+            </div>
+
             <button type="button" class="btn btn-default btn-mg" id="display-stage">
                 <span class="glyphicon glyphicon-chevron-down"></span>
             </button>
         </script>
         <script type="text/template" id="user-display">
             <div class="user-info-box">
-                <img src="<%= user.avatar_url %>">
+                <img src="<%= user.get('avatar_url') %>">
                 <span class="close-box">
                     <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
                 </span>
-                <h3><%= user.login %></h3>
+                <h3><%= user.get('login') %></h3>
                 <dl>
                     <dt>Repos</dt>
-                    <dd><%= user.public_repos %></dd>
+                    <dd><%= user.get('public_repos') %></dd>
                     <dt>Followers</dt>
-                    <dd><%= user.followers %></dd>
+                    <dd><%= user.get('followers') %></dd>
                     <dt>Following</dt>
-                    <dd><%= user.following %></dd>
+                    <dd><%= user.get('following') %></dd>
                 </dl>
             </div>
         </script>
-        <script type="text/template" id="user-list-template">
-        <li><%= user.login %></li>
+
+
+
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -94,6 +138,9 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/models.js"></script>
+        <script src="scripts/views.js"></script>
+        <script src="scripts/routers.js"></script>
         <!-- endbuild -->
 
         <!-- build:js(.tmp) scripts/coffee.js -->
