@@ -16,6 +16,8 @@ var GithubStageView = Backbone.View.extend({
 	modalDisplayTemplate: _.template($("#modals-template").text()),
 
 	initialize: function(){
+
+		//pops this.el into the main content area
 		$('.wrapper960').append(this.el)
 
 		this.render();
@@ -29,22 +31,25 @@ var GithubStageView = Backbone.View.extend({
 		this.$el.append(this.displayStageBtnTemplate)
 		this.$el.append(this.modalDisplayTemplate)
 	},
-
-	displayUserTable: function(){
+	//removes any existing instances of FullUserView and GitUserThumbView
+	clearStage: function(){
 		$(".user-stage").find(".user-info-box").remove()
 		$(".user-stage").find(".user-info-table").remove()
+	},
+	//loops through array of users and instantiates a FullUserView for each
+	displayUserTable: function(){
 		githubUsers.forEach(function(user){
 			new FullUserView({model: user})
 		})
 	},
+	//loops through array of users and instantiates a GitUserUserView for each
 	displayUserThumbs: function(){
-		$(".user-stage").find(".user-info-box").remove()
-		$(".user-stage").find(".user-info-table").remove()
 		githubUsers.forEach(function(user){
 			new GitUserThumbView({model: user})
 		})
 	},
-
+	// animate stage, hidden on load.  !!-->needs additional logic to 
+	// compensate for different scenarios
 	toggleUserStage: function(){
 	
 		if ($(".user-stage").css('top') == '-40px' ) {
@@ -64,21 +69,30 @@ var GithubStageView = Backbone.View.extend({
 			  });
 		}
 	},
-
+	//API ajax call
+	//creates array of users, and retrieves user attr's
 	githubRequest: function(){
+		//create new collection
 		githubUsers = new GithubUserCollection()
+		//display user stage
 		this.toggleUserStage()
 		console.log("githubRequest called")
+		// initialize array
 		var githubuserArray = []
+		//loop through inputs, push value to array
 		$("#myModal1").find('input').each(function(){
 			githubuserArray.push($(this).val())
 		})
+
 		var that = this
+		//loop through array of users and make an API call for each
 		githubuserArray.forEach(function(user){
 		var githubUrl = 'https://api.github.com/users/' + user
 			$.getJSON(githubUrl, function(user){
 				console.log("success!" + user.public_repos)
+				//add users to collection
 				githubUsers.add(user)
+				//display UserThumbs by default
 				that.displayUserThumbs()
 			})
 		})
@@ -86,4 +100,6 @@ var GithubStageView = Backbone.View.extend({
 
 
 	})
+
+// instantiate stage
 var githubStageView = new GithubStageView()

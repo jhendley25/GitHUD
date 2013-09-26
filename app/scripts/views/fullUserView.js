@@ -11,8 +11,8 @@ FullUserView = Backbone.View.extend({
 		this.render()
 	},
 
+	//creates new profile view instance with this.model
 	displayUserProfile: function(){
-		var id = this.model.get('id')
 		githubStageView.toggleUserStage()
 		new ProfileUserView({model: this.model})
 	},
