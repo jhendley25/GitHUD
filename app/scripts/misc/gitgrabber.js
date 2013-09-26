@@ -13,7 +13,7 @@ function repoPushEvents (repos, user){
 	var total = 0
 	var len = repos.length
 	repos.forEach(function(repo, index){
-		// cheating for debugging purposes
+	
 		var url = 'https://api.github.com/repos/'+ user + '/' + repo + '/events'
 
 		$.getJSON(url, function(events){

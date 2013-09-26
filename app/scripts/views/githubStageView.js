@@ -1,11 +1,11 @@
-
-
 var GithubStageView = Backbone.View.extend({
 	className: 'user-stage',
 
 	events: {
 		'click #display-stage': 'toggleUserStage',
-		'click #submit-user-request': 'githubRequest'
+		'click #submit-user-request': 'githubRequest',
+		'click #display-table': 'displayUserTable',
+		'click #display-thumbs': 'displayUserThumbs'
 
 	},
 
@@ -17,12 +17,32 @@ var GithubStageView = Backbone.View.extend({
 
 	initialize: function(){
 		$('.wrapper960').append(this.el)
+
 		this.render();
+	},
+
+	removeCurrentStageEls: function(){
+		$(".user-stage").find(".user-info-box").remove()
 	},
 
 	render: function(){
 		this.$el.append(this.displayStageBtnTemplate)
 		this.$el.append(this.modalDisplayTemplate)
+	},
+
+	displayUserTable: function(){
+		$(".user-stage").find(".user-info-box").remove()
+		$(".user-stage").find(".user-info-table").remove()
+		githubUsers.forEach(function(user){
+			new FullUserView({model: user})
+		})
+	},
+	displayUserThumbs: function(){
+		$(".user-stage").find(".user-info-box").remove()
+		$(".user-stage").find(".user-info-table").remove()
+		githubUsers.forEach(function(user){
+			new GitUserThumbView({model: user})
+		})
 	},
 
 	toggleUserStage: function(){
@@ -53,34 +73,17 @@ var GithubStageView = Backbone.View.extend({
 		$("#myModal1").find('input').each(function(){
 			githubuserArray.push($(this).val())
 		})
+		var that = this
 		githubuserArray.forEach(function(user){
 		var githubUrl = 'https://api.github.com/users/' + user
-		$.getJSON(githubUrl, function(user){
-			console.log("success!" + user.public_repos)
-			githubUsers.add(user)
+			$.getJSON(githubUrl, function(user){
+				console.log("success!" + user.public_repos)
+				githubUsers.add(user)
+				that.displayUserThumbs()
+			})
 		})
-	})
 	}
 
 
 	})
 var githubStageView = new GithubStageView()
-
-
-GitUserView = Backbone.View.extend({
-	
-	template: _.template( $("#user-display").text() ),
-
-	events: {
-		'click #submit-user-request': 'getUserInfo'
-	},
-
-	initialize: function(){
-		$(".user-stage").append(this.el)
-		this.render()
-	},
-
-	render:function (){
-		this.$el.append(this.template({user: this.model}))
-	}
-})

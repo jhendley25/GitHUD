@@ -90,29 +90,61 @@
 
         <script type="text/template" id="display-stage-buttons">
             <div class="logo"><h1>GithubView</h1></div>
-            
-            <div class="btn-group" id="add-users">
-              <button type="button" class="btn btn-primary" data-toggle="modal" href="#myModal1"><span class="glyphicon glyphicon-plus"></span> Users</button>
-              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li><a data-toggle="modal" href="#myModal1">Add Users</a></li>
-                <li><a data-toggle="modal" href="#myModal2">Add Repos</a></li>
-              </ul>
+            <button type="button" class="btn btn-default btn-mg" id="display-table">Table</button>
+                <button type="button" class="btn btn-default btn-mg" id="display-thumbs">Thumbs</button>
+            <div id="stage-buttons">
+                <div class="btn-group" id="add-users">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" href="#myModal1"><span class="glyphicon glyphicon-plus"></span> Users</button>
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a data-toggle="modal" href="#myModal1">Add Users</a></li>
+                    <li><a data-toggle="modal" href="#myModal2">Add Repos</a></li>
+                  </ul>
+                </div>
+                
             </div>
-
             <button type="button" class="btn btn-default btn-mg" id="display-stage">
                 <span class="glyphicon glyphicon-chevron-down"></span>
             </button>
         </script>
-        <script type="text/template" id="user-display">
-            <div class="user-info-box">
+        <script type="text/template" id="user-table-display">
+            <div class="user-info-table">
                 <img src="<%= user.get('avatar_url') %>">
                 <span class="close-box">
                     <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
                 </span>
                 <h3><%= user.get('login') %></h3>
+                <br>
+                
+                    <h3>Repos:</h3>
+                    <h2><%= user.get('public_repos') %></h2>
+                    <h3>Followers:</h3>
+                    <h2><%= user.get('followers') %></h2>
+                    <h3>Following:</h3>
+                    <h2><%= user.get('following') %></h2>
+                <button type="button" class="btn btn-default" id="full-view-button">Full View</button>
+            </div>
+        </script>
+        <script type="text/template" id="user-thumb-display">
+            
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                
+            
+        </script>
+        <script type="text/template" id="user-profile-display">
+            <div class="user-info-profile">
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                <div class="user-profile-info">
                 <dl>
                     <dt>Repos</dt>
                     <dd><%= user.get('public_repos') %></dd>
@@ -121,6 +153,7 @@
                     <dt>Following</dt>
                     <dd><%= user.get('following') %></dd>
                 </dl>
+                </div>
             </div>
         </script>
 
@@ -138,7 +171,9 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/gitgrabber.js"></script>
         <script src="scripts/models.js"></script>
+        <script src="scripts/collections.js"></script>
         <script src="scripts/views.js"></script>
         <script src="scripts/routers.js"></script>
         <!-- endbuild -->
