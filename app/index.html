@@ -23,8 +23,9 @@
             
         </div>
 
+<!-- modals template -->
 
-    <script type="text/template" id="modals-template">
+<script type="text/template" id="modals-template">
         <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -43,13 +44,13 @@
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" id="submit-user-request" data-dismiss="modal">Submit</button>
                 </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
+              </div>
+            </div>
+          </div>
 
 
 
-          <!-- add repos modal -->
+          
           <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -68,27 +69,26 @@
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-primary" id="submit-repo-request" data-dismiss="modal">Submit</button>
                 </div>
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
+              </div>
+            </div>
+          </div>
+</script>
 
-          </script>
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jquery/jquery.js"></script>
-        <script src="bower_components/underscore/underscore.js"></script>
-        <script src="bower_components/backbone/backbone.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
-        <script type="text/template" id="input-template">
+
+<!-- username input template -->
+<script type="text/template" id="input-template">
             <input type="text" class="form-control"  placeholder="Github Username">
-        </script>
-        <script type="text/template" id="repo-input-template">
+</script>
+
+
+<!-- repo input template -->
+<script type="text/template" id="repo-input-template">
             <input type="text" class="form-control"  placeholder="Github Repo name">
-        </script>
+</script>
 
-
-        <script type="text/template" id="display-stage-buttons">
+<!-- stage template -->
+<!-- contains logo, add user/repo btn, and table/thumb toggle btns -->
+<script type="text/template" id="display-stage-buttons">
             <div class="logo"><h1>GithubView</h1></div>
             <button type="button" class="btn btn-default btn-mg" id="display-table">Table</button>
                 <button type="button" class="btn btn-default btn-mg" id="display-thumbs">Thumbs</button>
@@ -108,8 +108,10 @@
             <button type="button" class="btn btn-default btn-mg" id="display-stage">
                 <span class="glyphicon glyphicon-chevron-down"></span>
             </button>
-        </script>
-        <script type="text/template" id="user-table-display">
+</script>
+
+<!-- user table display template -->
+<script type="text/template" id="user-table-display">
             <div class="user-info-table">
                 <img src="<%= user.get('avatar_url') %>">
                 <span class="close-box">
@@ -126,8 +128,11 @@
                     <h2><%= user.get('following') %></h2>
                 <button type="button" class="btn btn-default" id="full-view-button">Full View</button>
             </div>
-        </script>
-        <script type="text/template" id="user-thumb-display">
+</script>
+
+
+<!-- user thumbnail display template -->
+<script type="text/template" id="user-thumb-display">
             
                 <img src="<%= user.get('avatar_url') %>">
                 <span class="close-box">
@@ -136,8 +141,11 @@
                 <h3><%= user.get('login') %></h3>
                 
             
-        </script>
-        <script type="text/template" id="user-profile-display">
+</script>
+
+
+<!-- user profile display template -->
+<script type="text/template" id="user-profile-display">
             <div class="user-info-profile">
                 <img src="<%= user.get('avatar_url') %>">
                 <span class="close-box">
@@ -155,7 +163,17 @@
                 </dl>
                 </div>
             </div>
-        </script>
+</script>
+
+
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+        
 
 
 
