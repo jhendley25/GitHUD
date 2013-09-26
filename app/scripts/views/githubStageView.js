@@ -38,12 +38,14 @@ var GithubStageView = Backbone.View.extend({
 	},
 	//loops through array of users and instantiates a FullUserView for each
 	displayUserTable: function(){
+		githubStageView.clearStage()
 		githubUsers.forEach(function(user){
 			new FullUserView({model: user})
 		})
 	},
 	//loops through array of users and instantiates a GitUserUserView for each
 	displayUserThumbs: function(){
+		githubStageView.clearStage()
 		githubUsers.forEach(function(user){
 			new GitUserThumbView({model: user})
 		})
