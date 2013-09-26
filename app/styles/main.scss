@@ -1,91 +1,148 @@
-$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+$gray: #acacac;
+$gray-opacity: rgba(230, 230, 230, 0.7);
+$light-gray: #eeeeee;
+$dark-gray: #222222;
 
-@import 'sass-bootstrap/lib/bootstrap';
-
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+.wrapper960 {
+    width: 1000px;
+    margin: 0 auto;
+    padding-bottom: 50px;
 }
 
-/* Space out content a bit */
-body {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
+.user-stage {
+    width: 960px;
+    height: 600px;
+    position: absolute;
+    top: -540px;
+    padding-top: 40px;
+    margin-bottom: 40px;
+    background: $light-gray;
+    border: 2px solid $dark-gray;
+    box-shadow: 1px 1px 3px $gray;
+    border-radius: 6px;
+    // #add-users {
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+    //     position: absolute;
+    //     bottom: 5px;
+    //     left: 170px;
 
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
-}
+    // }
+    #stage-buttons{
 
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
-}
+        position: absolute;
+        bottom: 5px;
+        left: 170px;
 
-/* Custom page footer */
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
-
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
     }
+    #display-stage {
 
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+
     }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
+}
+
+
+
+.modal-body {
+    input{
+        margin: 5px;
     }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
+}
+
+
+.logo {
+    position: absolute;
+    bottom: -5px;
+    left: 5px;
+    h1{
+        color: $gray;
+        font-size: 30px;
+        text-shadow: 1px 1px 1px white;
     }
+}
+
+.user-info-box {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: auto;
+    // min-height:410px;
+    border: 3px solid $gray;
+    background: $gray-opacity;
+    border-radius: 10px;
+    padding: 5px;
+    margin-left: 20px;
+
+    img {
+        width:75px;
+        height: 75px;
+        background: $light-gray;
+        border-radius: 10px;
+
+    }
+}
+.user-info-table {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 175px;
+    // min-height:410px;
+    border: 3px solid $gray;
+    background: $gray-opacity;
+    // border-radius: 10px;
+    padding: 5px;
+    // margin-left: 20px;
+
+    img {
+        width:75px;
+        height: 75px;
+        background: $light-gray;
+        border-radius: 10px;
+
+    }
+    h1,h2,h3,h4 {
+        display: inline-block;
+        width: auto;
+    }
+}
+.close-box {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+#full-view-button {
+    position: absolute;
+    right: 10px;
+    top: 50px;
+}
+
+.user-info-profile {
+    margin-top: 200px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    // min-height:410px;
+    border: 3px solid $gray;
+    background: $gray-opacity;
+    border-radius: 10px;
+    padding: 20px;
+    // margin-left: 20px;
+
+    img {
+        width:150px;
+        height: 150px;
+        background: $light-gray;
+        border-radius: 10px;
+
+    }
+   }
+
+.user-profile-info {
+    display: inline-block;
+    vertical-align: top;
+    
 }

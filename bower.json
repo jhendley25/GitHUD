@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "dependencies": {
     "sass-bootstrap": "~3.0.0",
-    "jquery": "~1.10.2"
+    "jquery": "~1.10.2",
+    "backbone": "~1.0.0",
+    "underscore": "~1.5.2"
   },
   "devDependencies": {}
 }

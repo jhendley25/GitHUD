@@ -12,56 +12,152 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css">
         <!-- endbuild -->
     </head>
     <body>
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-
-
-        <div class="container">
-            <div class="header">
-                <ul class="nav nav-pills pull-right">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-                <h3 class="text-muted">githubView</h3>
-            </div>
-
-            <div class="jumbotron">
-                <h1>'Allo, 'Allo!</h1>
-                <p class="lead">Always a pleasure scaffolding your apps.</p>
-                <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
-            </div>
-
-            <div class="row marketing">
-                <div class="col-lg-6">
-                    <h4>HTML5 Boilerplate</h4>
-                    <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-
-                    <h4>Bootstrap</h4>
-                    <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-
-
-
-
-                </div>
-            </div>
-
-            <div class="footer">
-                <p>♥ from the Yeoman team</p>
-            </div>
-
+        <div class="wrapper960">
+            
         </div>
 
 
+    <script type="text/template" id="modals-template">
+        <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">New User</h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary" id="add-more-user-inputs">Add More Users...</button>
+                  <input type="text" class="form-control" placeholder="Github Username">
+                  
+                  
+                </div>
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="submit-user-request" data-dismiss="modal">Submit</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+
+
+          <!-- add repos modal -->
+          <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">New Repo</h4>
+                </div>
+                <div class="modal-body">
+                    <button type="button" class="btn btn-primary" id="add-more-repo-inputs">Add More Repos...</button>
+                  <input type="text" class="form-control" placeholder="Github Repo Name">
+                 
+                  
+                </div>
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="submit-repo-request" data-dismiss="modal">Submit</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
+          </script>
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="bower_components/jquery/jquery.js"></script>
+        <script src="bower_components/underscore/underscore.js"></script>
+        <script src="bower_components/backbone/backbone.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
+        <script type="text/template" id="input-template">
+            <input type="text" class="form-control"  placeholder="Github Username">
+        </script>
+        <script type="text/template" id="repo-input-template">
+            <input type="text" class="form-control"  placeholder="Github Repo name">
+        </script>
+
+
+        <script type="text/template" id="display-stage-buttons">
+            <div class="logo"><h1>GithubView</h1></div>
+            <button type="button" class="btn btn-default btn-mg" id="display-table">Table</button>
+                <button type="button" class="btn btn-default btn-mg" id="display-thumbs">Thumbs</button>
+            <div id="stage-buttons">
+                <div class="btn-group" id="add-users">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" href="#myModal1"><span class="glyphicon glyphicon-plus"></span> Users</button>
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a data-toggle="modal" href="#myModal1">Add Users</a></li>
+                    <li><a data-toggle="modal" href="#myModal2">Add Repos</a></li>
+                  </ul>
+                </div>
+                
+            </div>
+            <button type="button" class="btn btn-default btn-mg" id="display-stage">
+                <span class="glyphicon glyphicon-chevron-down"></span>
+            </button>
+        </script>
+        <script type="text/template" id="user-table-display">
+            <div class="user-info-table">
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                <br>
+                
+                    <h3>Repos:</h3>
+                    <h2><%= user.get('public_repos') %></h2>
+                    <h3>Followers:</h3>
+                    <h2><%= user.get('followers') %></h2>
+                    <h3>Following:</h3>
+                    <h2><%= user.get('following') %></h2>
+                <button type="button" class="btn btn-default" id="full-view-button">Full View</button>
+            </div>
+        </script>
+        <script type="text/template" id="user-thumb-display">
+            
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                
+            
+        </script>
+        <script type="text/template" id="user-profile-display">
+            <div class="user-info-profile">
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                <div class="user-profile-info">
+                <dl>
+                    <dt>Repos</dt>
+                    <dd><%= user.get('public_repos') %></dd>
+                    <dt>Followers</dt>
+                    <dd><%= user.get('followers') %></dd>
+                    <dt>Following</dt>
+                    <dd><%= user.get('following') %></dd>
+                </dl>
+                </div>
+            </div>
+        </script>
+
+
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
@@ -75,6 +171,11 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/gitgrabber.js"></script>
+        <script src="scripts/models.js"></script>
+        <script src="scripts/collections.js"></script>
+        <script src="scripts/views.js"></script>
+        <script src="scripts/routers.js"></script>
         <!-- endbuild -->
 
         <!-- build:js(.tmp) scripts/coffee.js -->
