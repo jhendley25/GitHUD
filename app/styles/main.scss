@@ -20,18 +20,16 @@ $dark-gray: #222222;
     border: 2px solid $dark-gray;
     box-shadow: 1px 1px 3px $gray;
     border-radius: 6px;
-    // #add-users {
+    z-index: 2000;
+    overflow: scroll;
 
-    //     position: absolute;
-    //     bottom: 5px;
-    //     left: 170px;
-
-    // }
     #stage-buttons{
 
         position: absolute;
         bottom: 5px;
         left: 170px;
+        background: $light-gray;
+        z-index: 4000;
 
     }
     #display-stage {
@@ -94,6 +92,7 @@ $dark-gray: #222222;
     // border-radius: 10px;
     padding: 5px;
     // margin-left: 20px;
+    z-index: 3000;
 
     img {
         width:75px;
@@ -131,6 +130,7 @@ $dark-gray: #222222;
     border-radius: 10px;
     padding: 20px;
     // margin-left: 20px;
+    z-index: 1000;
 
     img {
         width:150px;
