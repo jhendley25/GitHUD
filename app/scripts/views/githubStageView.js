@@ -23,10 +23,6 @@ var GithubStageView = Backbone.View.extend({
 		this.render();
 	},
 
-	removeCurrentStageEls: function(){
-		$(".user-stage").find(".user-info-box").remove()
-	},
-
 	render: function(){
 		this.$el.append(this.displayStageBtnTemplate)
 		this.$el.append(this.modalDisplayTemplate)

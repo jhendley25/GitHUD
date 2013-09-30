@@ -21,7 +21,7 @@ $dark-gray: #222222;
     box-shadow: 1px 1px 3px $gray;
     border-radius: 6px;
     z-index: 2000;
-    overflow: scroll;
+    // overflow: scroll;
 
     #stage-buttons{
 
@@ -29,7 +29,7 @@ $dark-gray: #222222;
         bottom: 5px;
         left: 170px;
         background: $light-gray;
-        z-index: 4000;
+        // z-index:5000;
 
     }
     #display-stage {
@@ -145,4 +145,11 @@ $dark-gray: #222222;
     display: inline-block;
     vertical-align: top;
     
+}
+.subwindow-buttons {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
 }
