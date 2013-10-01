@@ -5,7 +5,8 @@
     "sass-bootstrap": "~3.0.0",
     "jquery": "~1.10.2",
     "backbone": "~1.0.0",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "q": "~0.9.7"
   },
   "devDependencies": {}
 }
