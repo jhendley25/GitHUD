@@ -28,8 +28,33 @@ function getRepoInfo(url) {
 			  ]
 		
 		console.log(gitCalls.children)
+		displayD3Tree()
+
 	})
 }
+function displayD3Tree(){
+
+		  root = data;
+		  root.x0 = h / 2;
+		  root.y0 = 0;
+
+		  function toggleAll(data) {
+		    if (data.children) {
+		      data.children.forEach(toggleAll);
+		      toggle(data);
+		    }
+		  }
+
+		  // Initialize the display to show a few nodes.
+		  root.children.forEach(toggleAll);
+		  // toggle(root.children[1]);
+		  toggle(root.children[4]);
+		  // toggle(root.children[1].children[0].children[4]);
+		  // toggle(root.children[9]);
+		  // toggle(root.children[9].children[0]);
+
+		  update(root);
+		}
 
 
 function getCommitCount(url) {

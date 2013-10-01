@@ -30,4 +30,4 @@ function repoPushEvents (repos, user){
 	console.log('total commits: ' + commitCount)
 }
 
-getGithubUserCommitCount('jhendley25');
+

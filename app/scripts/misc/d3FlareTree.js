@@ -1,6 +1,6 @@
 var m = [20, 120, 20, 120],
-    w = 1280 - m[1] - m[3],
-    h = 800 - m[0] - m[2],
+    w = 800 - m[1] - m[3],
+    h = 500 - m[0] - m[2],
     i = 0,
     root;
 
@@ -10,36 +10,14 @@ var tree = d3.layout.tree()
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
 
-var vis = d3.select("#d3stage").append("svg:svg")
+var vis = d3.select("#d3Treestage").append("svg:svg")
     .attr("width", w + m[1] + m[3])
     .attr("height", h + m[0] + m[2])
   .append("svg:g")
     .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
 
-setTimeout(function(){
 
-  root = data;
-  root.x0 = h / 2;
-  root.y0 = 0;
-
-  function toggleAll(data) {
-    if (data.children) {
-      data.children.forEach(toggleAll);
-      toggle(data);
-    }
-  }
-
-  // Initialize the display to show a few nodes.
-  root.children.forEach(toggleAll);
-  // toggle(root.children[1]);
-  toggle(root.children[4]);
-  // toggle(root.children[1].children[0].children[4]);
-  // toggle(root.children[9]);
-  // toggle(root.children[9].children[0]);
-
-  update(root);
-}, 3000)
 
 
 
