@@ -23,8 +23,8 @@ function getRepoInfo(url) {
 			    { name: 'watchers: '+ repo.watchers_count },
 			    { name: 'language: '+ repo.language },
 			    { name: 'total commits: ' + gitCalls.commits },
-			    { name: 'contributors: '},
-			    { children: addContributors() }
+			    { name: 'contributors: ',
+			      children: addContributors() }
 			  ]
 		
 		console.log(gitCalls.children)
@@ -51,7 +51,7 @@ function getContributors(url) {
 }
 
 function addContributors(){
-	gitCalls.contribArray = _.map(gitCalls.contributors, function(contrib){ return {name: 'user: ' + contrib.login}})
+	gitCalls.contribArray = _.map(gitCalls.contributors, function(contrib){ return {name: '' + contrib.login}})
 	return gitCalls.contribArray
 }
 
