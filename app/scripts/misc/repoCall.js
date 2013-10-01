@@ -1,5 +1,6 @@
-///prefilling inputs for debugging
+gitCalls = {}
 
+var data = gitCalls
  
 function getRepoUrl() {
 	var a = []
@@ -15,29 +16,42 @@ function getRepoUrl() {
 function getRepoInfo(url) {
 	$.getJSON(url, function(repo){
 	 // commits = getCommitCount(url)
-		 children = 
+		 gitCalls.children = 
 			[
 			    
 			    { name: 'forks: '+ repo.forks_count },
 			    { name: 'watchers: '+ repo.watchers_count },
 			    { name: 'language: '+ repo.language },
-			    { name: 'total commits: ' + getCommitCount(url) }
+			    { name: 'total commits: ' + gitCalls.commits },
+			    { name: 'contributors: '},
+			    { children: addContributors() }
 			  ]
 		
-		console.log(children)
+		console.log(gitCalls.children)
 	})
 }
+
 
 function getCommitCount(url) {
-	url = url + '/events'
-	total = 0
-	$.getJSON(url, function(events) {
+	eventUrl = url + '/events'
+	gitCalls.commits = 0
+	$.getJSON(eventUrl, function(events) {
 		var pushEvents = _.filter(events, function(event){ return event.type == 'PushEvent'})
-		total += pushEvents.length
-		console.log('total push events: ' + total)
-		return total
+		gitCalls.commits += pushEvents.length
+		console.log('total push events: ' + gitCalls.commits)
 	})
 }
 
+function getContributors(url) {
+	
+	contribUrl = url + '/contributors'
+	$.getJSON(contribUrl, function(contribs){
+		gitCalls.contributors = contribs
+	})
+}
 
-// getRepoInfo(getRepoUrl)
+function addContributors(){
+	gitCalls.contribArray = _.map(gitCalls.contributors, function(contrib){ return {name: 'user: ' + contrib.login}})
+	return gitCalls.contribArray
+}
+

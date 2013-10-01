@@ -24,7 +24,7 @@ var GithubStageView = Backbone.View.extend({
 
 		//prefilling form fields:
 		$("#repo-owner").val('jhendley25')
-		$("#repo-name").val('gitd3')
+		$("#repo-name").val('hackathonapp')
 	},
 
 	render: function(){
