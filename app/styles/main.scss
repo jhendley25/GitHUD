@@ -172,7 +172,7 @@ path.link {
 
 #d3Donutstage {
     height: auto;
-    width: 100%;
+    width: 1000px;
     margin: 0;
     position: relative;
     right: 0;
@@ -180,10 +180,14 @@ path.link {
 
     p {
         position: relative;
-        top: -185px;
-        left: 0;
+        top: -270px;
+        left: 270px;
     }
     svg {
-        display: inline-block;
+        display: block;
+        margin: 0 auto;
+    }
+    h3  {
+        text-align: center;
     }
 }

@@ -2,10 +2,7 @@ var GithubStageView = Backbone.View.extend({
 	className: 'user-stage',
 
 	events: {
-		'click #display-stage': 'toggleUserStage',
-		'click #submit-user-request': 'githubRequest',
-		'click #display-table': 'displayUserTable',
-		'click #display-thumbs': 'displayUserThumbs'
+		'click #submit-user-request': 'findUserInputs'
 
 	},
 
@@ -26,8 +23,15 @@ var GithubStageView = Backbone.View.extend({
 	render: function(){
 		this.$el.append(this.displayStageBtnTemplate)
 		this.$el.append(this.modalDisplayTemplate)
-	}	
-
+	},
+	findUserInputs: function() {
+	    
+	    $("#myModal1").find('input').each(function(input){
+	        var user = $(this).val()
+	        user = new GithubUser
+	    })
+	    
+	}
 
 	})
 

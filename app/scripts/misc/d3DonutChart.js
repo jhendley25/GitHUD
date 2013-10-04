@@ -51,9 +51,10 @@ function getRepoStats(user, repo) {
 
 function createLegend() {
 
-    var stage = $("#d3Donutstage")
+    var stage = $("#" + dataset.repoName)
     dataset.contributors.forEach(function(author, i){
         var p = $('<p>' + author.login + ' ' + dataset.commits[i] + '</p>').css('color',  color(i))
+
         stage.append(p)
     })
 }
@@ -76,6 +77,8 @@ function d3DountChartMaker(){
             .outerRadius(radius - 50);
 
         $("#d3Donutstage").append('<div id="' + dataset.repoName + '"></div>')
+        var stage = $("#" + dataset.repoName)
+        stage.append('<h3>'+ dataset.repoName +'</h3>')
         var svg = d3.select("#" + dataset.repoName).append("svg")
             .attr("width", width)
             .attr("height", height)
@@ -87,7 +90,6 @@ function d3DountChartMaker(){
             .data(pie(dataset.commits))
           .enter().append("path")
             .attr("fill", function(d, i) { 
-
                 return color(i); 
             })
             .attr("d", arc);
