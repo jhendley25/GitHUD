@@ -37,6 +37,8 @@
                 <div class="modal-body">
                     <button type="button" class="btn btn-primary" id="add-more-user-inputs">Add More Users...</button>
                   <input type="text" class="form-control" placeholder="Github Username">
+                  <input type="text" class="form-control" placeholder="Github Username">
+                  
                   
                   
                 </div>
@@ -52,28 +54,7 @@
 
 
           
-          <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                  <h4 class="modal-title">New Repo</h4>
-                </div>
-                <div class="modal-body">
-                   
-                  <input type="text" class="form-control" id="repo-owner"placeholder="Repo Owner">
-                  <input type="text" class="form-control" id="repo-name"placeholder="Github Repo Name">
-                 
-                  
-                </div>
-                <div class="modal-footer">
-
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="submit-repo-request" data-dismiss="modal">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
 </script>
 
 
@@ -83,10 +64,7 @@
 </script>
 
 
-<!-- repo input template -->
-<script type="text/template" id="repo-input-template">
-            <input type="text" class="form-control"  placeholder="Github Repo name">
-</script>
+
 
 <!-- stage template -->
 <!-- contains logo, add user/repo btn, and table/thumb toggle btns -->
@@ -98,76 +76,17 @@
             <div id="stage-buttons">
                 <div class="btn-group" id="add-users">
                   <button type="button" class="btn btn-primary" data-toggle="modal" href="#myModal1"><span class="glyphicon glyphicon-plus"></span> Users</button>
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    <span class="caret"></span>
-                  </button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a data-toggle="modal" href="#myModal1">Add Users</a></li>
-                    <li><a data-toggle="modal" href="#myModal2">Add Repos</a></li>
-                  </ul>
+                  
                 </div>
                 
             </div>
-            <button type="button" class="btn btn-default btn-mg" id="display-stage">
-                <span class="glyphicon glyphicon-chevron-down"></span>
-            </button>
+            <!--//<button type="button" class="btn btn-default btn-mg" id="display-stage">
+                //<span class="glyphicon glyphicon-chevron-down"></span>
+            // </button>-->
 </div>
 </script>
 
-<!-- user table display template -->
-<script type="text/template" id="user-table-display">
-            <div class="user-info-table">
-                <img src="<%= user.get('avatar_url') %>">
-                <span class="close-box">
-                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
-                </span>
-                <h3><%= user.get('login') %></h3>
-                <br>
-                
-                    <h3>Repos:</h3>
-                    <h2><%= user.get('public_repos') %></h2>
-                    <h3>Followers:</h3>
-                    <h2><%= user.get('followers') %></h2>
-                    <h3>Following:</h3>
-                    <h2><%= user.get('following') %></h2>
-                <button type="button" class="btn btn-default" id="full-view-button">Full View</button>
-            </div>
-</script>
 
-
-<!-- user thumbnail display template -->
-<script type="text/template" id="user-thumb-display">
-            
-                <img src="<%= user.get('avatar_url') %>">
-                <span class="close-box">
-                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
-                </span>
-                <h3><%= user.get('login') %></h3>
-                
-            
-</script>
-
-
-<!-- user profile display template -->
-<script type="text/template" id="user-profile-display">
-            <div class="user-info-profile">
-                <img src="<%= user.get('avatar_url') %>">
-                <span class="close-box">
-                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
-                </span>
-                <h3><%= user.get('login') %></h3>
-                <div class="user-profile-info">
-                <dl>
-                    <dt>Repos</dt>
-                    <dd><%= user.get('public_repos') %></dd>
-                    <dt>Followers</dt>
-                    <dd><%= user.get('followers') %></dd>
-                    <dt>Following</dt>
-                    <dd><%= user.get('following') %></dd>
-                </dl>
-                </div>
-            </div>
-</script>
 
 
         <!-- build:js scripts/vendor.js -->
@@ -195,20 +114,26 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/misc/main.js"></script>
-         <!-- <script src="scripts/misc/gitgrabber.js"></script> -->
-         <!-- <script src="scripts/misc/d3GithubApiCall.js"></script> -->
-        <script src="scripts/misc/repoCall.js"></script>
         <script src="scripts/models/models.js"></script>
         <script src="scripts/collections/collections.js"></script>
         <script src="scripts/views/githubStageView.js"></script>
-        <script src="scripts/views/fullUserView.js"></script>
-        <script src="scripts/views/gitUserThumbView.js"></script>
-        <script src="scripts/views/profileUserView.js"></script>
         <script src="scripts/routers/routers.js"></script>
         <script src="scripts/misc/d3DonutChart.js"></script>
-        <script src="scripts/misc/d3FlareTree.js"></script>
-        <script src="scripts/misc/q-calls.js"></script>
+
         <!-- endbuild -->
+
+
+        <!-- scripts removed for now -->
+
+<!--    script src="scripts/misc/repoCall.js"></script> 
+        <script src="scripts/views/profileUserView.js"></script> 
+        <script src="scripts/misc/d3FlareTree.js"></script>
+        <script src="scripts/misc/q-calls.js"></script> 
+        <script src="scripts/views/fullUserView.js"></script>
+        <script src="scripts/views/gitUserThumbView.js"></script> 
+        <script src="scripts/misc/gitgrabber.js"></script> 
+        <script src="scripts/misc/d3GithubApiCall.js"></script> -->
+
 
         <!-- build:js(.tmp) scripts/coffee.js -->
         

@@ -172,25 +172,18 @@ path.link {
 
 #d3Donutstage {
     height: auto;
-    height: auto;
-    width: 500px;
+    width: 100%;
     margin: 0;
-    position: absolute;
+    position: relative;
     right: 0;
     top: 50px;
+
     p {
         position: relative;
         top: -185px;
         left: 0;
     }
-    svg:last-child {
-        position: absolute;
-        top: 30px;
-        right: 150px;
-        height: 400px;
+    svg {
+        display: inline-block;
     }
-}
-#d3Treestage {
-    position: absolute;
-    left:0;
 }

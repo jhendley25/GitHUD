@@ -1,0 +1,85 @@
+<!-- user table display template -->
+<script type="text/template" id="user-table-display">
+            <div class="user-info-table">
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                <br>
+                
+                    <h3>Repos:</h3>
+                    <h2><%= user.get('public_repos') %></h2>
+                    <h3>Followers:</h3>
+                    <h2><%= user.get('followers') %></h2>
+                    <h3>Following:</h3>
+                    <h2><%= user.get('following') %></h2>
+                <button type="button" class="btn btn-default" id="full-view-button">Full View</button>
+            </div>
+</script>
+
+
+<!-- user thumbnail display template -->
+<script type="text/template" id="user-thumb-display">
+            
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                
+            
+</script>
+
+
+<!-- user profile display template -->
+<script type="text/template" id="user-profile-display">
+            <div class="user-info-profile">
+                <img src="<%= user.get('avatar_url') %>">
+                <span class="close-box">
+                    <button type="button" class="close" id="close-user-window" aria-hidden="true">&times;</button>
+                </span>
+                <h3><%= user.get('login') %></h3>
+                <div class="user-profile-info">
+                <dl>
+                    <dt>Repos</dt>
+                    <dd><%= user.get('public_repos') %></dd>
+                    <dt>Followers</dt>
+                    <dd><%= user.get('followers') %></dd>
+                    <dt>Following</dt>
+                    <dd><%= user.get('following') %></dd>
+                </dl>
+                </div>
+            </div>
+</script>
+
+
+<!-- repo input template -->
+<script type="text/template" id="repo-input-template">
+            <input type="text" class="form-control"  placeholder="Github Repo name">
+</script>
+
+
+<!-- repo input modal template -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">New Repo</h4>
+                </div>
+                <div class="modal-body">
+                   
+                  <input type="text" class="form-control" id="repo-owner"placeholder="Repo Owner">
+                  <input type="text" class="form-control" id="repo-name"placeholder="Github Repo Name">
+                 
+                  
+                </div>
+                <div class="modal-footer">
+
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="submit-repo-request" data-dismiss="modal">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>

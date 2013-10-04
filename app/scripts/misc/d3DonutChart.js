@@ -1,8 +1,6 @@
 $(function(){
-    $("#submit-repo-request").click(function(){
-        getRepoStats(getRepoStatsUrl())
-
-        displayD3TreeQcall()
+    $("#submit-user-request").click(function(){
+        findUserInputs()
     })
     
 })
@@ -11,24 +9,40 @@ $(function(){
 var dataset = {}
 var color = d3.scale.category20();
 
-function getRepoStatsUrl() {
-    var a = []
-    $('#myModal2').find('input').each(function(){
-        a.push($(this).val())
+function findUserInputs() {
+    dataset.userList = []
+    $("#myModal1").find('input').each(function(input){
+        dataset.userList.push($(this).val())
     })
-    var url = 'https://api.github.com/repos/' + a[0] + '/' + a[1] + '/stats/contributors';
-    console.log(url)
-    return url
+    dataset.userList.forEach(function(user){
+        getUserRepoArray(user)
+    })
 }
 
 
-function getRepoStats(url) {
+
+
+function getUserRepoArray (user){
+    var url = 'https://api.github.com/users/' + user + '/repos'
+    $.getJSON(url, function(repos){
+        repos.forEach(function(repo){
+            var repo = repo.name
+            console.log(repo)
+            getRepoStats(user, repo)
+            
+        })
+    })
+}
+
+function getRepoStats(user, repo) {
+    var url = 'https://api.github.com/repos/' + user + '/' + repo + '/stats/contributors'
     $.getJSON(url, function(stats){
         dataset.commits = []
         dataset.contributors = []
         stats.forEach(function(user){
             dataset.commits.push(user.total)
             dataset.contributors.push(user.author)
+            dataset.repoName = repo
         })
         d3DountChartMaker()
         createLegend()
@@ -36,6 +50,7 @@ function getRepoStats(url) {
 }
 
 function createLegend() {
+
     var stage = $("#d3Donutstage")
     dataset.contributors.forEach(function(author, i){
         var p = $('<p>' + author.login + ' ' + dataset.commits[i] + '</p>').css('color',  color(i))
@@ -45,9 +60,7 @@ function createLegend() {
 
 function d3DountChartMaker(){
 
-        // var dataset = {
-        //   apples: [40,6,14,6,7,8,9,12,44],
-        // };
+       
 
         var width = 460,
             height = 300,
@@ -62,8 +75,8 @@ function d3DountChartMaker(){
             .innerRadius(radius - 100)
             .outerRadius(radius - 50);
 
-
-        var svg = d3.select("#d3Donutstage").append("svg")
+        $("#d3Donutstage").append('<div id="' + dataset.repoName + '"></div>')
+        var svg = d3.select("#" + dataset.repoName).append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
@@ -80,4 +93,4 @@ function d3DountChartMaker(){
             .attr("d", arc);
 }
 
-// d3DountChartMaker()
+
