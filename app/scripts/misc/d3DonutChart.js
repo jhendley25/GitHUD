@@ -11,10 +11,12 @@ var color = d3.scale.category20();
 
 function findUserInputs() {
     dataset.userList = []
+    //grab all input values, and make an array
     $("#myModal1").find('input').each(function(input){
         dataset.userList.push($(this).val())
     })
     dataset.userList.forEach(function(user){
+        //call for each user in array
         getUserRepoArray(user)
     })
 }
@@ -24,19 +26,26 @@ function findUserInputs() {
 
 function getUserRepoArray (user){
     var url = 'https://api.github.com/users/' + user + '/repos'
+    // access the user's repos
     $.getJSON(url, function(repos){
+
         repos.forEach(function(repo){
+            // loop through repos and grab the name and id
             var repo = repo.name
+            var repoId = repo.id
             console.log(repo)
-            getRepoStats(user, repo)
+            // call for each repo
+            getRepoStats(user, repo, repoId)
             
         })
     })
 }
 
-function getRepoStats(user, repo) {
+function getRepoStats(user, repo, repoId) {
     var url = 'https://api.github.com/repos/' + user + '/' + repo + '/stats/contributors'
+    // grab repo stats for each repo passed in
     $.getJSON(url, function(stats){
+        // namespacing for display purposes
         dataset.commits = []
         dataset.contributors = []
         stats.forEach(function(user){
@@ -45,13 +54,13 @@ function getRepoStats(user, repo) {
             dataset.repoName = repo
         })
         d3DountChartMaker()
-        createLegend()
+        createLegend(repoId)
     })
 }
 
-function createLegend() {
-
-    var stage = $("#" + dataset.repoName)
+function createLegend(repoId) {
+    var repoId = repoId
+    var stage = $("#" + repoId)
     dataset.contributors.forEach(function(author, i){
         var p = $('<p>' + author.login + ' ' + dataset.commits[i] + '</p>').css('color',  color(i))
 
@@ -76,10 +85,10 @@ function d3DountChartMaker(){
             .innerRadius(radius - 100)
             .outerRadius(radius - 50);
 
-        $("#d3Donutstage").append('<div id="' + dataset.repoName + '"></div>')
-        var stage = $("#" + dataset.repoName)
+        $("#d3Donutstage").append('<div id="' + dataset.repoId + '"></div>')
+        var stage = $("#" + dataset.repoId)
         stage.append('<h3>'+ dataset.repoName +'</h3>')
-        var svg = d3.select("#" + dataset.repoName).append("svg")
+        var svg = d3.select("#" + dataset.repoId).append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
