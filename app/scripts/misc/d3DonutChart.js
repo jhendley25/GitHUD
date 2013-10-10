@@ -5,8 +5,9 @@ $(function(){
     
 })
 
-
 var dataset = {}
+dataset.stats = []
+dataset.userRepos = []
 var color = d3.scale.category20();
 
 function findUserInputs() {
@@ -25,50 +26,50 @@ function findUserInputs() {
 
 
 function getUserRepoArray (user){
-    var url = 'https://api.github.com/users/' + user + '/repos'
+    var url = 'https://api.github.com/users/' + user + '/repos?client_id=' + devObj.clientId + '&client_secret=' + devObj.clientSecret + '&per_page=100'
     // access the user's repos
     $.getJSON(url, function(repos){
 
         repos.forEach(function(repo){
             // loop through repos and grab the name and id
-            var repo = repo.name
             var repoId = repo.id
-            console.log(repo)
+            var repo = repo.name
+           
             // call for each repo
             getRepoStats(user, repo, repoId)
             
         })
+        
     })
 }
 
 function getRepoStats(user, repo, repoId) {
-    var url = 'https://api.github.com/repos/' + user + '/' + repo + '/stats/contributors'
+    var url = 'https://api.github.com/repos/' + user + '/' + repo + '/stats/contributors?client_id=' + devObj.clientId + '&client_secret=' + devObj.clientSecret + '&per_page=100'
     // grab repo stats for each repo passed in
+
     $.getJSON(url, function(stats){
         // namespacing for display purposes
-        dataset.commits = []
-        dataset.contributors = []
-        stats.forEach(function(user){
-            dataset.commits.push(user.total)
-            dataset.contributors.push(user.author)
-            dataset.repoName = repo
-        })
-        d3DountChartMaker()
-        createLegend(repoId)
+        if(stats.length){
+        
+            var commits = [],
+                contributors = [],
+                repoName = repo;
+
+                stats.forEach(function(user){
+                    commits.push(user.total)
+                    contributors.push(user.author)
+                    
+                })
+            d3DountChartMaker(repoId, repoName, commits, contributors)
+
+            
+        }
     })
 }
 
-function createLegend(repoId) {
-    var repoId = repoId
-    var stage = $("#" + repoId)
-    dataset.contributors.forEach(function(author, i){
-        var p = $('<p>' + author.login + ' ' + dataset.commits[i] + '</p>').css('color',  color(i))
 
-        stage.append(p)
-    })
-}
 
-function d3DountChartMaker(){
+function d3DountChartMaker(repoId, repoName, commits, contributors){
 
        
 
@@ -85,10 +86,19 @@ function d3DountChartMaker(){
             .innerRadius(radius - 100)
             .outerRadius(radius - 50);
 
-        $("#d3Donutstage").append('<div id="' + dataset.repoId + '"></div>')
-        var stage = $("#" + dataset.repoId)
-        stage.append('<h3>'+ dataset.repoName +'</h3>')
-        var svg = d3.select("#" + dataset.repoId).append("svg")
+        $("#d3Donutstage").append('<div id="repo-' + repoId + '"></div>')
+        var stage = $("#repo-" + repoId)
+        stage.append('<h3>'+ repoName +'</h3>')
+        var legend = $('<div class="legend"></div>')
+        contributors.forEach(function(author, i){
+            var p = $('<p>' + author.login + ' ' + commits[i] + '</p></div>').css('color',  color(i))
+            legend.append(p)
+        })
+        stage.append(legend)
+
+
+
+        var svg = d3.select("#repo-" + repoId).append("svg")
             .attr("width", width)
             .attr("height", height)
             .append("g")
@@ -96,7 +106,7 @@ function d3DountChartMaker(){
 
 
         var path = svg.selectAll("path")
-            .data(pie(dataset.commits))
+            .data(pie(commits))
           .enter().append("path")
             .attr("fill", function(d, i) { 
                 return color(i); 
