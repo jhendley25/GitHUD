@@ -27,6 +27,27 @@ function findUserInputs() {
     })
 }
 
+function gitUtil(options, urlSelector){
+    var url;
+    var options = options || {};
+    var devKeyStuff = '?client_id=' + devObj.clientId + '&client_secret=' + devObj.clientSecret + '&per_page=100'
+    options.userUrl = 'https://api.github.com/users/' + options.user + devKeyStuff
+    options.repoUrl = 'https://api.github.com/users/' + options.user + '/repos' + devKeyStuff
+    options.statsUrl = 'https://api.github.com/repos/' + options.user + '/' + options.repo + '/stats/contributors' + devKeyStuff
+    if (urlSelector == 'user') {
+        url = options.userUrl
+    } else if (urlSelector == 'repo'){
+        url = options.repoUrl
+    } else if (urlSelector == 'stats') {
+        url = options.statsUrl
+    }
+
+    $.getJSON(url, function(info){
+        console.log('user: ' + options.user)
+        console.log('json return: ' + info)
+    })
+}
+
 // function validate(){
 //     //check if the user already exists
 //     dataset.userList.forEach(function(user){
@@ -41,12 +62,15 @@ function getUserRepoArray (user){
     $.getJSON(url, function(repos){
 
         repos.forEach(function(repo){
-            // loop through repos and grab the name and id
-            var repoId = repo.id
-            var repo = repo.name
-           
-            // call for each repo
-            getRepoStats(user, repo, repoId)
+            //do not display forked repos
+            if(!repo.fork){
+                // loop through repos and grab the name and id
+                var repoId = repo.id
+                var repo = repo.name
+               
+                // call for each repo
+                getRepoStats(user, repo, repoId)
+            }
             
         })
         
@@ -58,7 +82,7 @@ function getRepoStats(user, repo, repoId) {
     // grab repo stats for each repo passed in
 
     $.getJSON(url, function(stats){
-        // namespacing for display purposes
+        // check that $.getJSON returned info
         if(stats.length){
         
             var commits = [],
