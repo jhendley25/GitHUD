@@ -1,6 +1,9 @@
 $(function(){
     $("#submit-user-request").click(function(){
         findUserInputs()
+        //clear stage when users are added
+        $("#d3Donutstage").html('')
+
     })
     
 })
@@ -8,21 +11,28 @@ $(function(){
 var dataset = {}
 dataset.stats = []
 dataset.userRepos = []
+dataset.userList = []
 var color = d3.scale.category20();
 
 function findUserInputs() {
-    dataset.userList = []
     //grab all input values, and make an array
     $("#myModal1").find('input').each(function(input){
         dataset.userList.push($(this).val())
     })
-    dataset.userList.forEach(function(user){
+    //added underscore uniq to remove duplicate usernames
+    var userArray = _.uniq(dataset.userList)
+    userArray.forEach(function(user){
         //call for each user in array
         getUserRepoArray(user)
     })
 }
 
-
+// function validate(){
+//     //check if the user already exists
+//     dataset.userList.forEach(function(user){
+//         if (user)
+//     })
+// }
 
 
 function getUserRepoArray (user){
