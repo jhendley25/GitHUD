@@ -8,12 +8,13 @@ $(function(){
     
 })
 
-
+var elemCount = 1
 var dataset = {}
 dataset.stats = []
 dataset.userRepos = []
 dataset.userList = []
-var color = d3.scale.category20();
+var color
+
 
 function findUserInputs() {
     //grab all input values, and make an array
@@ -108,8 +109,16 @@ function getRepoStats(user, repo, repoId) {
 
 function d3DountChartMaker(repoId, repoName, commits, contributors, count){
 
+    //somewhat randomly switch colorschemes
+    if (elemCount % 3 == 0) {
+        color = d3.scale.category20();
+    }else if (elemCount % 3 == 1) {
+        color = d3.scale.category20b();    
+    } else {
+        color = d3.scale.category20c();    
+    }
        // console.log(sorter)
-
+       elemCount += 1
         var width = 460,
             height = 300,
             radius = Math.min(width, height) / 2;
