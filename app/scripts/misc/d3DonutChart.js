@@ -17,7 +17,10 @@ var color = d3.scale.category20();
 function findUserInputs() {
     //grab all input values, and make an array
     $("#myModal1").find('input').each(function(input){
-        dataset.userList.push($(this).val())
+        //only add user if input field is not empty
+        if ($(this).val() != '') {
+            dataset.userList.push($(this).val())
+        }
     })
     //added underscore uniq to remove duplicate usernames
     var userArray = _.uniq(dataset.userList)
@@ -47,13 +50,6 @@ function gitUtil(options, urlSelector){
         console.log('json return: ' + info)
     })
 }
-
-// function validate(){
-//     //check if the user already exists
-//     dataset.userList.forEach(function(user){
-//         if (user)
-//     })
-// }
 
 
 function getUserRepoArray (user){
