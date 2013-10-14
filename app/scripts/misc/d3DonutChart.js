@@ -8,6 +8,7 @@ $(function(){
     
 })
 
+
 var dataset = {}
 dataset.stats = []
 dataset.userRepos = []
@@ -29,7 +30,7 @@ function findUserInputs() {
         getUserRepoArray(user)
     })
 }
-
+//utility function for getting the json from api.github.com
 function gitUtil(options, urlSelector){
     var url;
     var options = options || {};
@@ -76,6 +77,7 @@ function getUserRepoArray (user){
 function getRepoStats(user, repo, repoId) {
     var url = 'https://api.github.com/repos/' + user + '/' + repo + '/stats/contributors?client_id=' + devObj.clientId + '&client_secret=' + devObj.clientSecret + '&per_page=100'
     // grab repo stats for each repo passed in
+    
 
     $.getJSON(url, function(stats){
         // check that $.getJSON returned info
@@ -83,15 +85,20 @@ function getRepoStats(user, repo, repoId) {
         
             var commits = [],
                 contributors = [],
-                repoName = repo;
+                repoName = repo,
+                count = 0;
+                
 
                 stats.forEach(function(user){
                     commits.push(user.total)
                     contributors.push(user.author)
+                    //increment newCount in respect to number of contributors
+                    count += 1
+
                     
                 })
-            d3DountChartMaker(repoId, repoName, commits, contributors)
 
+            d3DountChartMaker(repoId, repoName, commits, contributors, count)
             
         }
     })
@@ -99,9 +106,9 @@ function getRepoStats(user, repo, repoId) {
 
 
 
-function d3DountChartMaker(repoId, repoName, commits, contributors){
+function d3DountChartMaker(repoId, repoName, commits, contributors, count){
 
-       
+       // console.log(sorter)
 
         var width = 460,
             height = 300,
@@ -116,32 +123,38 @@ function d3DountChartMaker(repoId, repoName, commits, contributors){
             .innerRadius(radius - 100)
             .outerRadius(radius - 50);
 
-        $("#d3Donutstage").append('<div id="repo-' + repoId + '"></div>')
-        var stage = $("#repo-" + repoId)
-        stage.append('<h3>'+ repoName +'</h3>')
-        var legend = $('<div class="legend"></div>')
-        contributors.forEach(function(author, i){
-            var p = $('<p>' + author.login + ' ' + commits[i] + '</p></div>').css('color',  color(i))
-            legend.append(p)
-        })
-        stage.append(legend)
+        if (count == 1 ){
+            $("#d3Donutstage").append('<div id="repo-' + repoId + '"></div>')
+        } else {
+            $("#d3Donutstage").prepend('<div id="repo-' + repoId + '"></div>')
 
-
-
-        var svg = d3.select("#repo-" + repoId).append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-
-        var path = svg.selectAll("path")
-            .data(pie(commits))
-          .enter().append("path")
-            .attr("fill", function(d, i) { 
-                return color(i); 
+        }
+            var stage = $("#repo-" + repoId)
+            stage.append('<h3>'+ repoName +'</h3>')
+            var legend = $('<div class="legend"></div>')
+            contributors.forEach(function(author, i){
+                var p = $('<p>' + author.login + ' ' + commits[i] + '</p></div>').css('color',  color(i))
+                legend.append(p)
             })
-            .attr("d", arc);
+            stage.append(legend)
+
+
+
+            var svg = d3.select("#repo-" + repoId).append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append("g")
+                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+
+            var path = svg.selectAll("path")
+                .data(pie(commits))
+              .enter().append("path")
+                .attr("fill", function(d, i) { 
+                    return color(i); 
+                })
+                .attr("d", arc);
+        
 }
 
 
