@@ -11,10 +11,11 @@ $('#sort-by a').click(function(){
 
 
 function initIsotope(){
+	  // $('#d3Donutstage').isotope({ sortBy : 'name' });
 	App.settings.isotopeReady = true;
 
 	$('#d3Donutstage').isotope({
-	  sortAscending : false,
+	  sortAscending : true,
 
 	  getSortData : {
 	    name : function ( $elem ) {

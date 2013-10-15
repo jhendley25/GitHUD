@@ -2,9 +2,9 @@ App = {}
 App.settings = {}
 
 $(function(){
+    $(".sort-btns").css('display','inline-block')
 
     $("#submit-user-request").click(function(){
-    $(".sort-btns").css('display','inline-block')
         findUserInputs()
         // sortButtonStates()
         //clear stage when users are added
@@ -144,7 +144,7 @@ function d3DountChartMaker(repoId, repoName, commits, contributors, count, sorti
 
         var arc = d3.svg.arc()
             .innerRadius(radius - 100)
-            .outerRadius(radius - 50);
+            .outerRadius(radius - 25);
 
         if (count == 1 ){
             $("#d3Donutstage").append('<div id="repo-' + repoId + '"></div>')
@@ -174,7 +174,7 @@ function d3DountChartMaker(repoId, repoName, commits, contributors, count, sorti
                 .attr("width", width)
                 .attr("height", height)
                 .append("g")
-                .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+                .attr("transform", "translate(" + width / 2.85 + "," + height / 2 + ")");
 
 
             var path = svg.selectAll("path")

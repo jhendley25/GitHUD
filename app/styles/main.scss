@@ -86,6 +86,7 @@ path.link {
     svg {
         display: block;
         margin: 0 auto;
+
     }
     h3  {
         text-align: center;
@@ -93,6 +94,16 @@ path.link {
     div {
 
         display: inline-block;
+        border: 1px solid $light-gray;
+        border-radius: 8px;
+        background: linear-gradient(bottom, $light-gray, lighten($light-gray, 10%));
+        margin-right: 5px;
+        margin-top: 5px;
+        box-shadow: inset 2px -2px 2px #acacac;
+        .legend {
+            background: none;
+            box-shadow: none;
+        }
     }
 }
 
@@ -100,7 +111,7 @@ path.link {
     height: auto;
     width: auto;
     position: absolute;
-    margin-left: 340px;
+    margin-left: 300px;
     padding: 3px;
     overflow: scroll;
     border: 1px solid $light-gray;
