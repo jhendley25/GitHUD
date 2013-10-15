@@ -1,3 +1,6 @@
+App = {}
+App.settings = {}
+
 $(function(){
     $("#submit-user-request").click(function(){
         findUserInputs()
@@ -57,17 +60,20 @@ function gitUtil(options, urlSelector){
 function getUserRepoArray (user){
     var url = 'https://api.github.com/users/' + user + '/repos?client_id=' + devObj.clientId + '&client_secret=' + devObj.clientSecret + '&per_page=100'
     // access the user's repos
+    
     $.getJSON(url, function(repos){
 
         repos.forEach(function(repo){
             //do not display forked repos
             if(!repo.fork){
                 // loop through repos and grab the name and id
+                var repoSize = repo.size
                 var repoId = repo.id
                 var repo = repo.name
+                console.log(repoSize)
                
                 // call for each repo
-                getRepoStats(user, repo, repoId)
+                getRepoStats(user, repo, repoId, repoSize)
             }
             
         })
@@ -75,11 +81,11 @@ function getUserRepoArray (user){
     })
 }
 
-function getRepoStats(user, repo, repoId) {
+function getRepoStats(user, repo, repoId, repoSize) {
     var url = 'https://api.github.com/repos/' + user + '/' + repo + '/stats/contributors?client_id=' + devObj.clientId + '&client_secret=' + devObj.clientSecret + '&per_page=100'
     // grab repo stats for each repo passed in
     
-
+    var sortingObj = {}
     $.getJSON(url, function(stats){
         // check that $.getJSON returned info
         if(stats.length){
@@ -88,18 +94,25 @@ function getRepoStats(user, repo, repoId) {
                 contributors = [],
                 repoName = repo,
                 count = 0;
-                
+            
 
                 stats.forEach(function(user){
                     commits.push(user.total)
                     contributors.push(user.author)
-                    //increment newCount in respect to number of contributors
+                    //increment count in respect to number of contributors
                     count += 1
 
                     
                 })
+                //add info to sortingObj for easier isotopejs integration
+                sortingObj.repoName = repoName
+                sortingObj.contribCount = contributors.length
+                sortingObj.commitCount = _.reduce(commits, function(memo, num){return memo + num}, 0)
+                sortingObj.repoSize = repoSize
 
-            d3DountChartMaker(repoId, repoName, commits, contributors, count)
+
+                console.log(sortingObj)
+                d3DountChartMaker(repoId, repoName, commits, contributors, count, sortingObj)
             
         }
     })
@@ -107,7 +120,7 @@ function getRepoStats(user, repo, repoId) {
 
 
 
-function d3DountChartMaker(repoId, repoName, commits, contributors, count){
+function d3DountChartMaker(repoId, repoName, commits, contributors, count, sortingObj){
 
     //somewhat randomly switch colorschemes
     if (elemCount % 3 == 0) {
@@ -140,12 +153,19 @@ function d3DountChartMaker(repoId, repoName, commits, contributors, count){
         }
             var stage = $("#repo-" + repoId)
             stage.append('<h3>'+ repoName +'</h3>')
+            //create legend div
             var legend = $('<div class="legend"></div>')
+            //pop contributors into legend div
             contributors.forEach(function(author, i){
                 var p = $('<p>' + author.login + ' ' + commits[i] + '</p></div>').css('color',  color(i))
                 legend.append(p)
             })
+            //pop legend div into stage
             stage.append(legend)
+            var sortingInfo = _.template($("#hidden-sorting-info").text())
+            stage.append(sortingInfo({sortingObj:sortingObj}))
+            //create a hidden div for sorting with isotope
+            
 
 
 

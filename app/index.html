@@ -12,6 +12,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/isotopeStyles.css">
         <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css">
         <!-- endbuild -->
     </head>
@@ -22,11 +23,12 @@
         <div class="wrapper960">
             <div class="sort-btns">
                 <h3>Sort by:&nbsp;&nbsp;</h3>
-                <div class="btn-group btn-group-sm">
+                <div id="sort-by"class="btn-group btn-group-sm">
 
-                  <button type="button" class="btn btn-default">Contributors</button>
-                  <button type="button" class="btn btn-default">Commits</button>
-                  <button type="button" class="btn btn-default">Size</button>
+                  <a type="button" href="#name" class="btn btn-default">Name</a>
+                  <a type="button" href="#contributors" class="btn btn-default">Contributors</a>
+                  <a type="button" href="#commits" class="btn btn-default">Commits</a>
+                  <a type="button" href="#size" class="btn btn-default">Size</a>
 
                 </div>
             </div>
@@ -94,7 +96,18 @@
             // </button>-->
 </div>
 </script>
+<script type="text/template" id="hidden-sorting-info">
 
+<div class="hidden" id="sorting-info">
+    <ul>
+        <li class="name"><%= sortingObj.repoName %></li>
+        <li class="contributor-count"><%= sortingObj.contribCount %></li>
+        <li class="commit-count"><%= sortingObj.commitCount %></li>
+        <li class="size"><%= sortingObj.repoSize %></li>
+    </ul>
+</div>
+    
+</script>
 
 
 
@@ -121,16 +134,20 @@
             ga('create','UA-XXXXX-X');ga('send','pageview');
         </script>
 
-        <!-- build:js scripts/main.js -->
         <script src="scripts/misc/env.js"></script>
+        <!-- build:js scripts/main.js -->
         <script src="scripts/misc/main.js"></script>
         <script src="scripts/models/models.js"></script>
         <script src="scripts/collections/collections.js"></script>
         <script src="scripts/views/githubStageView.js"></script>
         <script src="scripts/routers/routers.js"></script>
         <script src="scripts/misc/d3DonutChart.js"></script>
-
         <!-- endbuild -->
+<!--         // <script src="scripts/misc/jquery.ba-bbq.min.js"></script> -->
+        <script src="scripts/misc/jquery.infinitescroll.min.js"></script>
+        <script src="scripts/misc/jquery.isotope.min.js"></script>
+        <script src="scripts/misc/isotope.js"></script>
+
 
 
         <!-- scripts removed for now -->
