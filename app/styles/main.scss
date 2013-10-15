@@ -107,3 +107,11 @@ path.link {
     border-radius: 4px;
     max-height: 250px;
 }
+.sort-btns {
+    position: absolute;
+    right: 20px;
+    h3  {
+        display: inline-block;
+        font-size: 18px;
+    }
+}
