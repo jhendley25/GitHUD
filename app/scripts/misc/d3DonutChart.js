@@ -2,13 +2,16 @@ App = {}
 App.settings = {}
 
 $(function(){
+
     $("#submit-user-request").click(function(){
+    $(".sort-btns").css('display','inline-block')
         findUserInputs()
+        // sortButtonStates()
         //clear stage when users are added
         $("#d3Donutstage").html('')
 
     })
-    
+    sortButtonStates()
 })
 
 var elemCount = 1
@@ -70,7 +73,6 @@ function getUserRepoArray (user){
                 var repoSize = repo.size
                 var repoId = repo.id
                 var repo = repo.name
-                console.log(repoSize)
                
                 // call for each repo
                 getRepoStats(user, repo, repoId, repoSize)
@@ -111,7 +113,6 @@ function getRepoStats(user, repo, repoId, repoSize) {
                 sortingObj.repoSize = repoSize
 
 
-                console.log(sortingObj)
                 d3DountChartMaker(repoId, repoName, commits, contributors, count, sortingObj)
             
         }
@@ -184,6 +185,10 @@ function d3DountChartMaker(repoId, repoName, commits, contributors, count, sorti
                 })
                 .attr("d", arc);
         
+}
+
+function sortButtonStates() {
+        $(".sort-btns").removeClass('hidden')
 }
 
 

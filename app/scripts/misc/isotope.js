@@ -4,7 +4,7 @@ $('#sort-by a').click(function(){
   if (!App.settings.isotopeReady) { initIsotope() }
 
   var sortType = $(this).attr('href').slice(1);
-  $('#d3Donutstage').isotope({ sortBy : sortType });
+  $('#d3Donutstage').isotope('reloadItems').isotope({ sortBy : sortType });
   console.log('sorting!')
   return false;
 });
