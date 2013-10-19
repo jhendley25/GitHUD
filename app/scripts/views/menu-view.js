@@ -6,7 +6,7 @@ GitHUD.Views.MenuView = Backbone.View.extend({
   isotopeReady: false,
 
   events: {
-    "click #sort-by a"            : "isotopeSort",
+    "click #sort-by button"            : "isotopeSort",
     "click #submit-user-request"  : "createUrl",
     "click #add-more-user-inputs" : "addInput"
   },
@@ -40,10 +40,10 @@ GitHUD.Views.MenuView = Backbone.View.extend({
   },
 
   isotopeInit: function() {
-      // $('#d3Donutstage').isotope({ sortBy : 'name' });
+      // $('#donut-stage').isotope({ sortBy : 'name' });
     this.isotopeReady = true;
 
-    $('#d3Donutstage').isotope({
+    $('#donut-stage').isotope({
       sortAscending : true,
 
       getSortData : {
@@ -66,8 +66,8 @@ GitHUD.Views.MenuView = Backbone.View.extend({
   isotopeSort: function(event){
     if (!this.isotopeReady) { this.isotopeInit() }
 
-    var sortType = $(event.currentTarget).attr('href').slice(1);
-    $('#d3Donutstage').isotope('reloadItems').isotope({ sortBy : sortType });
+    var sortType = $(event.currentTarget).attr('id').replace('sort-','');
+    $('#donut-stage').isotope('reloadItems').isotope({ sortBy : sortType });
   }
 
 })

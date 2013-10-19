@@ -21,7 +21,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   <div class="wrapper">
-    <div id="d3Donutstage"></div>
+    <div id="donut-stage"></div>
   </div>
 
   <!-- build:js scripts/vendor.js -->
@@ -55,7 +55,8 @@
         Models: [],
         Collections: [],
         Views: [],
-        Routers: []
+        Routers: [],
+        utilities: {}
     }
   </script>
 
@@ -66,12 +67,13 @@
   <script src="scripts/env.js"></script>
 
   <!-- build:js scripts/main.js -->
-  <script src="scripts/models/user.js"></script>
+  <script src="scripts/utilities/keys.js"></script>
   <script src="scripts/models/repo.js"></script>
+  <script src="scripts/models/user.js"></script>
+  <script src="scripts/views/repo-view.js"></script>
   <script src="scripts/views/index-view.js"></script>
   <script src="scripts/views/menu-view.js"></script>
   <script src="scripts/routers/app-router.js"></script>
-  <script src="scripts/d3DonutChart.js"></script>
   <!-- endbuild -->
 
 

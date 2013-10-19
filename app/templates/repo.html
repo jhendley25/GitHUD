@@ -1,0 +1,9 @@
+<div id="repo-<%= repo.id %>">
+  <h3><%= repo.get('name') %></h3>
+  <div class="legend">
+    <% console.log('repo is', repo) %>
+    <% _.each(repo.get('gitHUDMeta').contributors, function(contributor, i) { %>
+      <p style="color: <%= color(i) %>;"><%= contributor.login %> <%= repo.get('gitHUDMeta').commits[i] %></p>
+    <% }) %>
+  </div>
+</div>
