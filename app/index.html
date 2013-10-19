@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/isotopeStyles.css">
-    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css">
     <!-- endbuild -->
 </head>
 <body>
@@ -40,8 +40,9 @@
   <script src="bower_components/jquery/jquery.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/backbone/backbone.js"></script>
+  <script src="bower_components/isotope/jquery.isotope.min.js"></script>
+  <script src="bower_components/d3/d3.min.js"></script>
   <script src="bower_components/q/q.js"></script>
-  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <!-- endbower -->
   <!-- endbuild -->
   
@@ -68,17 +69,14 @@
   <script src="scripts/templates.js"></script>
   <!-- endbuild -->
 
-  <script src="scripts/misc/env.js"></script>
+  <script src="scripts/env.js"></script>
 
   <!-- build:js scripts/main.js -->
   <script src="scripts/models/user.js"></script>
   <script src="scripts/models/repo.js"></script>
   <script src="scripts/views/index-view.js"></script>
   <script src="scripts/routers/routers.js"></script>
-    <!-- endbuild -->
-
-  <script src="scripts/misc/jquery.isotope.min.js"></script>
-  <script src="scripts/misc/isotope.js"></script>
+  <!-- endbuild -->
 
   <!-- build:js scripts/plugins.js -->
   <script src="bower_components/sass-bootstrap/js/modal.js"></script>
