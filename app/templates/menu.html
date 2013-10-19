@@ -1,15 +1,22 @@
-<button type="button" class="btn btn-default btn-mg" id="display-table">Table</button>
-<button type="button" class="btn btn-default btn-mg" id="display-thumbs">Thumbs</button>
-<div class="subwindow-buttons">
-  <div class="logo"><h1>GitHUD</h1></div>
-  <div id="stage-buttons">
-      <div class="btn-group" id="add-users">
-        <button type="button" class="btn btn-primary" data-toggle="modal" href="#myModal1"><span class="glyphicon glyphicon-plus"></span> Users</button>
-        
-      </div>
-      
+<div class="left-menu">
+  <h1>GitHUD</h1>
+
+  <div class="btn-group" id="add-users">
+    <button type="button" class="btn btn-primary" data-toggle="modal" href="#addusers">
+      <span class="glyphicon glyphicon-plus"></span>
+      Users
+    </button>
+  </div>    
+</div>
+
+<div class="right-menu">
+  <h3>Sort by: &nbsp;</h3>
+  <div id="sort-by" class="btn-group btn-group-sm">
+
+    <a type="button" href="#name" class="btn btn-default">Name</a>
+    <a type="button" href="#contributors" class="btn btn-default">Contributors</a>
+    <a type="button" href="#commits" class="btn btn-default">Commits</a>
+    <a type="button" href="#size" class="btn btn-default">Size</a>
+
   </div>
-  <!--//<button type="button" class="btn btn-default btn-mg" id="display-stage">
-      //<span class="glyphicon glyphicon-chevron-down"></span>
-  // </button>-->
 </div>
