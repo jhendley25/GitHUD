@@ -27,7 +27,7 @@ GitHUD.Views.MenuView = Backbone.View.extend({
         //only add user if input field is not empty
         var username = $(this).val()
         if (username) {
-            dataset.userList.push(username)
+            // dataset.userList.push(username)
             url += $(this).val() + ','
         }
     });

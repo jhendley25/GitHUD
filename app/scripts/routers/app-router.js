@@ -9,7 +9,7 @@ AppRouter = Backbone.Router.extend({
 
   mainRoute: function(params) {
     console.log(params)
-    if (params.repos) {
+    if (params && params.repos) {
       new GitHUD.Views.IndexView({users: params.repos.split(',')});
       console.log('showing repos!')
     } else {
