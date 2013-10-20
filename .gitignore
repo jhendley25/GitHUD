@@ -3,5 +3,5 @@ dist
 .tmp
 .sass-cache
 app/bower_components
-app/scripts/env.js
+app/scripts/misc/env.js
 .DS_Store
