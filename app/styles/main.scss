@@ -1,38 +1,48 @@
+@import "compass/css3";
+
 $gray: #acacac;
 $gray-opacity: rgba(230, 230, 230, 0.7);
 $light-gray: #eeeeee;
-$dark-gray: #222222;
+$dark-gray: rgb(163, 160, 160);
 
-.wrapper960 {
+.wrapper {
     width: 100%;
     margin: 0 auto;
     padding-bottom: 50px;
 }
 
-.user-stage {
+
+
+.menu {
+  position: relative;
+
+  .left-menu {
     width: 270px;
-    height: 600px;
-    position: absolute;
-    top: -540px;
-    padding-top: 40px;
-    margin-bottom: 40px;
-    margin-left: 10px;
+    height: 45px;
+    position: relative;
     background: $light-gray;
-    border: 2px solid $dark-gray;
-    box-shadow: 1px 1px 3px $gray;
-    border-radius: 6px;
+    border: 1px solid $dark-gray;
+    @include border-radius(0 0 6px 6px);
     z-index: 2000;
 
-
-    #stage-buttons{
-
-        position: absolute;
-        bottom: 5px;
-        left: 170px;
-        background: $light-gray;
-
-
+    .btn-group{
+      position: absolute;
+      bottom: 5px;
+      left: 170px;
+      background: $light-gray;
     }
+  }
+
+  .right-menu {
+    position: absolute;
+    top: 0;
+    right: 20px;
+
+    h3  {
+      display: inline-block;
+      font-size: 18px;
+    }
+  }
 }
 
 
@@ -44,16 +54,14 @@ $dark-gray: #222222;
 }
 
 
-.logo {
-    position: absolute;
-    bottom: -5px;
-    left: 5px;
-    h1{
-        color: $gray;
-        font-size: 30px;
-        text-shadow: 1px 1px 1px white;
-    }
+
+h1 {
+    margin: 5px 0 0 10px;
+    color: $gray;
+    font-size: 30px;
+    text-shadow: 1px 1px 1px white;
 }
+
 
 // 
 .node circle {
@@ -73,7 +81,7 @@ path.link {
   stroke-width: 1.5px;
 }
 
-#d3Donutstage {
+#donut-stage {
     height: auto;
     width: 100%;
     margin: 0;
@@ -118,14 +126,5 @@ path.link {
     border-radius: 4px;
     max-height: 250px;
 }
-.sort-btns {
-    position: absolute;
-    right: 20px;
-    display: none;
-    h3  {
-        display: inline-block;
-        font-size: 18px;
-    }
 
-}
 

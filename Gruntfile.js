@@ -22,6 +22,10 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
         watch: {
+            templates: {
+                files: ['<%= yeoman.app %>/templates/{,*/}*.html'],
+                tasks: ['jst']
+            },
             coffee: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
                 tasks: ['coffee:dist']
@@ -81,6 +85,13 @@ module.exports = function (grunt) {
                     base: yeomanConfig.dist
                 }
             }
+        },
+        jst: {
+          compile: {
+            files: {
+              ".tmp/scripts/templates.js": ["<%= yeoman.app %>/templates/**/*.html"]
+            }
+          }
         },
         clean: {
             dist: {
@@ -298,15 +309,18 @@ module.exports = function (grunt) {
         },
         concurrent: {
             server: [
+                'jst',
                 'compass',
                 'coffee:dist',
                 'copy:styles'
             ],
             test: [
+                'jst',
                 'coffee',
                 'copy:styles'
             ],
             dist: [
+                'jst',
                 'coffee',
                 'compass',
                 'copy:styles',
