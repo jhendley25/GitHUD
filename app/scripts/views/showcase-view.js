@@ -6,7 +6,7 @@ GitHUD.Views.ShowcaseView = Backbone.View.extend({
 		this.render()
 	},
 	render: function(){
-		this.$el.append(this.showcaseTemplate())
+		this.$el.append(this.showcaseTemplate({repoData: this.model}))
 		console.log('showcaseView rendered')
 		
 	}
