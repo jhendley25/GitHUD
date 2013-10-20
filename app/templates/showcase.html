@@ -1,0 +1,23 @@
+<div class="modal fade" id="repoId-<%= repoData.get('id') %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+          <%= repoData.get('name') %>
+        </h4>
+      </div>
+      <div class="modal-body">
+          <h1>Showcase</h1>
+          <h3>total commits: <%= repoData.get('gitHUDMeta').sortData.commitCount %></h3>
+          <h3>total contributors: <%= repoData.get('gitHUDMeta').sortData.contribCount %></h3>
+          <h3>total commits: <%= repoData.get('gitHUDMeta').sortData.commitCount %></h3>
+          <h3>total commits: <%= repoData.get('gitHUDMeta').sortData.commitCount %></h3>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+      </div>
+    </div>
+  </div>
+</div> 
