@@ -11,11 +11,13 @@
     <script>mocha.setup('bdd')</script>
     
     <!-- tell mocha to ignore global leak errors -->
-    <script>mocha.setup({globals: ['hasCert','testObj']});</script>
+    <script>mocha.setup({globals: ['hasCert','testRepo']});</script>
     <!-- assertion framework -->
     <script src="lib/chai.js"></script>
     <script>var expect = chai.expect</script>
 
+    <!-- hidden div for appending donut chart -->
+    <div id="donut-stage"style="display:none;"></div>
     <!-- include source files here... -->
 <script src="../app/bower_components/jquery/jquery.js"></script>
   <script src="../app/bower_components/underscore/underscore.js"></script>
@@ -50,6 +52,7 @@
     <!-- include spec files here... -->
     <script src="spec/repoModelTest.js"></script>
     <script src="spec/userModelTest.js"></script>
+    <script src="spec/viewTests.js"></script>
 
 
     <script>mocha.run()</script>

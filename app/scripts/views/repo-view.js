@@ -25,12 +25,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
         radius = Math.min(width, height) / 2,
         pie, arc, state, legend, svg, path, sortingInfo, color, renderedTemplate;
         
-    //add attr's for modal
-    $(this.el).attr({
-      "data-toggle": 'modal',
-      "href": '#repoId-'+this.model.get('id')
 
-        })
     //somewhat randomly switch color schemes
     switch (Math.floor(Math.random()*3)) {
       case 2:
