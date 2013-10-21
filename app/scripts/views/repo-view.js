@@ -1,7 +1,4 @@
 GitHUD.Views.RepoView = Backbone.View.extend({
-  events: {
-      "click": "createShowcase"
-  },
 
   initialize: function (options) {
 
@@ -17,14 +14,9 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     // then set it all in motion with a fetch!
     this.model.fetch()
   },
+
   //create a new showcase view with the current model
   //may not be the proper way to do this, but hey
-  createShowcase: function(){
-          console.log(this.model)
-    new GitHUD.Views.ShowcaseView({
-            model: this.model
-    })
-  },
 
   render: function() {
     // var city
@@ -32,7 +24,8 @@ GitHUD.Views.RepoView = Backbone.View.extend({
         height = 300,
         radius = Math.min(width, height) / 2,
         pie, arc, state, legend, svg, path, sortingInfo, color, renderedTemplate;
-        //add attr's for modal
+        
+    //add attr's for modal
     $(this.el).attr({
       "data-toggle": 'modal',
       "href": '#repoId-'+this.model.get('id')
