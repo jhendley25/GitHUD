@@ -15,9 +15,6 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     this.model.fetch()
   },
 
-  //create a new showcase view with the current model
-  //may not be the proper way to do this, but hey
-
   render: function() {
     // var city
     var width = 460,
