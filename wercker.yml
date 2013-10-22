@@ -1,0 +1,19 @@
+# wercker.yml
+
+box: wercker/nodejs
+# Build definition
+build:
+  # The steps that will be executed on build
+  steps:
+    # A step that executes `npm install` command
+    - npm-install
+
+    - script:
+        # make sure that bower is listed in your package.json
+        # use `npm install --save bower` to add it.
+        name: bower install
+        code: node_modules/bower/bin/bower install
+
+    # this assumes that your test suite runs via `grunt test`
+    - grunt:
+        tasks: test
