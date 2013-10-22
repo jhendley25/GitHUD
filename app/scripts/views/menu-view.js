@@ -40,7 +40,7 @@ GitHUD.Views.MenuView = Backbone.View.extend({
   },
 
   isotopeInit: function() {
-      // $('#donut-stage').isotope({ sortBy : 'name' });
+
     this.isotopeReady = true;
 
     $('#donut-stage').isotope({

@@ -9,6 +9,8 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     // listen for this view's model to change, then render
     this.listenTo(this.model, 'change', function(model){
       this.render(model)
+      // initiate isotope after rendering
+      $('#donut-stage').isotope({ sortBy : 'name' });
     })
 
     // then set it all in motion with a fetch!
