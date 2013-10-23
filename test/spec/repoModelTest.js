@@ -3,6 +3,10 @@ describe("GitHUD.Models.Repo", function () {
     var repo = {
       full_name: 'jhendley25/GitHUD'
     }
+
+
+
+
     testRepo = new GitHUD.Models.Repo(repo)
   })
 
