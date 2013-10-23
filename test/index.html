@@ -9,9 +9,9 @@
     <div id="mocha"></div>
     <script src="lib/mocha/mocha.js"></script>
     <script>mocha.setup('bdd')</script>
-    
+
     <!-- tell mocha to ignore global leak errors -->
-    <script>mocha.setup({globals: ['hasCert','testRepo']});</script>
+    <script>mocha.setup({ignoreLeaks: true})</script>
     <!-- assertion framework -->
     <script src="lib/chai.js"></script>
     <script>var expect = chai.expect</script>
