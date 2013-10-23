@@ -1,7 +1,9 @@
 {
   "name": "githubview",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "bower": "~1.2.7"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-copy": "~0.4.1",
