@@ -31,8 +31,8 @@ GitHUD.Views.MenuView = Backbone.View.extend({
             url += $(this).val() + ','
         }
     });
-
     GitHUD.router.navigate(url.slice(0,-1), {trigger: true})
+
   },
 
   addInput: function() {

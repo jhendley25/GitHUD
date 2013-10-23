@@ -267,15 +267,15 @@ module.exports = function (grunt) {
             // blocks for your CSS. By default, the Usemin block from your
             // `index.html` will take care of minification, e.g.
             //
-            //     <!-- build:css({.tmp,app}) styles/main.css -->
+            //    <!-- build:css({.tmp,app}) styles/main.css -->
             //
             // dist: {
-            //     files: {
-            //         '<%= yeoman.dist %>/styles/main.css': [
-            //             '.tmp/styles/{,*/}*.css',
-            //             '<%= yeoman.app %>/styles/{,*/}*.css'
-            //         ]
-            //     }
+            //    files: {
+            //        '<%= yeoman.dist %>/styles/main.css': [
+            //            '.tmp/styles/{,*/}*.css',
+            //            '<%= yeoman.app %>/styles/{,*/}*.css'
+            //        ]
+            //    }
             // }
         },
         htmlmin: {
