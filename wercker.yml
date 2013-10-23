@@ -17,3 +17,9 @@ build:
     # this assumes that your test suite runs via `grunt test`
     - grunt:
         tasks: test
+
+  # Report the build status to HipChat
+  after-steps:
+    - hipchat-notify:
+      token: 94ce6003b3520aebbd1370ee230e39
+        room-id: 172022
