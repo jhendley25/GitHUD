@@ -11,11 +11,10 @@ describe("GitHUD.Models.Repo", function () {
 
   })
   it("should contain metadata namespaced under gitHUDMeta", function(done){
-  	testRepo.fetch()
-  	setTimeout(function(){
+  	testRepo.fetch({success: function(){
   		var meta = testRepo.get('gitHUDMeta')
   		expect(meta != undefined).to.equal(true)
   		done()
-  	}, 300)
+  	}})
   })
 })

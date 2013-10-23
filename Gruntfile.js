@@ -30,6 +30,10 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.coffee'],
                 tasks: ['coffee:dist']
             },
+            test: {
+                files: ['test/spec/{,*/}*.{js,coffee}', '<%= yeoman.app %>/{,*/}*.{js,coffee}'],
+                tasks: ['test']
+            },
             coffeeTest: {
                 files: ['test/spec/{,*/}*.coffee'],
                 tasks: ['coffee:test']
@@ -57,13 +61,25 @@ module.exports = function (grunt) {
         connect: {
             options: {
                 port: 9000,
-                livereload: 35729,
                 // change this to '0.0.0.0' to access the server from outside
                 hostname: 'localhost'
+            },
+            testServer: {
+                options: {
+                    open: true,
+                    port: 9002,
+                    livereload: 35728,
+                    base: [
+                        '.tmp',
+                        'test',
+                        yeomanConfig.app
+                    ]
+                }
             },
             livereload: {
                 options: {
                     open: true,
+                    port: 35729,
                     base: [
                         '.tmp',
                         yeomanConfig.app
@@ -72,6 +88,7 @@ module.exports = function (grunt) {
             },
             test: {
                 options: {
+                    port: 9001,
                     base: [
                         '.tmp',
                         'test',
@@ -353,6 +370,14 @@ module.exports = function (grunt) {
         'mocha'
     ]);
 
+    grunt.registerTask('test-server', [
+        'clean:server',
+        'concurrent:test',
+        'autoprefixer',
+        'connect:testServer',
+        'watch'
+    ]);
+
     grunt.registerTask('build', [
         'clean:dist',
         'useminPrepare',
@@ -371,4 +396,7 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
+
+    // Automatic notifications when tasks fail.
+    grunt.loadNpmTasks('grunt-notify');
 };

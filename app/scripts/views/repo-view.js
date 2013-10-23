@@ -1,7 +1,7 @@
 GitHUD.Views.RepoView = Backbone.View.extend({
 
   initialize: function (options) {
-
+    console.log('cool')
     
     // get the this.el into the page
     $("#donut-stage").append(this.el)
