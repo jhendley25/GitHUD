@@ -15,8 +15,17 @@ GitHUD.Models.Repo = Backbone.Model.extend({
     var commits = [],
         contributors = [],
         count = 0,
+        donutData = [],
         sortData, gitHUDMeta;
 
+    var color = function(i){
+        var pallete = ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"]
+
+        return pallete[i]
+    }
+    _.each(response, function(author, i){
+        donutData.push({value: author.total, color: color(i)})
+    })
 
     _.each(response, function (user) {
       commits.push(user.total)
@@ -38,6 +47,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       sortData: sortData,
       contributors: contributors,
       commits: commits,
+      donutData: donutData,
       authors: response
     }
     console.log(gitHUDMeta)

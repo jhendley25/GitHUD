@@ -3,7 +3,7 @@
   <div class="legend">
     <% console.log('repo is', repo) %>
     <% _.each(repo.get('gitHUDMeta').contributors, function(contributor, i) { %>
-      <p style="color: <%= color(i) %>;"><%= contributor.login %> <%= repo.get('gitHUDMeta').commits[i] %></p>
+      <p style="color: <%= repo.get('gitHUDMeta').donutData.color %>;"><%= contributor.login %> <%= repo.get('gitHUDMeta').commits[i] %></p>
     <% }) %>
   </div>
   <canvas id='chart-<%= repo.id %>' width='200' height='200'>
