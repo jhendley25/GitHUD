@@ -18,22 +18,6 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   },
 
   render: function() {
-    // var city
-    var data = [],
-        chartTarget,
-        authors;
-
-    //ripping off d3's color brewer
-
-    // var canvas = "<canvas id='chart-" + this.model.get('id') + "' width='200' height='200'>"
-    // this.$el.append(canvas)
-
-
-    // authors = this.model.get('gitHUDMeta').authors
-
-    // _.each(authors, function(author, i){
-    //     data.push({value: author.total, color: color(i)})
-    // })
 
     // add the legend and title
     renderedTemplate = JST["app/templates/repo.html"]({
@@ -47,9 +31,11 @@ GitHUD.Views.RepoView = Backbone.View.extend({
       sortData: this.model.get('gitHUDMeta').sortData
     }))
 
-    ctx = $("#chart-" + this.model.get('id')).get(0).getContext("2d");
+    ctx = $("#donut-chart-" + this.model.get('id')).get(0).getContext("2d");
+    ctx2 = $("#line-chart-" + this.model.get('id')).get(0).getContext("2d");
 
     new Chart(ctx).Doughnut(this.model.get('gitHUDMeta').donutData);
+    new Chart(ctx2).Line(this.model.get('gitHUDMeta').graphData);
 
 
   }

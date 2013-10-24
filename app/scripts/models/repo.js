@@ -16,7 +16,19 @@ GitHUD.Models.Repo = Backbone.Model.extend({
         contributors = [],
         count = 0,
         donutData = [],
+        graphData = {
+            users: [],
+            labels: [],
+            datasets: {
+                fillColor : "rgba(220,220,220,0.5)",
+                strokeColor : "rgba(220,220,220,1)",
+                pointColor : "rgba(220,220,220,1)",
+                pointStrokeColor : "#fff",
+                data: []
+            },
+        },
         sortData, gitHUDMeta;
+
 
     var color = function(i){
         var pallete = ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"]
@@ -31,6 +43,17 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       commits.push(user.total)
       contributors.push(user.author)
     })
+
+    _.each(response, function (user) {
+        graphData.users.push(user.author.login)
+        _.each(user.weeks, function(weeklyData){
+            graphData.datasets.data.push(weeklyData.c)
+            graphData.labels.push(weeklyData.w)
+        })
+
+        console.log('graphData ',graphData)
+    })
+
 
     // add info to sortData for easier isotopejs integration
     sortData = {
@@ -48,6 +71,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       contributors: contributors,
       commits: commits,
       donutData: donutData,
+      graphData: graphData,
       authors: response
     }
     console.log(gitHUDMeta)
