@@ -6,4 +6,5 @@
       <p style="color: <%= color(i) %>;"><%= contributor.login %> <%= repo.get('gitHUDMeta').commits[i] %></p>
     <% }) %>
   </div>
+  <canvas id='chart-<%= repo.id %>' width='200' height='200'>
 </div>

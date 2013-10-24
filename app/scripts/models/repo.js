@@ -40,7 +40,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       commits: commits,
       authors: response
     }
-
+    console.log(gitHUDMeta)
     // finally return all of this
     return {gitHUDMeta: gitHUDMeta}
   }

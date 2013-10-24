@@ -2,7 +2,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
 
   initialize: function (options) {
     console.log('cool')
-    
+
     // get the this.el into the page
     $("#donut-stage").append(this.el)
 
@@ -19,23 +19,25 @@ GitHUD.Views.RepoView = Backbone.View.extend({
 
   render: function() {
     // var city
-    var width = 460,
-        height = 300,
-        radius = Math.min(width, height) / 2,
-        pie, arc, state, legend, svg, path, sortingInfo, color, renderedTemplate;
-        
+    var data = [],
+        chartTarget,
+        authors;
 
-    //somewhat randomly switch color schemes
-    switch (Math.floor(Math.random()*3)) {
-      case 2:
-        color = d3.scale.category20();
-        break;
-      case 1:
-        color = d3.scale.category20b();
-        break;
-      default:
-        color = d3.scale.category20c();
+    //ripping off d3's color brewer
+    var color = function(i){
+        var pallete = ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"]
+
+        return pallete[i]
     }
+    // var canvas = "<canvas id='chart-" + this.model.get('id') + "' width='200' height='200'>"
+    // this.$el.append(canvas)
+
+
+    authors = this.model.get('gitHUDMeta').authors
+
+    _.each(authors, function(author, i){
+        data.push({value: author.total, color: color(i)})
+    })
 
     // add the legend and title
     renderedTemplate = JST["app/templates/repo.html"]({
@@ -50,25 +52,10 @@ GitHUD.Views.RepoView = Backbone.View.extend({
       sortData: this.model.get('gitHUDMeta').sortData
     }))
 
-    // the rest is just d3 black magic to render the donuts
-    pie = d3.layout.pie().sort(null);
-    arc = d3.svg.arc()
-      .innerRadius(radius - 100)
-      .outerRadius(radius - 25);
+    ctx = $("#chart-" + this.model.get('id')).get(0).getContext("2d");
 
-    svg = d3.select(this.el).append("svg")
-      .attr("width", width)
-      .attr("height", height)
-      .append("g")
-      .attr("transform", "translate(" + width / 2.85 + "," + height / 2 + ")");
-    
-    path = svg.selectAll("path")
-      .data(pie(this.model.get('gitHUDMeta').commits))
-      .enter().append("path")
-      .attr("fill", function (d, i) {
-        return color(i);
-      })
-      .attr("d", arc);
+    new Chart(ctx).Doughnut(data);
+
 
   }
 })
