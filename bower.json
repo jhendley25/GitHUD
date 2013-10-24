@@ -9,7 +9,8 @@
     "q": "~0.9.7",
     "isotope": "~1.5.25",
     "d3": "~3.3.8",
-    "backbone-query-parameters": "*"
+    "backbone-query-parameters": "*",
+    "momentjs": "~2.3.1"
   },
   "devDependencies": {}
 }
