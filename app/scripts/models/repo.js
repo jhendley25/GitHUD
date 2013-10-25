@@ -29,7 +29,10 @@ GitHUD.Models.Repo = Backbone.Model.extend({
         },
         sortData, gitHUDMeta;
 
-
+    function dateMe(newDate){
+        var date = new Date(newDate)
+        return moment(date).format("MMM:DD")
+    }
     var color = function(i){
         var pallete = ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"]
 
@@ -48,7 +51,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
         // graphData.users.push(user.author.login)
         _.each(user.weeks, function(weeklyData){
             graphData.datasets.data.push(weeklyData.c)
-            graphData.labels.push(weeklyData.w)
+            graphData.labels.push(dateMe(weeklyData.w))
         })
 
         // console.log('graphData ',graphData)
