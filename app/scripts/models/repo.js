@@ -14,7 +14,6 @@ GitHUD.Models.Repo = Backbone.Model.extend({
   parse: function(response) {
     var commits = [],
         contributors = [],
-        count = 0,
         donutData = [],
         graphData = {
             // users: [],
@@ -27,35 +26,55 @@ GitHUD.Models.Repo = Backbone.Model.extend({
                 data: []
             },
         },
+        tickerData = {
+            allCommiters: {
+                allTime: [],
+                weekly: []
+            },
+            topCommiter: {
+                weekly: {},
+                allTime: {}
+            }
+        },
         sortData, gitHUDMeta;
 
     function dateMe(newDate){
         var date = new Date(newDate)
-        return moment(date).format("MMM:DD")
+        return moment(date).format("MMM-DD")
     }
     var color = function(i){
         var pallete = ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"]
 
         return pallete[i]
     }
-    _.each(response, function(author, i){
-        donutData.push({value: author.total, color: color(i)})
-    })
 
-    _.each(response, function (user) {
+
+    _.each(response, function (user, i) {
+        //two arrays, one containing username & one containing commit count
       commits.push(user.total)
       contributors.push(user.author)
-    })
+      //get all committers weekly and alltime
+      tickerData.allCommiters.allTime.push({user: user.author.login, commits: user.total})
+      tickerData.allCommiters.weekly.push({user: user.author.login, startOfWeek: moment( _.first(user.weeks).w ).format("MMM-DD"), commits: _.first(user.weeks).c})
+      // find top commiter of alltime, and top commiter of the week
+      tickerData.topCommiter.allTime = _.max(tickerData.allCommiters.allTime, function(user){return user.commits})
+      tickerData.topCommiter.weekly = _.max(tickerData.allCommiters.weekly, function(user){return user.commits})
 
-    _.each(response, function (user) {
-        // graphData.users.push(user.author.login)
-        _.each(user.weeks, function(weeklyData){
+      //donutData namespacing
+      donutData.push({value: user.total, color: color(i)})
+      _.each(user.weeks, function(weeklyData){
+            //graphData namespacing
             graphData.datasets.data.push(weeklyData.c)
             graphData.labels.push(dateMe(weeklyData.w))
         })
-
-        // console.log('graphData ',graphData)
     })
+
+
+    // console.log(tickerData)
+
+
+
+
 
 
     // add info to sortData for easier isotopejs integration
@@ -75,6 +94,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       commits: commits,
       donutData: donutData,
       graphData: graphData,
+      tickerData: tickerData,
       authors: response
     }
     console.log(gitHUDMeta)
