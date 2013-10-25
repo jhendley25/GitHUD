@@ -17,12 +17,12 @@ GitHUD.Models.Repo = Backbone.Model.extend({
         count = 0,
         donutData = [],
         graphData = {
-            users: [],
+            // users: [],
             labels: [],
             datasets: {
-                fillColor : "rgba(220,220,220,0.5)",
-                strokeColor : "rgba(220,220,220,1)",
-                pointColor : "rgba(220,220,220,1)",
+                fillColor : '#000',
+                strokeColor : "#000",
+                pointColor : "#000",
                 pointStrokeColor : "#fff",
                 data: []
             },
@@ -45,13 +45,13 @@ GitHUD.Models.Repo = Backbone.Model.extend({
     })
 
     _.each(response, function (user) {
-        graphData.users.push(user.author.login)
+        // graphData.users.push(user.author.login)
         _.each(user.weeks, function(weeklyData){
             graphData.datasets.data.push(weeklyData.c)
             graphData.labels.push(weeklyData.w)
         })
 
-        console.log('graphData ',graphData)
+        // console.log('graphData ',graphData)
     })
 
 
