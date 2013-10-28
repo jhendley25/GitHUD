@@ -58,14 +58,14 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       // find top commiter of alltime, and top commiter of the week
       tickerData.topCommiter.allTime = _.max(tickerData.allCommiters.allTime, function(user){return user.commits})
       tickerData.topCommiter.weekly = _.max(tickerData.allCommiters.weekly, function(user){return user.commits})
-
+      console.log('top commiter ',tickerData.topCommiter.allTime)
       //donutData namespacing
       donutData.push({value: user.total, color: color(i)})
       _.each(user.weeks, function(weeklyData){
             //graphData namespacing
             // console.log(weeklyData.c)
             graphData.datasets[0].data.push(parseInt(weeklyData.c))
-            //random multiplication because unix epoch is odd
+
             // graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
 
             //pushing empty string for formatting purposes
