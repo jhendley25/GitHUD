@@ -18,13 +18,15 @@ GitHUD.Models.Repo = Backbone.Model.extend({
         graphData = {
             // users: [],
             labels: [],
-            datasets: {
+            datasets: [
+            {
                 fillColor : '#000',
                 strokeColor : "#000",
                 pointColor : "#000",
                 pointStrokeColor : "#fff",
                 data: []
-            },
+            }
+            ]
         },
         tickerData = {
             allCommiters: {
@@ -62,7 +64,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       _.each(user.weeks, function(weeklyData){
             //graphData namespacing
             console.log(weeklyData.c)
-            graphData.datasets.data.push(weeklyData.c)
+            graphData.datasets[0].data.push(parseInt(weeklyData.c))
             //random multiplication because unix epoch is odd
             graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
         })
