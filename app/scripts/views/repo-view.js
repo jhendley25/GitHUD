@@ -38,20 +38,20 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     var ctx2 = $("#line-chart-" + this.model.get('id')).get(0).getContext("2d");
 
 
-// var data = {
-//     datasets : [
-//         {
-//             data : [65,59,90,81,56,55,40],
-//             fillColor : "#000",
-//             strokeColor : "#000",
-//             pointColor : "#000",
-//             pointStrokeColor : "#fff"
-//         }
-//     ],
-//     labels : ["January","February","March","April","May","June","July"],
-// }
-    var data = this.model.get('gitHUDMeta').graphData
-    new Chart(ctx2).Line(data);
+var data = {
+    datasets : [
+        {
+            data : [65,59,90,81,56,55,40],
+            fillColor : "#000",
+            strokeColor : "#000",
+            pointColor : "#000",
+            pointStrokeColor : "#fff"
+        }
+    ],
+    labels : ["January","February","March","April","May","June","July"],
+}
+    // var data = this.model.get('gitHUDMeta').graphData
+    new Chart(ctx2).Line(this.model.get('gitHUDMeta').graphData);
     // new Chart(ctx2).Line(data)
 
   }
