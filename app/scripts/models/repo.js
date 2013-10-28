@@ -20,9 +20,9 @@ GitHUD.Models.Repo = Backbone.Model.extend({
             labels: [],
             datasets: [
             {
-                fillColor : '#000',
-                strokeColor : "#000",
-                pointColor : "#000",
+                fillColor : '#0086cb',
+                strokeColor : "#00598a",
+                pointColor : "#00598a",
                 pointStrokeColor : "#fff",
                 data: []
             }
@@ -63,10 +63,13 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       donutData.push({value: user.total, color: color(i)})
       _.each(user.weeks, function(weeklyData){
             //graphData namespacing
-            console.log(weeklyData.c)
+            // console.log(weeklyData.c)
             graphData.datasets[0].data.push(parseInt(weeklyData.c))
             //random multiplication because unix epoch is odd
-            graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
+            // graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
+
+            //pushing empty string for formatting purposes
+            graphData.labels.push("")
         })
     })
 
@@ -98,7 +101,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       tickerData: tickerData,
       authors: response
     }
-    console.log(contributors)
+
     // finally return all of this
     return {gitHUDMeta: gitHUDMeta}
   }

@@ -1,22 +1,21 @@
 <div id="repo-<%= repo.id %>">
+    <div id="gravatar-icon">
+        <img src="<%= repo.get('owner').avatar_url %>">
+    </div>
   <h3><span class="owner-title">
         <%= repo.get('owner').login %>
     </span>/
     <span class="repo-title">
         <%= repo.get('name') %>
     </span></h3>
-  <div class="legend">
 
-    <% _.each(repo.get('gitHUDMeta').contributors, function(contributor, i) { %>
-      <p style="color: <%= repo.get('gitHUDMeta').donutData.color %>;"><%= contributor.login %> <%= repo.get('gitHUDMeta').commits[i] %></p>
-    <% }) %>
-  </div>
-  <canvas id='line-chart-<%= repo.id %>' width='500' height='200'></canvas>
+  <canvas id='line-chart-<%= repo.id %>' width='460' height='180'></canvas>
   <div id="donut-chart">
     <div id="inner-donut-legend">
         <span><%= repo.get('gitHUDMeta').contributors.length %></span><br>
         <%= repo.get('gitHUDMeta').contributors.length > 1 ? "contributors" : "contributor" %>
     </div>
-  <canvas id='donut-chart-<%= repo.id %>' width='200' height='200'></canvas>
+  <canvas id='donut-chart-<%= repo.id %>' width='110' height='110'></canvas>
   </div>
+
 </div>
