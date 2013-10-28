@@ -3,7 +3,7 @@
 $gray: #acacac;
 $gray-opacity: rgba(230, 230, 230, 0.7);
 $light-gray: #eeeeee;
-$dark-gray: rgb(163, 160, 160);
+$dark-gray: rgb(180, 180, 180);
 $white-opacity: rgba(254, 255, 255, 0.9);
 $muted-text: #acb9c0;
 
@@ -96,14 +96,16 @@ h1 {
     .isotope-item {
         width: auto;
         height: auto;
+        margin-right: 25px;
+        margin-top: 25px;
     }
     div {
         width: 460px;
         height: 220px;
+        position: relative;
         display: inline-block;
         background: white;
-        margin-right: 25px;
-        margin-top: 25px;
+
 
         canvas {
             position: absolute;
@@ -148,11 +150,11 @@ h1 {
     box-sizing: border-box;
     padding-top: 20px;
     text-align: center;
-    color: $dark-gray;
+    color: $muted-text;
     font-size: 14px;
     span {
         font-size: 25px;
-        color: $muted-text;
+        color: $dark-gray;
     }
 }
 
