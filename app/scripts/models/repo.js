@@ -36,7 +36,12 @@ GitHUD.Models.Repo = Backbone.Model.extend({
             topCommiter: {
                 weekly: {},
                 allTime: {}
-            }
+            },
+            ttlAdditions: 0,
+            ttlDeletions: 0,
+            ttlCommits: 0,
+            forks: 0
+
         },
         sortData, gitHUDMeta;
 
@@ -49,6 +54,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
 
 
     _.each(response, function (user, i) {
+
         //two arrays, one containing username & one containing commit count
       commits.push(user.total)
       contributors.push(user.author)
@@ -62,9 +68,12 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       //donutData namespacing
       donutData.push({value: user.total, color: color(i)})
       _.each(user.weeks, function(weeklyData){
+            tickerData.ttlCommits += weeklyData.c
+            tickerData.ttlAdditions += weeklyData.a
+            tickerData.ttlDeletions += weeklyData.d
             //graphData namespacing
             // console.log(weeklyData.c)
-            graphData.datasets[0].data.push(parseInt(weeklyData.c))
+            graphData.datasets[0].data.push(weeklyData.c)
 
             // graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
 
@@ -74,7 +83,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
     })
 
 
-    // console.log(tickerData)
+    console.log('tickerData',tickerData)
 
 
 

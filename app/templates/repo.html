@@ -20,11 +20,12 @@
   </div>
 
     <div id="bottom-ticker">
-<span class="ss-fork"></span>
-<span class="ss-plus"></span>
-<span class="ss-delete"></span>
-<span class="ss-users"></span>
-<span class="ss-loading"></span>
+        <h6>
+<span class="ss-loading"><%= repo.get('gitHUDMeta').tickerData.ttlCommits %>&nbsp;<span class="muted-text">COMMITS</span></span>
+<span class="ss-plus"><%= repo.get('gitHUDMeta').tickerData.ttlAdditions %>&nbsp;<span class="muted-text">ADDITIONS</span></span>
+<span class="ss-delete"><%= repo.get('gitHUDMeta').tickerData.ttlDeletions %>&nbsp;<span class="muted-text">DELETIONS</span></span>
+
+</h6>
 
     </div>
 </div>

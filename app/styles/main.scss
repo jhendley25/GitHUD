@@ -6,6 +6,7 @@ $light-gray: #eeeeee;
 $dark-gray: rgb(180, 180, 180);
 $white-opacity: rgba(254, 255, 255, 0.9);
 $muted-text: #acb9c0;
+$primary-blue: #0086cb;
 
 .wrapper {
     width: 100%;
@@ -127,7 +128,7 @@ h1 {
 }
 
 .owner-title {
-    color: $muted-text;
+    color: $primary-blue;
     margin-left: 40px;
 }
 
@@ -164,6 +165,16 @@ h1 {
     background: white;
     position: absolute;
     bottom: 0;
+    text-align: center;
+    span {
+        color: $primary-blue;
+        margin: 4%;
+    }
+    .muted-text{
+        margin: 0;
+        color: $muted-text;
+
+    }
 }
 
 #gravatar-icon {
@@ -187,3 +198,4 @@ h1 {
     margin-left: 40px;
     color: $muted-text;
 }
+
