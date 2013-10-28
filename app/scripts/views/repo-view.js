@@ -4,13 +4,13 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     // console.log('cool')
 
     // get the this.el into the page
-    $("#donut-stage").append(this.el)
+    $(".donut-stage").append(this.el)
 
     // listen for this view's model to change, then render
     this.listenTo(this.model, 'change', function(model){
       this.render(model)
       // initiate isotope after rendering
-      $('#donut-stage').isotope({ sortBy : 'name' });
+      $('.donut-stage').isotope({ sortBy : 'name' });
     })
 
     // then set it all in motion with a fetch!
@@ -37,23 +37,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     console.log('githubmeta',this.model.get('gitHUDMeta').graphData)
     var ctx2 = $("#line-chart-" + this.model.get('id')).get(0).getContext("2d");
 
-
-var data = {
-    datasets : [
-        {
-            data : [65, 59, 90, 81, 56, 55, 40],
-            fillColor : "#000",
-            strokeColor : "#000",
-            pointColor : "#000",
-            pointStrokeColor : "#fff"
-        }
-    ],
-    labels : ["January","February","March","April","May","June","July"],
-}
-    // var data = this.model.get('gitHUDMeta').graphData
-    // console.log(this.model.get('gitHUDMeta').graphData.datasets.data)
     new Chart(ctx2).Line(this.model.get('gitHUDMeta').graphData);
-    // new Chart(ctx2).Line(data)
 
   }
 })

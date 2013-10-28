@@ -4,6 +4,7 @@ $gray: #acacac;
 $gray-opacity: rgba(230, 230, 230, 0.7);
 $light-gray: #eeeeee;
 $dark-gray: rgb(163, 160, 160);
+$white-opacity: rgba(254, 255, 255, 0.9);
 
 .wrapper {
     width: 100%;
@@ -65,7 +66,7 @@ h1 {
 
 
 
-#donut-stage {
+.donut-stage {
     height: auto;
     width: 100%;
     margin: 0;
@@ -92,7 +93,7 @@ h1 {
         height: auto;
     }
     div {
-        width: 300px;
+        width: 500px;
         height: 300px;
         display: inline-block;
 
@@ -118,4 +119,31 @@ h1 {
     text-align: right;
 }
 
+.owner-title {
+    color: $light-gray;
+}
 
+#donut-chart    {
+    position: absolute;
+    bottom: 0;
+    width: 200px;
+    height: 200px;
+}
+#inner-donut-legend {
+    position: absolute;
+    background: $white-opacity;
+    border-radius: 10000px;
+    width: 200px;
+    left: 0px;
+    height: 200px;
+    bottom: 0px;
+    box-sizing: border-box;
+    padding-top: 50px;
+    text-align: center;
+    color: $dark-gray;
+    font-size: 20px;
+    span {
+        font-size: 50px;
+        color: #000;
+    }
+}

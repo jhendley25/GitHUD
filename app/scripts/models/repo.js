@@ -98,7 +98,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       tickerData: tickerData,
       authors: response
     }
-    console.log(gitHUDMeta)
+    console.log(contributors)
     // finally return all of this
     return {gitHUDMeta: gitHUDMeta}
   }
