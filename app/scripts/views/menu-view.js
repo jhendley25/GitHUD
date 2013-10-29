@@ -39,22 +39,30 @@ GitHUD.Views.MenuView = Backbone.View.extend({
     this.$el.find(".modal-body").append( this.userInputTemplate() )
   },
 
+  toggleActive: function(event){
+    $(".menu-button").removeClass('active')
+    $(event.currentTarget).addClass('active')
+  },
+
   isotopeInit: function() {
 
     this.isotopeReady = true;
 
     $('#donut-stage').isotope({
-      sortAscending : true,
+      sortAscending : false,
 
       getSortData : {
-        name : function ( $elem ) {
-          return $elem.find('.name').text();
+        commits : function ( $elem ) {
+          return parseInt( $elem.find('.commits').text() );
         },
         contributors : function ( $elem ) {
-          return $elem.find('.contributor-count').text();
+          return $elem.find('.contributors').text();
         },
-        commits : function ( $elem ) {
-          return parseInt( $elem.find('.commit-count').text() );
+        additions : function ( $elem ) {
+          return $elem.find('.additions').text();
+        },
+        deletions : function ( $elem ) {
+          return $elem.find('.deletions').text();
         },
         size : function ( $elem ) {
           return parseInt( $elem.find('.size').text() );
@@ -65,8 +73,9 @@ GitHUD.Views.MenuView = Backbone.View.extend({
 
   isotopeSort: function(event){
     if (!this.isotopeReady) { this.isotopeInit() }
-
+    this.toggleActive(event)
     var sortType = $(event.currentTarget).attr('id').replace('sort-','');
+
     $('#donut-stage').isotope('reloadItems').isotope({ sortBy : sortType });
   }
 

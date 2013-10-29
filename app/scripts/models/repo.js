@@ -83,7 +83,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
     })
 
 
-    console.log('tickerData',tickerData)
+
 
 
 
@@ -92,12 +92,11 @@ GitHUD.Models.Repo = Backbone.Model.extend({
 
     // add info to sortData for easier isotopejs integration
     sortData = {
-      repoName: this.get('name'),
-      repoSize: this.get('size'),
+      commitCount: _.reduce(commits, function (memo, num) { return memo + num }, 0),
       contribCount: contributors.length,
-      commitCount: _.reduce(commits, function (memo, num) {
-        return memo + num
-      }, 0)
+      additions: tickerData.ttlAdditions,
+      deletions: tickerData.ttlDeletions,
+      repoSize: this.get('size'),
     }
 
     // some simplified meta data
@@ -110,7 +109,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       tickerData: tickerData,
       authors: response
     }
-
+    console.log('gitHUDMeta',gitHUDMeta)
     // finally return all of this
     return {gitHUDMeta: gitHUDMeta}
   }

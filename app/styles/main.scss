@@ -1,5 +1,7 @@
 @import "compass/css3";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
 
+$bkgd: rgb(221,221,221);
 $gray: #acacac;
 $gray-opacity: rgba(230, 230, 230, 0.7);
 $light-gray: #eeeeee;
@@ -8,44 +10,67 @@ $white-opacity: rgba(254, 255, 255, 0.9);
 $muted-text: #acb9c0;
 $primary-blue: #0086cb;
 
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
 .wrapper {
     width: 100%;
     margin: 0 auto;
     padding-bottom: 50px;
 }
 
-
+.menu-button {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    // vertical-align: bottom;
+    cursor: pointer;
+    border: 1px solid transparent;
+    // border-radius: 4px;
+    white-space: nowrap;
+    background: none;
+    font-size: 20px;
+    span {
+        vertical-align: bottom;
+        font-size: 20px;
+    }
+}
+    .active {
+        background: $primary-blue;
+    }
 
 .menu {
   position: relative;
-
+  display: inline-block;
+  width: 100%;
   .left-menu {
-    width: 270px;
-    height: 45px;
+    width: 100%;
+    height: 80px;
     position: relative;
-    background: $light-gray;
-    border: 1px solid $dark-gray;
-    @include border-radius(0 0 6px 6px);
+    background: #fff;
+    // border: 1px solid $dark-gray;
+    // @include border-radius(0 0 6px 6px);
     z-index: 2000;
-
-    .btn-group{
-      position: absolute;
-      bottom: 5px;
-      left: 170px;
-      background: $light-gray;
-    }
+  }
+  h1 {
+    display: inline-block;
+    height: auto;
+    width: auto;
+    margin: 0;
+    font-size: 45px;
+    margin-top: 15px;
+    margin-left: 15px;
+    color: #000;
+  }
+  #sort-by {
+    display: inline-block;
   }
 
-  .right-menu {
-    position: absolute;
-    top: 0;
-    right: 20px;
-
-    h3  {
-      display: inline-block;
-      font-size: 18px;
-    }
-  }
 }
 
 
@@ -55,7 +80,9 @@ $primary-blue: #0086cb;
         margin: 5px;
     }
 }
-
+.modal {
+    z-index: 9999999;
+}
 
 
 h1 {
@@ -63,6 +90,8 @@ h1 {
     color: $gray;
     font-size: 30px;
     text-shadow: 1px 1px 1px white;
+    font-family: 'Open Sans', sans-serif;
+
 }
 
 
@@ -71,12 +100,12 @@ h1 {
 .donut-stage {
     height: auto;
     width: 100%;
+    min-height: 3000px;
     margin: 0;
     position: relative;
     right: 0;
-    top: 50px;
     padding: 50px;
-    background: blue;
+    background: $bkgd;
     p {
         text-shadow: 1px 1px 1px black;
     }
@@ -152,7 +181,7 @@ h1 {
     padding-top: 20px;
     text-align: center;
     color: $muted-text;
-    font-size: 14px;
+    font-size: 12px;
     span {
         font-size: 25px;
         color: $dark-gray;
@@ -165,10 +194,10 @@ h1 {
     background: white;
     position: absolute;
     bottom: 0;
-    text-align: center;
+    text-align: justify;
     span {
         color: $primary-blue;
-        margin: 4%;
+        margin: 1%;
     }
     .muted-text{
         margin: 0;
@@ -199,3 +228,27 @@ h1 {
     color: $muted-text;
 }
 
+.ss-expand {
+    position: absolute;
+    right: 4px;
+    top: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    color: $muted-text;
+    &:hover{
+        color: #000;
+    }
+}
+
+.add-user-button {
+    position: absolute;
+    right: 1px;
+    top: 20px;
+    .ss-plus {
+        font-size: 20px;
+
+    }
+    .ss-users {
+        font-size: 30px;
+    }
+}

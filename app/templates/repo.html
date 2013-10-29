@@ -1,4 +1,5 @@
 <div id="repo-<%= repo.id %>">
+    <span class="ss-expand"></span>
     <div id="gravatar-icon">
         <img src="<%= repo.get('owner').avatar_url %>">
     </div>
@@ -24,6 +25,7 @@
 <span class="ss-loading"><%= repo.get('gitHUDMeta').tickerData.ttlCommits %>&nbsp;<span class="muted-text">COMMITS</span></span>
 <span class="ss-plus"><%= repo.get('gitHUDMeta').tickerData.ttlAdditions %>&nbsp;<span class="muted-text">ADDITIONS</span></span>
 <span class="ss-delete"><%= repo.get('gitHUDMeta').tickerData.ttlDeletions %>&nbsp;<span class="muted-text">DELETIONS</span></span>
+<span class="ss-fork"><%= repo.get('forks') %>&nbsp;<span class="muted-text">FORKS</span></span>
 
 </h6>
 

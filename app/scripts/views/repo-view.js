@@ -38,6 +38,6 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     var ctx2 = $("#line-chart-" + this.model.get('id')).get(0).getContext("2d");
 
     new Chart(ctx2).Line(this.model.get('gitHUDMeta').graphData);
-
+    // console.log(this.model)
   }
 })

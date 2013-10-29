@@ -1,22 +1,20 @@
 <div class="left-menu">
   <h1>GitHUD</h1>
 
-  <div class="btn-group" id="add-users">
-    <button type="button" class="btn btn-primary" data-toggle="modal" href="#addusers">
-      <span class="glyphicon glyphicon-plus"></span>
-      Users
-    </button>
-  </div>    
-</div>
+  <div id="sort-by">
 
-<div class="right-menu">
-  <h3>Sort by: &nbsp;</h3>
-  <div id="sort-by" class="btn-group btn-group-sm">
+    <button id="sort-commits" class="menu-button"><span class="ss-loading"></span>&nbsp;Commits</button>
+    <button id="sort-contributors" class="menu-button"><span class="ss-usergroup"></span>&nbsp;Contributors</button>
+    <button id="sort-additions" class="menu-button"><span class="ss-plus"></span>&nbsp;Additions</button>
+    <button id="sort-deletions" class="menu-button"><span class="ss-delete"></span>&nbsp;Deletions</button>
+    <button id="sort-size" class="menu-button"><span class="ss-layergroup"></span>&nbsp;Size</button>
 
-    <button id="sort-name" class="btn btn-default">Name</button>
-    <button id="sort-contributors" class="btn btn-default">Contributors</button>
-    <button id="sort-commits" class="btn btn-default">Commits</button>
-    <button id="sort-size" class="btn btn-default">Size</button>
+      <div class="add-user-button">
+        <button class="menu-button" data-toggle="modal" href="#addusers">
+                <span class="ss-plus"></span>
+                <span class="ss-users"></span>
 
-  </div>
+            </button>
+      </di&nbsp;v>
+    </div>
 </div>
