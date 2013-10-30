@@ -286,6 +286,7 @@ h1 {
 }
 .fullscreen {
     width: 1280px;
+    height: 100%;
     margin: 0 auto;
     position: absolute;
 }
@@ -320,4 +321,10 @@ h1 {
     position: absolute;
     right: 20px;
     top: 50px;
+}
+
+.fullscreen-linechart {
+    position: absolute;
+    bottom: 10px;
+
 }
