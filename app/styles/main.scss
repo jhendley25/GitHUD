@@ -39,10 +39,22 @@ $primary-blue: #0086cb;
         vertical-align: bottom;
         font-size: 20px;
     }
-}
-    .active {
+    &:hover{
         background: $primary-blue;
+        color: #fff;
     }
+    &:focus {
+        border: none;
+        outline: none;
+    }
+
+
+}
+
+.active {
+    background: $primary-blue;
+    color: #fff;
+}
 
 .menu {
   position: relative;
@@ -56,6 +68,7 @@ $primary-blue: #0086cb;
     // border: 1px solid $dark-gray;
     // @include border-radius(0 0 6px 6px);
     z-index: 2000;
+    box-shadow: 1px 1px 1px $dark-gray;
   }
   h1 {
     display: inline-block;
