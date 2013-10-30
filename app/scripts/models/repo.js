@@ -46,13 +46,6 @@ GitHUD.Models.Repo = Backbone.Model.extend({
         sortData, gitHUDMeta;
 
 
-    var color = function(i){
-        var pallete = ["#1f77b4", "#aec7e8", "#ff7f0e", "#ffbb78", "#2ca02c", "#98df8a", "#d62728", "#ff9896", "#9467bd", "#c5b0d5", "#8c564b", "#c49c94", "#e377c2", "#f7b6d2", "#7f7f7f", "#c7c7c7", "#bcbd22", "#dbdb8d", "#17becf", "#9edae5"]
-
-        return pallete[i]
-    }
-
-
     _.each(response, function (user, i) {
 
         //two arrays, one containing username & one containing commit count
@@ -66,29 +59,30 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       tickerData.topCommiter.weekly = _.max(tickerData.allCommiters.weekly, function(user){return user.commits})
       console.log('top commiter ',tickerData.topCommiter.allTime)
       //donutData namespacing
-      donutData.push({value: user.total, color: color(i)})
+      donutData.push({value: user.total, color: GitHUD.utilities.color(user.author.login)})
       _.each(user.weeks, function(weeklyData){
-            tickerData.ttlCommits += weeklyData.c
-            tickerData.ttlAdditions += weeklyData.a
-            tickerData.ttlDeletions += weeklyData.d
-            //graphData namespacing
-            // console.log(weeklyData.c)
-            graphData.datasets[0].data.push(weeklyData.c)
+        tickerData.ttlCommits += weeklyData.c
+        tickerData.ttlAdditions += weeklyData.a
+        tickerData.ttlDeletions += weeklyData.d
+        //graphData namespacing
+        // console.log(weeklyData.c)
+        graphData.datasets[0].data.push(weeklyData.c)
 
-            // graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
+        // graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
 
-            //pushing empty string for formatting purposes
-            graphData.labels.push("")
-        })
+        //pushing empty string for formatting purposes
+        graphData.labels.push("")
+      })
+
     })
 
-
-
-
-
-
-
-
+    // make a 8 week only copy of graphData.datasets[0].data
+    graphData.truncatedWeeklyData = {}
+    graphData.truncatedWeeklyData.datasets = graphData.datasets
+    graphData.truncatedWeeklyData.labels = ['','','','','','','','','','','','']
+    graphData.truncatedWeeklyData.datasets[0] = {
+      data: _.last(graphData.datasets[0].data, 12)
+    }
 
     // add info to sortData for easier isotopejs integration
     sortData = {
