@@ -1,0 +1,13 @@
+<div class="fullscreen" id="fullscreen-repo-<%= repo.id %>">
+    <span class="ss-contract" id="exit-fullscreen"></span>
+    <h3><span class="owner-title">
+        <%= repo.get('owner').login %>
+    </span>/
+    <span class="repo-title">
+        <%= repo.get('name') %>
+    </span></h3><br>
+    <h6><span class="muted-text">Top Contributer: </span><%= repo.get('gitHUDMeta').tickerData.topCommiter.allTime.user %></h6>
+
+<canvas id='donut-chart-<%= repo.id %>' width='310' height='310'></canvas>
+<canvas id='line-chart-<%= repo.id %>' width='460' height='180'></canvas>
+</div>

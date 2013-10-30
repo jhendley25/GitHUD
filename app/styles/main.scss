@@ -265,3 +265,26 @@ h1 {
         font-size: 30px;
     }
 }
+
+.fullscreen-stage {
+    width: auto;
+    height: 100%;
+}
+
+.fullscreen {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: white;
+    z-index: 999;
+}
+
+#exit-fullscreen {
+    font-size: 30px;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    cursor: pointer;
+}

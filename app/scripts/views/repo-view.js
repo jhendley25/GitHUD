@@ -1,5 +1,9 @@
 GitHUD.Views.RepoView = Backbone.View.extend({
 
+    events: {
+        'click #fullscreen' : 'initFullscreen'
+    },
+
   initialize: function (options) {
     // console.log('cool')
 
@@ -39,5 +43,10 @@ GitHUD.Views.RepoView = Backbone.View.extend({
 
     new Chart(ctx2).Line(this.model.get('gitHUDMeta').graphData);
     // console.log(this.model)
+  },
+  initFullscreen: function(){
+    new GitHUD.Views.FullScreenView({
+        model: this.model
+    })
   }
 })
