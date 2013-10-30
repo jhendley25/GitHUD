@@ -1,33 +1,31 @@
-<div id="repo-<%= repo.id %>">
-    <span class="ss-expand" id="fullscreen"></span>
-    <div id="gravatar-icon">
-        <img src="<%= repo.get('owner').avatar_url %>">
-    </div>
-  <h3><span class="owner-title">
-        <%= repo.get('owner').login %>
-    </span>/
-    <span class="repo-title">
-        <%= repo.get('name') %>
-    </span></h3><br>
-    <h6><span class="muted-text">Top Contributer: </span><%= repo.get('gitHUDMeta').tickerData.topCommiter.allTime.user %></h6>
+<span class="ss-expand" id="fullscreen"></span>
+<h3><span class="owner-title" style="color: <%= repo.get('userColor')%>">
+      <%= repo.get('owner').login %>
+  </span>
+  <span class="repo-title">
+      <%= repo.get('name') %>
+  </span>
+  <span class="muted-text">Top Contributer: </span>
+  <span style="color: <%= GitHUD.utilities.color(repo.get('gitHUDMeta').tickerData.topCommiter.allTime.user) %>"><%= repo.get('gitHUDMeta').tickerData.topCommiter.allTime.user %></span class="muted-text">
 
-  <canvas id='line-chart-<%= repo.id %>' width='460' height='180'></canvas>
-  <div id="donut-chart">
-    <div id="inner-donut-legend">
-        <span><%= repo.get('gitHUDMeta').contributors.length %></span><br>
-        <%= repo.get('gitHUDMeta').contributors.length > 1 ? "contributors" : "contributor" %>
-    </div>
-  <canvas id='donut-chart-<%= repo.id %>' width='110' height='110'></canvas>
-  </div>
+</h3><br>
 
-    <div id="bottom-ticker">
-        <h6>
-<span class="ss-loading"><%= repo.get('gitHUDMeta').tickerData.ttlCommits %>&nbsp;<span class="muted-text">COMMITS</span></span>
-<span class="ss-plus"><%= repo.get('gitHUDMeta').tickerData.ttlAdditions %>&nbsp;<span class="muted-text">ADDITIONS</span></span>
-<span class="ss-delete"><%= repo.get('gitHUDMeta').tickerData.ttlDeletions %>&nbsp;<span class="muted-text">DELETIONS</span></span>
-<span class="ss-fork"><%= repo.get('forks') %>&nbsp;<span class="muted-text">FORKS</span></span>
+<canvas id='line-chart-<%= repo.id %>' class="line-chart"width='452' height='150'></canvas>
+<div id="donut-chart">
+<!--   <div class="inner-donut-legend">
+      <span><%= repo.get('gitHUDMeta').contributors.length %></span><br>
+      <%= repo.get('gitHUDMeta').contributors.length > 1 ? "contributors" : "contributor" %>
+  </div> -->
+<canvas id='donut-chart-<%= repo.id %>' class="donut-chart" width='110' height='110'></canvas>
+</div>
 
-</h6>
+<div id="bottom-ticker" style="color: <%= repo.get('userColor')%> !important;">
+    <h6>
+      <span class="ss-loading"><%= repo.get('gitHUDMeta').tickerData.ttlCommits %>&nbsp;<span class="muted-text">COMMITS</span></span>
+      <span class="ss-plus"><%= repo.get('gitHUDMeta').tickerData.ttlAdditions %>&nbsp;<span class="muted-text">ADDITIONS</span></span>
+      <span class="ss-delete"><%= repo.get('gitHUDMeta').tickerData.ttlDeletions %>&nbsp;<span class="muted-text">DELETIONS</span></span>
+      <span class="ss-fork"><%= repo.get('forks') %>&nbsp;<span class="muted-text">FORKS</span></span>
 
-    </div>
+    </h6>
+
 </div>
