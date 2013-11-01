@@ -11,7 +11,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     // get the this.el into the page
     $(".fullscreen-stage").append(this.el)
     this.render()
-    this.initWebTicker()
+    //web ticker freezes and stuff
+    // this.initWebTicker()
     // listen for this view's model to change, then render
 
   },
@@ -40,7 +41,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   initWebTicker: function(){
 
-    $("#webticker").webTicker({
+    $(".webticker").webTicker({
         speed: 50, //pixels per second
         direction: "left", //if to move left or right
         moving: true, //weather to start the ticker in a moving or static position
