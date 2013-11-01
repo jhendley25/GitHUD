@@ -344,8 +344,33 @@ h1 {
     width: 100%;
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: -10px;
     right: 0;
-    background: $dark-gray;
+    background: #000;
+    padding-top: 10px;
 
+}
+
+.donut-top-five-wrapper {
+    position: absolute;
+    right: 340px;
+    top: 120px;
+}
+
+
+.ticker-additions {
+    background: #03f;
+}
+
+.ticker-deletions {
+    background: red;
+}
+
+.ticker-text {
+    color: #38434d;
+}
+
+.ticker-user, .ticker-reponame {
+
+    color: #607687;
 }

@@ -19,17 +19,24 @@
 
         <br>
 
-        <h6><span class="muted-text">Top Contributer: </span><%= repo.get('gitHUDMeta').tickerData.topCommiter.allTime.user %></h6>
-        <h3>misc data:</h3>
-            <% _.each(repo.get('gitHUDMeta').tickerData.allCommiters.allTime, function(x){ %>
-                <span><%=  x.user %>, <%= x.commits  %></span>
-            <% }) %>
+
+            <div class="donut-top-five-wrapper">
+                <div class="donut-top-five">
+                    <span class="darkened-text">15 commits</span><span class="top-five-user">Jhendley25</span><span class="ss-piechart"></span>
+                </div>
+                <div class="donut-top-five">
+                    <span class="darkened-text">15 commits</span><span class="top-five-user">Jhendley25</span><span class="ss-piechart"></span>
+                </div>
+                <div class="donut-top-five">
+                    <span class="darkened-text">15 commits</span><span class="top-five-user">Jhendley25</span><span class="ss-piechart"></span>
+                </div>
+            </div>
 
 
     <canvas id='donut-chart-<%= repo.id %>' class="fullscreen-donut" width='310' height='310'></canvas>
     <canvas id='line-chart-<%= repo.id %>' class="fullscreen-linechart" width='1280' height='400'></canvas>
-    <div class="fullscreen-ticker">
-        <h1>blah blah blah</h1>
+    <div class="fullscreen-ticker ticker-text">
+        <span class="ticker-user">jhendley25</span> commited <span class="ticker-additions ss-plus">7000</span> and <span class="ticker-deletions ss-hyphen">500</span> to <span class="ticker-reponame">gitHUD</span>
     </div>
     </div>
 </div>
