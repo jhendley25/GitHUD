@@ -376,21 +376,8 @@ h1 {
 }
 
 // webticker plugin stuff
-.tickercontainer {
-    width: 1200px;
-}
-//width of the original container in which the ticker appears
-.tickercontainer .mask {
-    padding: 5px;
-}
-//can be used to achieve padding within the container
-ul.newsticker {
-    //important to enable css3 transitions properly
-    -webkit-transition: all 0s linear;
-    -moz-transition: all 0s linear;
-    -o-transition: all 0s linear;
-    transition: all 0s linear;
-    list-style:none;
-    margin:0;
+.marquee {
+  width: 100%; /*or 100% width as the plugin works with responsive layouts as well*/
+  overflow: hidden;
 }
 
