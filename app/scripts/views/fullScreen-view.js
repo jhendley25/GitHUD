@@ -11,6 +11,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     // get the this.el into the page
     $(".fullscreen-stage").append(this.el)
     this.render()
+    $(".webticker").webTicker()
     //web ticker freezes and stuff
     // this.initWebTicker()
     // listen for this view's model to change, then render
