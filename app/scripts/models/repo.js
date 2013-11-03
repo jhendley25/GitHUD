@@ -106,7 +106,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       tickerData: tickerData,
       authors: response
     }
-    console.log('gitHUDMeta',gitHUDMeta)
+    // console.log('gitHUDMeta',gitHUDMeta)
     // finally return all of this
     this.secondaryAjax(gitHUDMeta)
     return {gitHUDMeta: gitHUDMeta}
@@ -126,7 +126,10 @@ GitHUD.Models.Repo = Backbone.Model.extend({
   getLatestCommitStats: function(gitHUDMeta){
     var url = gitHUDMeta.commitInfo[0].url + GitHUD.utilities.keys()
     $.getJSON(url, function(response){
+        //assign a username of 'unknown' for now if author is null.  server side screw up i think
+        if (response.author == null){response.author = {login: "Unknown"}}
         var newEntry = { latestCommit: response}
+        // console.log(newEntry)
         $.extend(gitHUDMeta, newEntry)
     })
   }

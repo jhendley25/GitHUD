@@ -63,7 +63,7 @@ $primary-blue: #0086cb;
   .left-menu {
     width: 100%;
     height: 80px;
-    position: relative;
+    position: fixed;
     background: #fff;
     // border: 1px solid $dark-gray;
     // @include border-radius(0 0 6px 6px);
@@ -276,11 +276,12 @@ h1 {
 .fullscreen-stage {
     width: auto;
     height: 100%;
+    margin-top: 60px;
 }
 
 .fullscreen-container {
     position: fixed;
-    top: 60px;
+    top: 80px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -298,6 +299,7 @@ h1 {
     // margin: 0 auto;
     position: absolute;
     background: white;
+    padding-top: 60px;
 }
 #exit-fullscreen {
     font-size: 30px;
@@ -305,6 +307,7 @@ h1 {
     right: 10px;
     top: 30px;
     cursor: pointer;
+    z-index: 9999999;
 }
 
 #repo-heading {

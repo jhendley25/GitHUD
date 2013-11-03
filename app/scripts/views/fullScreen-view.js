@@ -7,6 +7,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   initialize: function (options) {
     // console.log('cool')
+    //hide the content behind the fullscreen view
+    $(".donut-stage").css('display', 'none')
 
     // get the this.el into the page
     $(".fullscreen-stage").append(this.el)
@@ -42,6 +44,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   exitFullscreen: function(){
     this.$el.remove()
+    $(".donut-stage").css('display', 'inline-block')
   },
 
   initMarquee: function(){
