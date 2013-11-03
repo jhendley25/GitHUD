@@ -49,8 +49,10 @@ GitHUD.Models.Repo = Backbone.Model.extend({
     _.each(response, function (user, i) {
 
         //two arrays, one containing username & one containing commit count
+      var userColor = GitHUD.utilities.color(user.author.login)
       commits.push(user.total)
-      contributors.push(user.author)
+      //push an object containing username and related color
+      contributors.push({username: user.author.login, color: userColor})
       //get all committers weekly and alltime
       tickerData.allCommiters.allTime.push({user: user.author.login, commits: user.total})
       tickerData.allCommiters.weekly.push({user: user.author.login, startOfWeek: moment( _.first(user.weeks).w ).format("MMM-DD"), commits: _.first(user.weeks).c})
@@ -59,7 +61,8 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       tickerData.topCommiter.weekly = _.max(tickerData.allCommiters.weekly, function(user){return user.commits})
       console.log('top commiter ',tickerData.topCommiter.allTime)
       //donutData namespacing
-      donutData.push({value: user.total, color: GitHUD.utilities.color(user.author.login)})
+      donutData.push({value: user.total, color: userColor})
+      tickerData
       _.each(user.weeks, function(weeklyData){
         tickerData.ttlCommits += weeklyData.c
         tickerData.ttlAdditions += weeklyData.a
