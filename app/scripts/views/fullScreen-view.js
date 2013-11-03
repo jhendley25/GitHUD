@@ -24,7 +24,11 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     renderedTemplate = JST["app/templates/fullscreen.html"]({
       repo: this.model
     })
+    tickerTemplate = JST["app/templates/ticker.html"]({
+      repo: this.model
+    })
     this.$el.append(renderedTemplate)
+    $(".fullscreen-ticker").append(tickerTemplate)
 
     var ctx = $("#donut-chart-" + this.model.get('id')).get(0).getContext("2d");
     new Chart(ctx).Doughnut(this.model.get('gitHUDMeta').donutData);

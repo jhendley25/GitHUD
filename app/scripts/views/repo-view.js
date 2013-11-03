@@ -4,7 +4,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
 
   events: {
       'click #fullscreen' : 'initFullscreen'
-  },    
+  },
 
   initialize: function (options) {
     // console.log('cool')
@@ -28,7 +28,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   },
 
   render: function() {
-    console.log('WTF', this.model)
+    // console.log('WTF', this.model)
 
     // add the legend and title
     renderedTemplate = JST["app/templates/repo.html"]({

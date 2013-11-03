@@ -1,0 +1,21 @@
+<div class="marquee">
+	Top Commiter (all-time):
+    <span class="ticker-user">
+    	<%= repo.get('gitHUDMeta').tickerData.topCommiter.allTime.user %>, <%= repo.get('gitHUDMeta').tickerData.topCommiter.allTime.commits %>
+    </span>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    Top Commiter (weekly):
+    <span class="ticker-user">
+    	<%= repo.get('gitHUDMeta').tickerData.topCommiter.weekly.user %>, <%= repo.get('gitHUDMeta').tickerData.topCommiter.weekly.commits %>
+    </span>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    Recent Activity:
+    <span class="ticker-user">jhendley25</span>
+    &nbsp;commited&nbsp;
+    <span class="ticker-additions ss-plus">7000</span>
+    &nbsp;and&nbsp;
+    <span class="ticker-deletions ss-hyphen">500</span>
+    &nbsp;to&nbsp;
+    <span class="ticker-reponame">gitHUD</span>
+</div>
