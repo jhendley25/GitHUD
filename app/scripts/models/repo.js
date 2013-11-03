@@ -55,11 +55,13 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       contributors.push({username: user.author.login, color: userColor})
       //get all committers weekly and alltime
       tickerData.allCommiters.allTime.push({user: user.author.login, commits: user.total})
-      tickerData.allCommiters.weekly.push({user: user.author.login, startOfWeek: moment( _.first(user.weeks).w ).format("MMM-DD"), commits: _.first(user.weeks).c})
+      tickerData.allCommiters.weekly.push({user: user.author.login, startOfWeek: moment( _.last(user.weeks).w * 1000).format("MMM-DD"), commits: _.last(user.weeks).c})
       // find top commiter of alltime, and top commiter of the week
+
       tickerData.topCommiter.allTime = _.max(tickerData.allCommiters.allTime, function(user){return user.commits})
       tickerData.topCommiter.weekly = _.max(tickerData.allCommiters.weekly, function(user){return user.commits})
-      console.log('top commiter ',tickerData.topCommiter.allTime)
+      console.log('all commiters',tickerData.allCommiters)
+      // console.log('top commiter ',tickerData.topCommiter.weekly)
       //donutData namespacing
       donutData.push({value: user.total, color: userColor})
       tickerData
