@@ -128,6 +128,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
     $.getJSON(url, function(response){
         //assign a username of 'unknown' for now if author is null.  server side screw up i think
         if (response.author == null){response.author = {login: "Unknown"}}
+        response.commitMessage = gitHUDMeta.commitInfo[0].commit.message
         var newEntry = { latestCommit: response}
         // console.log(newEntry)
         $.extend(gitHUDMeta, newEntry)

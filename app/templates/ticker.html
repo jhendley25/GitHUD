@@ -22,4 +22,6 @@
     </span>
     &nbsp;to&nbsp;
     <span class="ticker-reponame"><%= repo.get("name") %></span>
+    &nbsp;-m&nbsp;
+    <span class="commit-message">"<%= repo.get('gitHUDMeta').latestCommit.commitMessage  %>"</span>
 </div>
