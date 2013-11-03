@@ -103,8 +103,28 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       tickerData: tickerData,
       authors: response
     }
-    // console.log('gitHUDMeta',gitHUDMeta)
+    console.log('gitHUDMeta',gitHUDMeta)
     // finally return all of this
+    this.secondaryAjax(gitHUDMeta)
     return {gitHUDMeta: gitHUDMeta}
+  },
+
+  secondaryAjax: function(gitHUDMeta){
+    var url = 'https://api.github.com/repos/' + this.get('full_name') + '/commits' + GitHUD.utilities.keys();
+    var that = this
+    $.getJSON(url, function(response){
+        var commitData = { commitInfo: response}
+        $.extend(gitHUDMeta, commitData)
+    }).done(function(){
+        that.getLatestCommitStats(gitHUDMeta)
+    })
+  },
+
+  getLatestCommitStats: function(gitHUDMeta){
+    var url = gitHUDMeta.commitInfo[0].url + GitHUD.utilities.keys()
+    $.getJSON(url, function(response){
+        var newEntry = { latestCommit: response}
+        $.extend(gitHUDMeta, newEntry)
+    })
   }
 })

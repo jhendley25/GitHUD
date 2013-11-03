@@ -9,13 +9,17 @@
     	<%= repo.get('gitHUDMeta').tickerData.topCommiter.weekly.user %>, <%= repo.get('gitHUDMeta').tickerData.topCommiter.weekly.commits %>
     </span>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    
+
     Recent Activity:
-    <span class="ticker-user">jhendley25</span>
+    <span class="ticker-user"><%= repo.get('gitHUDMeta').latestCommit.author.login %></span>
     &nbsp;commited&nbsp;
-    <span class="ticker-additions ss-plus">7000</span>
+    <span class="ticker-additions ss-plus">
+        <%= repo.get('gitHUDMeta').latestCommit.stats.additions %>
+    </span>
     &nbsp;and&nbsp;
-    <span class="ticker-deletions ss-hyphen">500</span>
+    <span class="ticker-deletions ss-hyphen">
+        <%= repo.get('gitHUDMeta').latestCommit.stats.deletions %>
+    </span>
     &nbsp;to&nbsp;
-    <span class="ticker-reponame">gitHUD</span>
+    <span class="ticker-reponame"><%= repo.get("name") %></span>
 </div>
