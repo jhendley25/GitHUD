@@ -49,7 +49,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   drawLinechart: function(){
-    console.log('HEYYYYYY')
+    // console.log('HEYYYYYY')
 
     var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
       repo: this.model
@@ -102,15 +102,6 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         //'left' or 'right'
         direction: 'left'
     });
-
-  },
-
-  redrawLinechart: function(){
-    $(".linechart-destination").html('')
-
-    this.drawLinechart()
-
-
 
   }
 })

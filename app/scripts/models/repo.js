@@ -60,7 +60,6 @@ GitHUD.Models.Repo = Backbone.Model.extend({
 
       tickerData.topCommiter.allTime = _.max(tickerData.allCommiters.allTime, function(user){return user.commits})
       tickerData.topCommiter.weekly = _.max(tickerData.allCommiters.weekly, function(user){return user.commits})
-      console.log('all commiters',tickerData.allCommiters)
       // console.log('top commiter ',tickerData.topCommiter.weekly)
       //donutData namespacing
       donutData.push({value: user.total, color: userColor})

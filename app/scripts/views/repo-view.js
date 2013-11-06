@@ -32,7 +32,6 @@ GitHUD.Views.RepoView = Backbone.View.extend({
         success: function(model, response, status){
             switch(status.xhr.status){
                 case 200 :
-                    console.log('good status: ', status.xhr.status)
                     break;
                 case 202 :
                     console.log('bad status: ', status.xhr.status)
