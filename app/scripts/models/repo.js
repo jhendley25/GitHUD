@@ -95,7 +95,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       contribCount: contributors.length,
       additions: tickerData.ttlAdditions,
       deletions: tickerData.ttlDeletions,
-      repoSize: this.get('size'),
+      repoSize: this.get('size')
     }
 
     // some simplified meta data
