@@ -21,10 +21,27 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     })
 
     // then set it all in motion with a fetch!
-    this.model.fetch()
-
+    this.fetchFx()
     // this.model.set('userColor', '#'+Math.floor(Math.random()*16777215).toString(16), {silent: true});
     this.model.set('userColor', GitHUD.utilities.color(this.model.get('owner').login), {silent: true});
+  },
+
+  fetchFx: function(){
+    var that = this
+    this.model.fetch({
+        success: function(model, response, status){
+            switch(status.xhr.status){
+                case 200 :
+                    console.log('good status: ', status.xhr.status)
+                    break;
+                case 202 :
+                    console.log('bad status: ', status.xhr.status)
+                    _.throttle(that.fetchFx(), 1000)
+                    break;
+            }
+        }
+    })
+
   },
 
   render: function() {
