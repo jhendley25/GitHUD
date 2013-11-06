@@ -13,6 +13,12 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     // get the this.el into the page
     $(".fullscreen-stage").append(this.el)
     this.render()
+    //listen to the window for changes in size
+    // this.listenTo({windowWidth: window.innerWidth}, 'change', this.redrawLinechart())
+
+    var throttledRedraw = _.throttle(this.drawLinechart,1000,{leading: false})
+    $( window ).resize(throttledRedraw)
+
 
     //web ticker freezes and stuff
     this.initMarquee()
@@ -29,13 +35,25 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     tickerTemplate = JST["app/templates/ticker.html"]({
       repo: this.model
     })
+    fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
+      repo: this.model
+    })
+    //pop the templates in their proper place
     this.$el.append(renderedTemplate)
     $(".fullscreen-ticker").append(tickerTemplate)
 
     var ctx = $("#donut-chart-" + this.model.get('id')).get(0).getContext("2d");
     new Chart(ctx).Doughnut(this.model.get('gitHUDMeta').donutData);
 
-    // console.log('githubmeta',this.model.get('gitHUDMeta').graphData)
+    this.drawLinechart()
+
+
+  },
+
+  drawLinechart: function(){
+    $(".linechart-destination").html('')
+    $(".linechart-destination").append(fsLinechartTemplate)
+
     var ctx2 = $("#line-chart-" + this.model.get('id')).get(0).getContext("2d");
 
     var maxCommits = _.max(this.model.get('gitHUDMeta').graphData.truncatedWeeklyData.datasets[0].data, function(x){ return x })
@@ -79,6 +97,15 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         //'left' or 'right'
         direction: 'left'
     });
+
+  },
+
+  redrawLinechart: function(){
+    $(".linechart-destination").html('')
+
+    this.drawLinechart()
+
+
 
   }
 })
