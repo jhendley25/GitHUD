@@ -337,6 +337,15 @@ h1 {
     z-index: 9999999;
 }
 
+#startSlideshow {
+    font-size: 30px;
+    position: absolute;
+    right: 40px;
+    top: 30px;
+    cursor: pointer;
+    z-index: 9999999;
+}
+
 #repo-heading {
     height: auto;
     width: auto;

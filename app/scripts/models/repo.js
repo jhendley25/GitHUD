@@ -15,6 +15,33 @@ GitHUD.Models.Repo = Backbone.Model.extend({
     var commits = [],
         contributors = [],
         donutData = [],
+        fsLinechart = {
+            additions: {
+                labels : [],
+                datasets: [
+                {
+                fillColor : '#0086cb',
+                strokeColor : "#00598a",
+                pointColor : "#00598a",
+                pointStrokeColor : "#fff",
+                data: []
+                }
+                ]
+            },
+            deletions: {
+                labels : [],
+                datasets: [
+                {
+                fillColor : '#0086cb',
+                strokeColor : "#00598a",
+                pointColor : "#00598a",
+                pointStrokeColor : "#fff",
+                data: []
+                }
+                ]
+            }
+        },
+
         graphData = {
             // users: [],
             labels: [],
@@ -63,14 +90,22 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       // console.log('top commiter ',tickerData.topCommiter.weekly)
       //donutData namespacing
       donutData.push({value: user.total, color: userColor})
-      tickerData
+
       _.each(user.weeks, function(weeklyData){
         tickerData.ttlCommits += weeklyData.c
         tickerData.ttlAdditions += weeklyData.a
         tickerData.ttlDeletions += weeklyData.d
-        //graphData namespacing
+
         // console.log(weeklyData.c)
         graphData.datasets[0].data.push(weeklyData.c)
+
+        //populate datasets for fslinecharts
+        fsLinechart.additions.labels.push("")
+        fsLinechart.deletions.labels.push("")
+        fsLinechart.additions.datasets[0].data.push(weeklyData.a)
+
+        console.log('fslinchart.additions.datasets.data', fsLinechart.additions.datasets[0].data)
+        fsLinechart.deletions.datasets[0].data.push(weeklyData.d)
 
         // graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
 
@@ -80,13 +115,34 @@ GitHUD.Models.Repo = Backbone.Model.extend({
 
     })
 
-    // make a 8 week only copy of graphData.datasets[0].data
+    //make a 12 week only copy of fslinechart data
+    // fsLinechart.additions.truncatedWeeklyData = {}
+    // fsLinechart.additions.truncatedWeeklyData.datasets = fsLinechart.additions.datasets
+    // fsLinechart.additions.truncatedWeeklyData.labels = ['','','','','','','','','','','','']
+    // fsLinechart.additions.truncatedWeeklyData.datasets[0] = {
+    //     data: _.last(fsLinechart.additions.datasets.data, 12)
+    // }
+
+    // fsLinechart.deletions.truncatedWeeklyData = {}
+    // fsLinechart.deletions.truncatedWeeklyData.datasets = fsLinechart.deletions.datasets
+    // fsLinechart.deletions.truncatedWeeklyData.labels = ['','','','','','','','','','','','']
+    // fsLinechart.deletions.truncatedWeeklyData.datasets[0] = {
+    //     data: _.last(fsLinechart.deletions.datasets.data, 12)
+    // }
+    console.log('fsLinechart data ', fsLinechart)
+
+
+    // make a 12 week only copy of graphData.datasets[0].data
     graphData.truncatedWeeklyData = {}
     graphData.truncatedWeeklyData.datasets = graphData.datasets
     graphData.truncatedWeeklyData.labels = ['','','','','','','','','','','','']
     graphData.truncatedWeeklyData.datasets[0] = {
       data: _.last(graphData.datasets[0].data, 12)
     }
+
+
+
+
 
     // add info to sortData for easier isotopejs integration
     sortData = {
@@ -105,9 +161,10 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       donutData: donutData,
       graphData: graphData,
       tickerData: tickerData,
+      fsLinechart: fsLinechart,
       authors: response
     }
-    // console.log('gitHUDMeta',gitHUDMeta)
+    console.log('gitHUDMeta',gitHUDMeta)
     // finally return all of this
     this.secondaryAjax(gitHUDMeta)
     return {gitHUDMeta: gitHUDMeta}

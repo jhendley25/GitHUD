@@ -1,7 +1,8 @@
 GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   events: {
-    'click #exit-fullscreen' : 'exitFullscreen'
+    'click #exit-fullscreen' : 'exitFullscreen',
+    'click #startSlideshow'  : 'initFsSlideShow'
   },
 
 
@@ -23,6 +24,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     //web ticker freezes and stuff
     this.initMarquee()
     // listen for this view's model to change, then render
+    //start the slide show (theres a setTimeout somewhere around here)
+    // this.initFsSlideShow()
 
   },
 
@@ -71,7 +74,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         scaleStepWidth : Math.floor(maxCommits / 5),
         scaleStartValue : 0,
         scaleOverride : true,
-        animation: false
+        animation: true
       })
     } else {
       // manually specify the scale because none of the data points were over 9
@@ -81,9 +84,11 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         scaleStepWidth : 2,
         scaleStartValue : 0,
         scaleOverride : true,
-        animation: false
+        animation: true
       });
     }
+
+
   },
 
   exitFullscreen: function(){
@@ -102,6 +107,38 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         //'left' or 'right'
         direction: 'left'
     });
+
+  },
+
+  initFsSlideShow: function(){
+    var slideCounter = 1
+    var that = this
+    var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
+      repo: this.model
+    })
+    setInterval(function(){
+        $(".linechart-destination").html('')
+        if(slideCounter == 1){
+            //additions line chart
+            console.log('additions chart called')
+            console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
+            $(".linechart-destination").append(fsLinechartTemplate)
+            var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+            new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions);
+            slideCounter += 1
+        }else if (slideCounter == 2 ){
+            //deletions line chart
+            $(".linechart-destination").append(fsLinechartTemplate)
+            var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+            new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.deletions);
+            slideCounter += 1
+            console.log('deletions chart called')
+        }else{
+            that.drawLinechart()
+            slideCounter = 1
+        }
+
+    },2000)
 
   }
 })
