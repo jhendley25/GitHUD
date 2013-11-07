@@ -129,15 +129,17 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         //gap in pixels between the tickers
         delayBeforeStart: 0,
         //'left' or 'right'
-        direction: 'left'
+        direction: 'left',
+
+        duplicated: true
     });
 
   },
 
   headerColor: function(){
     $(".left-menu").css('background', GitHUD.utilities.colorLuminance(this.model.get('userColor'), -0.2))
-    $(".left-menu h1").css({'color': '#fff', 'text-shadow': '1px 1px 1px #acacac'})
-    $(".left-menu button").css({'color': '#fff', 'text-shadow': '1px 1px 1px #acacac'})
+    $(".left-menu h1").css({'color': '#fff', 'text-shadow': 'none'})
+    $(".left-menu button").css({'color': '#fff', 'text-shadow': 'none'})
   },
 
   resetHeader: function(){

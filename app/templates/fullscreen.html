@@ -5,14 +5,14 @@
         <span class="ss-stop" id="startSlideshow" data-slideshow="stop"></span>
         <div class="legend-destination"></div>
         <div id="repo-heading">
-            <img src="<%= repo.get('owner').avatar_url %>">
+            <img src="<%= repo.get('owner').avatar_url %>" style="border: 2px solid <%= repo.get('userColor') %>;">
 
             <h3>
                 <span class="title">
                     <%= repo.get('name') %>
                 </span>
                 <br>
-                <span class="owner">
+                <span class="owner" style="color: <%= repo.get('userColor') %>;">
                     <%= repo.get('owner').login %>
                 </span>
 
