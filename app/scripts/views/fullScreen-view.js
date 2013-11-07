@@ -69,7 +69,6 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       // let the scale be automatically calculated if at least one of the data points is 10+
       new Chart(ctx2).Line(this.model.get('gitHUDMeta').graphData.truncatedWeeklyData, {
         scaleShowGridLines : false,
-        animation: false,
         scaleSteps : 5,
         scaleStepWidth : Math.floor(maxCommits / 5),
         scaleStartValue : 0,
@@ -110,35 +109,56 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   },
 
-  initFsSlideShow: function(){
+  initFsSlideShow: function(ev){
     var slideCounter = 1
     var that = this
+
     var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
       repo: this.model
     })
-    setInterval(function(){
-        $(".linechart-destination").html('')
-        if(slideCounter == 1){
-            //additions line chart
-            console.log('additions chart called')
-            console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
-            $(".linechart-destination").append(fsLinechartTemplate)
-            var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
-            new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions);
-            slideCounter += 1
-        }else if (slideCounter == 2 ){
-            //deletions line chart
-            $(".linechart-destination").append(fsLinechartTemplate)
-            var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
-            new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.deletions);
-            slideCounter += 1
-            console.log('deletions chart called')
-        }else{
-            that.drawLinechart()
-            slideCounter = 1
-        }
+    if ($(event.target).data('slideshow') == 'play') {
 
-    },2000)
+            $(".ss-play").css('display', 'none')
+            $(".ss-stop").css('display', 'inline-block')
+
+        window.intId = setInterval(function(){
+            $(".linechart-destination").html('')
+            if(slideCounter == 1){
+                //additions line chart
+                console.log('additions chart called')
+                console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
+                $(".linechart-destination").append(fsLinechartTemplate)
+                var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+                new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
+                    scaleShowGridLines : false,
+                    animation: true
+                });
+                slideCounter += 1
+            }else if (slideCounter == 2 ){
+                //deletions line chart
+                $(".linechart-destination").append(fsLinechartTemplate)
+                var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+                new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.deletions,{
+                    scaleShowGridLines : false,
+                    animation: true
+                });
+                slideCounter += 1
+                console.log('deletions chart called')
+            }else{
+                that.drawLinechart()
+                slideCounter = 1
+            }
+            return intId
+
+        },5000)
+    } else if($(event.target).data('slideshow') == 'stop'){
+        console.log('intId ', window.intId)
+        console.log('stop slideshow')
+        clearInterval(window.intId)
+        $(".ss-stop").css('display', 'none')
+        $(".ss-play").css('display', 'inline-block')
+
+    }
 
   }
 })
