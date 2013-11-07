@@ -104,7 +104,6 @@ GitHUD.Models.Repo = Backbone.Model.extend({
         fsLinechart.deletions.labels.push("")
         fsLinechart.additions.datasets[0].data.push(weeklyData.a)
 
-        console.log('fslinchart.additions.datasets.data', fsLinechart.additions.datasets[0].data)
         fsLinechart.deletions.datasets[0].data.push(weeklyData.d)
 
         // graphData.labels.push(moment(weeklyData.w * 1000).format("MMM-DD"))
@@ -115,21 +114,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
 
     })
 
-    //make a 12 week only copy of fslinechart data
-    // fsLinechart.additions.truncatedWeeklyData = {}
-    // fsLinechart.additions.truncatedWeeklyData.datasets = fsLinechart.additions.datasets
-    // fsLinechart.additions.truncatedWeeklyData.labels = ['','','','','','','','','','','','']
-    // fsLinechart.additions.truncatedWeeklyData.datasets[0] = {
-    //     data: _.last(fsLinechart.additions.datasets.data, 12)
-    // }
 
-    // fsLinechart.deletions.truncatedWeeklyData = {}
-    // fsLinechart.deletions.truncatedWeeklyData.datasets = fsLinechart.deletions.datasets
-    // fsLinechart.deletions.truncatedWeeklyData.labels = ['','','','','','','','','','','','']
-    // fsLinechart.deletions.truncatedWeeklyData.datasets[0] = {
-    //     data: _.last(fsLinechart.deletions.datasets.data, 12)
-    // }
-    console.log('fsLinechart data ', fsLinechart)
 
 
     // make a 12 week only copy of graphData.datasets[0].data
@@ -164,7 +149,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       fsLinechart: fsLinechart,
       authors: response
     }
-    console.log('gitHUDMeta',gitHUDMeta)
+    // console.log('gitHUDMeta',gitHUDMeta)
     // finally return all of this
     this.secondaryAjax(gitHUDMeta)
     return {gitHUDMeta: gitHUDMeta}

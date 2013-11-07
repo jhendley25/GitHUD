@@ -436,3 +436,22 @@ h1 {
   overflow: hidden;
 }
 
+.legend-destination {
+    z-index: 999999;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+
+}
+
+.fsCatagory {
+    font-size: 50px;
+    color: $primary-blue;
+}
+
+.fsDataCount {
+    font-size: 80px;
+    color: $primary-blue;
+    line-height: 40px;
+    text-align: right;
+}

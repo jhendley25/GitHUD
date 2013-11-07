@@ -20,7 +20,6 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     var throttledRedraw = _.throttle(boundDrawLinechart, 200,{leading: false})
     $( window ).resize(throttledRedraw)
 
-
     //web ticker freezes and stuff
     this.initMarquee()
     // listen for this view's model to change, then render
@@ -47,16 +46,33 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     new Chart(ctx).Doughnut(this.model.get('gitHUDMeta').donutData);
 
     this.drawLinechart()
+    //set fsSlideshow to autoplay
+    this.initFsSlideShow({counter: 2, autoplay: true})
 
 
   },
 
+  linechartLegend: function(legend){
+    legend = legend || {}
+    linechartLegendTemplate = JST["app/templates/linechartLegend.html"]({
+      legend: legend
+    })
+    $(".legend-destination").html('')
+    $(".legend-destination").append(linechartLegendTemplate)
+  },
+
   drawLinechart: function(){
     // console.log('HEYYYYYY')
-
+    var legend = {
+        catagory: 'COMMITS',
+        icon: 'ss-loading',
+        dataCount: this.model.get('gitHUDMeta').tickerData.ttlCommits
+    }
     var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
       repo: this.model
     })
+
+    this.linechartLegend(legend)
 
     $(".linechart-destination").html('')
     $(".linechart-destination").append(fsLinechartTemplate)
@@ -93,6 +109,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   exitFullscreen: function(){
+    clearInterval(window.intId)
     this.$el.remove()
     $(".donut-stage").css('display', 'inline-block')
   },
@@ -111,30 +128,41 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   },
 
-  initFsSlideShow: function(ev){
-    var slideCounter = 1
+  initFsSlideShow: function(slideControl){
+    var slideCounter = slideControl.counter || 1
     var that = this
 
     var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
       repo: this.model
     })
-    if ($(event.target).data('slideshow') == 'play') {
-
-            $(".ss-play").css('display', 'none')
-            $(".ss-stop").css('display', 'inline-block')
-            //trasition to the first slide immediately
-            console.log('additions chart called')
-                console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
-                $(".linechart-destination").append(fsLinechartTemplate)
-                var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
-                new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
-                    scaleShowGridLines : false,
-                    animation: true
-                });
+    if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
+        var legend = {
+            catagory: 'ADDITIONS',
+            icon: 'ss-plus',
+            dataCount: this.model.get('gitHUDMeta').tickerData.ttlAdditions
+        }
+        this.linechartLegend(legend)
+        $(".ss-play").css('display', 'none')
+        $(".ss-stop").css('display', 'inline-block')
+        //trasition to the first slide immediately
+        console.log('additions chart called')
+            console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
+            $(".linechart-destination").append(fsLinechartTemplate)
+            var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+            new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
+                scaleShowGridLines : false,
+                animation: true
+            });
 
         window.intId = setInterval(function(){
             $(".linechart-destination").html('')
             if(slideCounter == 1){
+                var legend = {
+                    catagory: 'DELETIONS',
+                    icon: 'ss-delete',
+                    dataCount: that.model.get('gitHUDMeta').tickerData.ttlDeletions
+                }
+                that.linechartLegend(legend)
                 //deletions line chart
                 $(".linechart-destination").append(fsLinechartTemplate)
                 var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
@@ -149,6 +177,13 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                 that.drawLinechart()
                 slideCounter += 1
             }else{
+                var legend = {
+                    catagory: 'ADDITIONS',
+                    icon: 'ss-plus',
+                    dataCount: that.model.get('gitHUDMeta').tickerData.ttlAdditions
+                }
+                that.linechartLegend(legend)
+
                 //additions line chart
                 console.log('additions chart called')
                 console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
