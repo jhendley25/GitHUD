@@ -73,6 +73,18 @@ GitHUD.Views.RepoView = Backbone.View.extend({
       pointColor : GitHUD.utilities.colorLuminance(this.model.get('userColor'), -0.25),
       pointStrokeColor : "#fff"
     })
+    _.extend(this.model.get('gitHUDMeta').fsLinechart.additions.datasets[0], {
+      fillColor : this.model.get('userColor'),
+      strokeColor : this.model.get('userColor'),
+      pointColor : GitHUD.utilities.colorLuminance(this.model.get('userColor'), -0.25),
+      pointStrokeColor : "#fff"
+    })
+    _.extend(this.model.get('gitHUDMeta').fsLinechart.deletions.datasets[0], {
+      fillColor : this.model.get('userColor'),
+      strokeColor : this.model.get('userColor'),
+      pointColor : GitHUD.utilities.colorLuminance(this.model.get('userColor'), -0.25),
+      pointStrokeColor : "#fff"
+    })
 
     var maxCommits = _.max(this.model.get('gitHUDMeta').graphData.truncatedWeeklyData.datasets[0].data, function(x){ return x })
     if ( maxCommits > 9) {

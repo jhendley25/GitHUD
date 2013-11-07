@@ -87,6 +87,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       });
     }
 
+//eric is awesome
+
 
   },
 
