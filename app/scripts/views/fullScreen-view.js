@@ -122,12 +122,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
             $(".ss-play").css('display', 'none')
             $(".ss-stop").css('display', 'inline-block')
-
-        window.intId = setInterval(function(){
-            $(".linechart-destination").html('')
-            if(slideCounter == 1){
-                //additions line chart
-                console.log('additions chart called')
+            //trasition to the first slide immediately
+            console.log('additions chart called')
                 console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
                 $(".linechart-destination").append(fsLinechartTemplate)
                 var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
@@ -135,8 +131,10 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                     scaleShowGridLines : false,
                     animation: true
                 });
-                slideCounter += 1
-            }else if (slideCounter == 2 ){
+
+        window.intId = setInterval(function(){
+            $(".linechart-destination").html('')
+            if(slideCounter == 1){
                 //deletions line chart
                 $(".linechart-destination").append(fsLinechartTemplate)
                 var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
@@ -146,15 +144,28 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                 });
                 slideCounter += 1
                 console.log('deletions chart called')
-            }else{
+
+            }else if (slideCounter == 2 ){
                 that.drawLinechart()
+                slideCounter += 1
+            }else{
+                //additions line chart
+                console.log('additions chart called')
+                console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
+                $(".linechart-destination").append(fsLinechartTemplate)
+                var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+                new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
+                    scaleShowGridLines : false,
+                    animation: true
+                });
+
                 slideCounter = 1
             }
-            return intId
+
 
         },5000)
     } else if($(event.target).data('slideshow') == 'stop'){
-        console.log('intId ', window.intId)
+        // console.log('intId ', window.intId)
         console.log('stop slideshow')
         clearInterval(window.intId)
         $(".ss-stop").css('display', 'none')
