@@ -47,7 +47,11 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
     this.drawLinechart()
     //set fsSlideshow to autoplay
-    this.initFsSlideShow({counter: 2, autoplay: true})
+    // var slideControl = {
+    //     counter: 2,
+    //     autoplay: true
+    // }
+    this.initFsSlideShow({autoplay: true})
 
 
   },
@@ -55,7 +59,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   linechartLegend: function(legend){
     legend = legend || {}
     linechartLegendTemplate = JST["app/templates/linechartLegend.html"]({
-      legend: legend
+      legend: legend,
+      repo: this.model
     })
     $(".legend-destination").html('')
     $(".legend-destination").append(linechartLegendTemplate)
@@ -136,47 +141,28 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       repo: this.model
     })
     if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
-        var legend = {
-            catagory: 'ADDITIONS',
-            icon: 'ss-plus',
-            dataCount: this.model.get('gitHUDMeta').tickerData.ttlAdditions
-        }
-        this.linechartLegend(legend)
+        // var legend = {
+        //     catagory: 'ADDITIONS',
+        //     icon: 'ss-plus',
+        //     dataCount: this.model.get('gitHUDMeta').tickerData.ttlAdditions
+        // }
+        // this.linechartLegend(legend)
         $(".ss-play").css('display', 'none')
         $(".ss-stop").css('display', 'inline-block')
-        //trasition to the first slide immediately
-        console.log('additions chart called')
-            console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
-            $(".linechart-destination").append(fsLinechartTemplate)
-            var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
-            new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
-                scaleShowGridLines : false,
-                animation: true
-            });
+        // //trasition to the first slide immediately
+        // console.log('additions chart called')
+        //     console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
+        //     $(".linechart-destination").append(fsLinechartTemplate)
+        //     var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+        //     new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
+        //         scaleShowGridLines : false,
+        //         animation: true
+        //     });
 
         window.intId = setInterval(function(){
             $(".linechart-destination").html('')
+            console.log('slideCounter is', slideCounter)
             if(slideCounter == 1){
-                var legend = {
-                    catagory: 'DELETIONS',
-                    icon: 'ss-delete',
-                    dataCount: that.model.get('gitHUDMeta').tickerData.ttlDeletions
-                }
-                that.linechartLegend(legend)
-                //deletions line chart
-                $(".linechart-destination").append(fsLinechartTemplate)
-                var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
-                new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.deletions,{
-                    scaleShowGridLines : false,
-                    animation: true
-                });
-                slideCounter += 1
-                console.log('deletions chart called')
-
-            }else if (slideCounter == 2 ){
-                that.drawLinechart()
-                slideCounter += 1
-            }else{
                 var legend = {
                     catagory: 'ADDITIONS',
                     icon: 'ss-plus',
@@ -193,6 +179,28 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                     scaleShowGridLines : false,
                     animation: true
                 });
+
+                slideCounter += 1
+
+            }else if (slideCounter == 2 ){
+                var legend = {
+                    catagory: 'DELETIONS',
+                    icon: 'ss-delete',
+                    dataCount: that.model.get('gitHUDMeta').tickerData.ttlDeletions
+                }
+                console.log('deletions chart called')
+                that.linechartLegend(legend)
+                //deletions line chart
+                $(".linechart-destination").append(fsLinechartTemplate)
+                var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+                new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.deletions,{
+                    scaleShowGridLines : false,
+                    animation: true
+                });
+                slideCounter += 1
+            }else{
+
+                that.drawLinechart()
 
                 slideCounter = 1
             }

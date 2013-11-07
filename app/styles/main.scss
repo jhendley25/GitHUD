@@ -362,6 +362,8 @@ h1 {
     width: auto;
     position: relative;
     display: inline-block;
+    left: 50px;
+    top: -35px;
     img {
 
         border: 3px solid $dark-gray;
@@ -432,7 +434,7 @@ h1 {
 
 // webticker plugin stuff
 .marquee {
-  width: 100%; /*or 100% width as the plugin works with responsive layouts as well*/
+  width: 100%;
   overflow: hidden;
 }
 
@@ -440,18 +442,18 @@ h1 {
     z-index: 999999;
     position: absolute;
     top: 20%;
-    left: 20%;
+    left: 6%;
+    text-align: left;
 
 }
 
 .fsCatagory {
-    font-size: 50px;
+    font-size: 20px;
     color: $primary-blue;
 }
 
 .fsDataCount {
     font-size: 80px;
     color: $primary-blue;
-    line-height: 40px;
-    text-align: right;
+    line-height: 65px;
 }

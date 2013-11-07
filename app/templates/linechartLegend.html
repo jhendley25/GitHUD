@@ -1,8 +1,8 @@
 <div class="fsLegend">
-  <div class="fsCatagory">
-    <span class="<%= legend.icon %>"></span><%= legend.catagory %>
+  <div class="fsCatagory" style="color:<%= repo.get('userColor') %>;">
+    <span class="<%= legend.icon %>" ></span><%= legend.catagory %>
   </div>
   <div class="fsDataCount">
-    <%= legend.dataCount %>
+    <%= legend.dataCount %> TOTAL <br> <%= legend.catagory %>
   </div>
 </div>
