@@ -111,6 +111,7 @@ $break-large: 1024px;
   }
   #sort-by {
     display: inline-block;
+    vertical-align: bottom;
   }
 
 }
@@ -363,7 +364,7 @@ h1 {
     position: relative;
     display: inline-block;
     left: 50px;
-    top: -35px;
+    top: -25px;
     img {
 
         border: 3px solid $dark-gray;
@@ -424,7 +425,7 @@ h1 {
 }
 
 .ticker-text {
-    color: #38434d;
+    color: #acacac;
 }
 
 .ticker-user, .ticker-reponame {
@@ -454,6 +455,6 @@ h1 {
 
 .fsDataCount {
     font-size: 80px;
-    color: $primary-blue;
+    color: #acacac;
     line-height: 65px;
 }

@@ -117,6 +117,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     clearInterval(window.intId)
     this.$el.remove()
     $(".donut-stage").css('display', 'inline-block')
+    this.resetHeader()
   },
 
   initMarquee: function(){
@@ -133,10 +134,22 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   },
 
+  headerColor: function(){
+    $(".left-menu").css('background', GitHUD.utilities.colorLuminance(this.model.get('userColor'), -0.2))
+    $(".left-menu h1").css({'color': '#fff', 'text-shadow': '1px 1px 1px #acacac'})
+    $(".left-menu button").css({'color': '#fff', 'text-shadow': '1px 1px 1px #acacac'})
+  },
+
+  resetHeader: function(){
+    $(".left-menu").removeAttr('style')
+    $(".left-menu h1").removeAttr('style')
+    $(".left-menu button").removeAttr('style')
+  },
+
   initFsSlideShow: function(slideControl){
     var slideCounter = slideControl.counter || 1
     var that = this
-
+    this.headerColor()
     var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
       repo: this.model
     })
