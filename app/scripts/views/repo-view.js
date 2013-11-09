@@ -25,8 +25,12 @@ GitHUD.Views.RepoView = Backbone.View.extend({
     // this.model.set('userColor', '#'+Math.floor(Math.random()*16777215).toString(16), {silent: true});
     this.model.set('userColor', GitHUD.utilities.color(this.model.get('owner').login), {silent: true});
   },
+  //checking server respose:
+  //202 means the server has accepted the request and is crunching data
+  //200 means the server has returned the appropriate data
 
   fetchFx: function(){
+
     var that = this
     this.model.fetch({
         success: function(model, response, status){
@@ -35,8 +39,10 @@ GitHUD.Views.RepoView = Backbone.View.extend({
                     break;
                 case 202 :
                     console.log('bad status: ', status.xhr.status)
-                    _.throttle(that.fetchFx(), 1000)
+                    var throttledFetch = _.throttle(that.fetchFx(), 1000)
                     break;
+                case 409 :
+                    //this means the repo is empty...not usre how to handle this just yet
             }
         }
     })

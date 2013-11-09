@@ -43,14 +43,10 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     $(".fullscreen-ticker").append(tickerTemplate)
 
     var ctx = $("#donut-chart-" + this.model.get('id')).get(0).getContext("2d");
-    new Chart(ctx).Doughnut(this.model.get('gitHUDMeta').donutData);
+    new Chart(ctx).Doughnut(this.model.get('gitHUDMeta').donutData,{animation: false});
 
     this.drawLinechart()
     //set fsSlideshow to autoplay
-    // var slideControl = {
-    //     counter: 2,
-    //     autoplay: true
-    // }
     this.initFsSlideShow({autoplay: true})
 
 
@@ -107,10 +103,6 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         animation: true
       });
     }
-
-//eric is awesome
-
-
   },
 
   exitFullscreen: function(){
@@ -137,12 +129,14 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   headerColor: function(){
+    //change header color to match the current repo owner's userColor
     $(".left-menu").css('background', GitHUD.utilities.colorLuminance(this.model.get('userColor'), -0.2))
     $(".left-menu h1").css({'color': '#fff', 'text-shadow': 'none'})
     $(".left-menu button").css({'color': '#fff', 'text-shadow': 'none'})
   },
 
   resetHeader: function(){
+    //reset header color when exiting fullscreen
     $(".left-menu").removeAttr('style')
     $(".left-menu h1").removeAttr('style')
     $(".left-menu button").removeAttr('style')
@@ -156,63 +150,55 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       repo: this.model
     })
     if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
-        // var legend = {
-        //     catagory: 'ADDITIONS',
-        //     icon: 'ss-plus',
-        //     dataCount: this.model.get('gitHUDMeta').tickerData.ttlAdditions
-        // }
-        // this.linechartLegend(legend)
+
         $(".ss-play").css('display', 'none')
         $(".ss-stop").css('display', 'inline-block')
-        // //trasition to the first slide immediately
-        // console.log('additions chart called')
-        //     console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
-        //     $(".linechart-destination").append(fsLinechartTemplate)
-        //     var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
-        //     new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
-        //         scaleShowGridLines : false,
-        //         animation: true
-        //     });
+
 
         window.intId = setInterval(function(){
             $(".linechart-destination").html('')
             console.log('slideCounter is', slideCounter)
             if(slideCounter == 1){
+                //define legend data
                 var legend = {
                     catagory: 'ADDITIONS',
                     icon: 'ss-plus',
                     dataCount: that.model.get('gitHUDMeta').tickerData.ttlAdditions
                 }
+                //append legend
                 that.linechartLegend(legend)
 
-                //additions line chart
-                console.log('additions chart called')
-                console.log('additions data ', that.model.get('gitHUDMeta').fsLinechart.additions)
+
+                // append canvas element
                 $(".linechart-destination").append(fsLinechartTemplate)
+                //get context and call chartjs
                 var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
                 new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
                     scaleShowGridLines : false,
                     animation: true
                 });
-
+                //increment counter
                 slideCounter += 1
 
             }else if (slideCounter == 2 ){
+                //add legend
                 var legend = {
                     catagory: 'DELETIONS',
                     icon: 'ss-delete',
                     dataCount: that.model.get('gitHUDMeta').tickerData.ttlDeletions
                 }
-                console.log('deletions chart called')
+                //append legend
                 that.linechartLegend(legend)
-                //deletions line chart
+                //append canvas element
                 $(".linechart-destination").append(fsLinechartTemplate)
+                // call chartjs
                 var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
                 new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.deletions,{
                     scaleShowGridLines : false,
                     animation: true
                 });
                 slideCounter += 1
+
             }else{
 
                 that.drawLinechart()
@@ -220,8 +206,9 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                 slideCounter = 1
             }
 
-
+            //5 seconds delay for now
         },5000)
+
     } else if($(event.target).data('slideshow') == 'stop'){
         // console.log('intId ', window.intId)
         console.log('stop slideshow')
