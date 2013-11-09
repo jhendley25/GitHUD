@@ -1,48 +1,48 @@
 <div class="fullscreen-container">
-    <div class="fullscreen" id="fullscreen-repo-<%= repo.id %>">
-        <span class="ss-contract" id="exit-fullscreen"></span>
-        <span class="ss-play" id="startSlideshow" data-slideshow="play"></span>
-        <span class="ss-stop" id="startSlideshow" data-slideshow="stop"></span>
-        <div class="legend-destination"></div>
-        <div id="repo-heading">
-            <img src="<%= repo.get('owner').avatar_url %>" style="border: 2px solid <%= repo.get('userColor') %>;">
+  <div class="fullscreen" id="fullscreen-repo-<%= repo.id %>">
+    <span class="ss-contract" id="exit-fullscreen"></span>
+    <span class="ss-play" id="startSlideshow" data-slideshow="play"></span>
+    <span class="ss-stop" id="startSlideshow" data-slideshow="stop"></span>
+    <div class="legend-destination"></div>
+    <div id="repo-heading">
+      <img src="<%= repo.get('owner').avatar_url %>" style="border: 2px solid <%= repo.get('userColor') %>;">
 
-            <h3>
-                <span class="title">
-                    <%= repo.get('name') %>
-                </span>
-                <br>
-                <span class="owner" style="color: <%= repo.get('userColor') %>;">
-                    <%= repo.get('owner').login %>
-                </span>
-
-            </h3>
-        </div>
-
+      <h3>
+        <span class="title">
+          <%= repo.get('name') %>
+        </span>
         <br>
+        <span class="owner" style="color: <%= repo.get('userColor') %>;">
+          <%= repo.get('owner').login %>
+        </span>
 
-
-            <div class="donut-top-five-wrapper">
-                <div class="donut-top-five">
-
-                <% _.each(repo.get('gitHUDMeta').contributors, function(contributor, i) { %>
-
-                        <span class="darkened-text"><%= repo.get('gitHUDMeta').commits[i] %>&nbsp;COMMITS</span>
-                    <span style="color: <%= contributor.color %>;">
-                        <span class="top-five-user"><%= contributor.username %></span>
-                        <span class="ss-piechart"></span>
-                    </span>
-                    <br>
-                <% }) %>
-
-                </div>
-            </div>
-
-
-    <canvas id='donut-chart-<%= repo.id %>' class="fullscreen-donut" width='310' height='310'></canvas>
-    <span class="linechart-destination"></span>
-    <div class="fullscreen-ticker ticker-text">
-
+      </h3>
     </div>
-    </div>
+
+    <br>
+
+
+      <div class="donut-top-five-wrapper">
+        <div class="donut-top-five">
+
+        <% _.each(repo.get('gitHUDMeta').contributors, function(contributor, i) { %>
+
+            <span class="darkened-text"><%= repo.get('gitHUDMeta').commits[i] %>&nbsp;COMMITS</span>
+          <span style="color: <%= contributor.color %>;">
+            <span class="top-five-user"><%= contributor.username %></span>
+            <span class="ss-piechart"></span>
+          </span>
+          <br>
+        <% }) %>
+
+        </div>
+      </div>
+
+
+  <canvas id='donut-chart-<%= repo.id %>' class="fullscreen-donut" width='310' height='310'></canvas>
+  <span class="linechart-destination"></span>
+  <div class="fullscreen-ticker ticker-text">
+
+  </div>
+  </div>
 </div>
