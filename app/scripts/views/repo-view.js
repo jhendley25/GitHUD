@@ -28,6 +28,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   //checking server respose:
   //202 means the server has accepted the request and is crunching data
   //200 means the server has returned the appropriate data
+  //409 means the repo is empty
 
   fetchFx: function(){
 

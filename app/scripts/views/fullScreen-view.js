@@ -58,12 +58,10 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       legend: legend,
       repo: this.model
     })
-    $(".legend-destination").html('')
     $(".legend-destination").append(linechartLegendTemplate)
   },
 
   drawLinechart: function(){
-    // console.log('HEYYYYYY')
     var legend = {
         catagory: 'COMMITS',
         icon: 'ss-loading',
@@ -74,8 +72,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     })
 
     this.linechartLegend(legend)
-
-    $(".linechart-destination").html('')
+    $(".legend").addClass("legendIn")
+    $(".legend-DELETIONS").addClass("legendOut")
     $(".linechart-destination").append(fsLinechartTemplate)
     console.log(this)
     console.log(this.model)
@@ -156,9 +154,11 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
 
         window.intId = setInterval(function(){
-            $(".linechart-destination").html('')
+            // $(".linechart-destination").html('')
             console.log('slideCounter is', slideCounter)
             if(slideCounter == 1){
+                $(".fsLegend").addClass("legendOut")
+
                 //define legend data
                 var legend = {
                     catagory: 'ADDITIONS',
@@ -167,6 +167,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                 }
                 //append legend
                 that.linechartLegend(legend)
+
+                $(".legend").addClass("legendIn")
 
 
                 // append canvas element
@@ -181,6 +183,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                 slideCounter += 1
 
             }else if (slideCounter == 2 ){
+                $(".fsLegend").addClass("legendOut")
                 //add legend
                 var legend = {
                     catagory: 'DELETIONS',
@@ -189,6 +192,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                 }
                 //append legend
                 that.linechartLegend(legend)
+                $(".legend-ADDITIONS").addClass("legendOut")
                 //append canvas element
                 $(".linechart-destination").append(fsLinechartTemplate)
                 // call chartjs
@@ -200,6 +204,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
                 slideCounter += 1
 
             }else{
+                $(".fsLegend").addClass("legendOut")
 
                 that.drawLinechart()
 

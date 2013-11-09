@@ -18,13 +18,13 @@ $break-large: 1024px;
 
 @mixin respond-to($media) {
   @if $media == handhelds {
-    @media only screen and (max-width: $break-small) { @content; }
+  @media only screen and (max-width: $break-small) { @content; }
   }
   @else if $media == medium-screens {
-    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
   }
   @else if $media == wide-screens {
-    @media only screen and (min-width: $break-large) { @content; }
+  @media only screen and (min-width: $break-large) { @content; }
   }
 }
 
@@ -39,49 +39,49 @@ $break-large: 1024px;
 
 
 * {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .wrapper {
-    width: 100%;
-    margin: 0 auto;
-    padding-bottom: 50px;
+  width: 100%;
+  margin: 0 auto;
+  padding-bottom: 50px;
 }
 
 .menu-button {
-    display: inline-block;
-    padding: 6px 12px;
-    margin-bottom: 0;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.428571429;
-    text-align: center;
-    // vertical-align: bottom;
-    cursor: pointer;
-    border: 1px solid transparent;
-    // border-radius: 4px;
-    white-space: nowrap;
-    background: none;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.428571429;
+  text-align: center;
+  // vertical-align: bottom;
+  cursor: pointer;
+  border: 1px solid transparent;
+  // border-radius: 4px;
+  white-space: nowrap;
+  background: none;
+  font-size: 20px;
+  span {
+    vertical-align: bottom;
     font-size: 20px;
-    span {
-        vertical-align: bottom;
-        font-size: 20px;
-    }
-    &:hover{
-        background: $primary-blue;
-        color: #fff;
-    }
-    &:focus {
-        border: none;
-        outline: none;
-    }
+  }
+  &:hover{
+    background: $primary-blue;
+    color: #fff;
+  }
+  &:focus {
+    border: none;
+    outline: none;
+  }
 
 
 }
 
 .active {
-    background: $primary-blue;
-    color: #fff;
+  background: $primary-blue;
+  color: #fff;
 }
 
 .menu {
@@ -89,29 +89,29 @@ $break-large: 1024px;
   display: inline-block;
   width: 100%;
   .left-menu {
-    width: 100%;
-    height: 80px;
-    position: fixed;
-    top: 0;
-    background: #fff;
-    // border: 1px solid $dark-gray;
-    // @include border-radius(0 0 6px 6px);
-    z-index: 9999999;
-    box-shadow: 1px 1px 1px $dark-gray;
+  width: 100%;
+  height: 80px;
+  position: fixed;
+  top: 0;
+  background: #fff;
+  // border: 1px solid $dark-gray;
+  // @include border-radius(0 0 6px 6px);
+  z-index: 9999999;
+  box-shadow: 1px 1px 1px $dark-gray;
   }
   h1 {
-    display: inline-block;
-    height: auto;
-    width: auto;
-    margin: 0;
-    font-size: 45px;
-    margin-top: 15px;
-    margin-left: 15px;
-    color: #000;
+  display: inline-block;
+  height: auto;
+  width: auto;
+  margin: 0;
+  font-size: 45px;
+  margin-top: 15px;
+  margin-left: 15px;
+  color: #000;
   }
   #sort-by {
-    display: inline-block;
-    vertical-align: bottom;
+  display: inline-block;
+  vertical-align: bottom;
   }
 
 }
@@ -119,21 +119,21 @@ $break-large: 1024px;
 
 
 .modal-body {
-    input{
-        margin: 5px;
-    }
+  input{
+    margin: 5px;
+  }
 }
 .modal {
-    z-index: 9999999;
+  z-index: 9999999;
 }
 
 
 h1 {
-    margin: 5px 0 0 10px;
-    color: $gray;
-    font-size: 30px;
-    text-shadow: 1px 1px 1px white;
-    font-family: 'Open Sans', sans-serif;
+  margin: 5px 0 0 10px;
+  color: $gray;
+  font-size: 30px;
+  text-shadow: 1px 1px 1px white;
+  font-family: 'Open Sans', sans-serif;
 
 }
 
@@ -141,312 +141,312 @@ h1 {
 
 
 .donut-stage {
-    height: auto;
-    width: 100%;
-    min-height: 3000px;
+  height: auto;
+  width: 100%;
+  min-height: 3000px;
+  margin: 0;
+  position: relative;
+  right: 0;
+  padding: 10px;
+  background: rgb(240, 240, 240);
+  p {
+    text-shadow: 1px 1px 1px black;
+  }
+  svg {
+    display: block;
+    margin: 0 auto;
+
+  }
+  h3  {
+    font-size: 15px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 999999;
     margin: 0;
+
+  }
+  .isotope-item {
+    width: auto;
+    height: auto;
+    margin-right: 25px;
+    margin-top: 25px;
+  }
+  .repo {
+    margin: 10px 10px 40px;
+    width: 452px;
+    height: 220px;
     position: relative;
-    right: 0;
-    padding: 10px;
-    background: rgb(240, 240, 240);
-    p {
-        text-shadow: 1px 1px 1px black;
-    }
-    svg {
-        display: block;
-        margin: 0 auto;
-
-    }
-    h3  {
-        font-size: 15px;
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        z-index: 999999;
-        margin: 0;
-
-    }
-    .isotope-item {
-        width: auto;
-        height: auto;
-        margin-right: 25px;
-        margin-top: 25px;
-    }
-    .repo {
-        margin: 10px 10px 40px;
-        width: 452px;
-        height: 220px;
-        position: relative;
-        display: inline-block;
-        background: white;
-    }
+    display: inline-block;
+    background: white;
+  }
 }
 
 .legend {
-    height: auto;
-    width: auto;
-    position: absolute;
-    padding: 3px;
-    overflow: scroll;
-    // border: 1px solid $light-gray;
-    border-radius: 4px;
-    max-height: 250px;
-    text-align: right;
+  height: auto;
+  width: auto;
+  position: absolute;
+  padding: 3px;
+  overflow: scroll;
+  // border: 1px solid $light-gray;
+  border-radius: 4px;
+  max-height: 250px;
+  text-align: right;
 }
 
 .owner-title {
-    font-size: 15px;
-    color: $primary-blue;
+  font-size: 15px;
+  color: $primary-blue;
 }
 
 .repo-title {
-    font-size: 30px;
-    display: block;
-    margin-bottom: 6px;
+  font-size: 30px;
+  display: block;
+  margin-bottom: 6px;
 }
 
 .donut-chart    {
-    position: absolute;
-    top: 30px;
-    width: 200px;
-    height: 200px;
-    right: 10px;
-    background: none;
-    z-index: 5001;
+  position: absolute;
+  top: 30px;
+  width: 200px;
+  height: 200px;
+  right: 10px;
+  background: none;
+  z-index: 5001;
 }
 
 .line-chart {
-    position: absolute;
-    z-index: 5000;
-    bottom: -20px;
+  position: absolute;
+  z-index: 5000;
+  bottom: -20px;
 }
 .inner-donut-legend {
-    // position: absolute;
-    background: $white-opacity;
-    border-radius: 10000px;
-    width: 104px;
-    // left: 3px;
-    height: 104px;
-    // bottom: 3px;
-    box-sizing: border-box;
-    padding-top: 20px;
-    text-align: center;
-    color: $muted-text;
-    font-size: 12px;
-    span {
-        font-size: 25px;
-        color: $dark-gray;
-    }
+  // position: absolute;
+  background: $white-opacity;
+  border-radius: 10000px;
+  width: 104px;
+  // left: 3px;
+  height: 104px;
+  // bottom: 3px;
+  box-sizing: border-box;
+  padding-top: 20px;
+  text-align: center;
+  color: $muted-text;
+  font-size: 12px;
+  span {
+    font-size: 25px;
+    color: $dark-gray;
+  }
 }
 
 #bottom-ticker {
-    width: 100%;
-    height: 35px;
-    background: white;
-    position: absolute;
-    bottom: -30px;
-    text-align: justify;
-    span {
-        color: $primary-blue;
-        margin: 1%;
-    }
-    .muted-text{
-        margin: 0;
-        color: $muted-text;
+  width: 100%;
+  height: 35px;
+  background: white;
+  position: absolute;
+  bottom: -30px;
+  text-align: justify;
+  span {
+    color: $primary-blue;
+    margin: 1%;
+  }
+  .muted-text{
+    margin: 0;
+    color: $muted-text;
 
-    }
+  }
 }
 
 #gravatar-icon {
-    position: absolute;
-    left: -15px;
-    top: -15px;
+  position: absolute;
+  left: -15px;
+  top: -15px;
+  margin: 0;
+  width: auto;
+  height: auto;
+  background: none;
+  img {
+    border: 2px solid #fff;
+    border-radius: 9999px;
     margin: 0;
-    width: auto;
-    height: auto;
-    background: none;
-    img {
-        border: 2px solid #fff;
-        border-radius: 9999px;
-        margin: 0;
-        width: 50px;
-        height: 50px;
-    }
+    width: 50px;
+    height: 50px;
+  }
 }
 
 .muted-text{
-    color: $muted-text;
+  color: $muted-text;
 }
 
 .ss-expand {
-    position: absolute;
-    right: 4px;
-    top: 8px;
-    font-size: 15px;
-    cursor: pointer;
-    color: $muted-text;
-    &:hover{
-        color: #000;
-    }
+  position: absolute;
+  right: 4px;
+  top: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  color: $muted-text;
+  &:hover{
+    color: #000;
+  }
 }
 
 .add-user-button {
-    position: absolute;
-    right: 1px;
-    top: 20px;
-    .ss-plus {
-        font-size: 20px;
+  position: absolute;
+  right: 1px;
+  top: 20px;
+  .ss-plus {
+    font-size: 20px;
 
-    }
-    .ss-users {
-        font-size: 30px;
-    }
+  }
+  .ss-users {
+    font-size: 30px;
+  }
 }
 
 .fullscreen-stage {
-    width: auto;
-    height: 100%;
-    margin-top: 60px;
+  width: auto;
+  height: 100%;
+  margin-top: 60px;
 }
 
 .fullscreen-container {
-    position: fixed;
-    top: 80px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: white;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
 
-    padding: 10px;
-    width: 100%;
-    z-index: 9999999;
+  padding: 10px;
+  width: 100%;
+  z-index: 9999999;
 
 }
 .fullscreen {
-    width: 100%;
-    height: 100%;
-    // margin: 0 auto;
-    position: absolute;
-    background: white;
+  width: 100%;
+  height: 100%;
+  // margin: 0 auto;
+  position: absolute;
+  background: white;
 }
 #exit-fullscreen {
-    font-size: 30px;
-    position: absolute;
-    right: 25px;
-    top: 30px;
-    cursor: pointer;
-    z-index: 9999999;
+  font-size: 30px;
+  position: absolute;
+  right: 25px;
+  top: 30px;
+  cursor: pointer;
+  z-index: 9999999;
 }
 
 .ss-play {
-    font-size: 30px;
-    position: absolute;
-    right: 55px;
-    top: 30px;
-    cursor: pointer;
-    z-index: 9999999;
-    display: inline-block;
+  font-size: 30px;
+  position: absolute;
+  right: 55px;
+  top: 30px;
+  cursor: pointer;
+  z-index: 9999999;
+  display: inline-block;
 }
 
 .ss-stop {
-    font-size: 30px;
-    position: absolute;
-    right: 55px;
-    top: 30px;
-    cursor: pointer;
-    z-index: 9999999;
-    display: none;
+  font-size: 30px;
+  position: absolute;
+  right: 55px;
+  top: 30px;
+  cursor: pointer;
+  z-index: 9999999;
+  display: none;
 }
 
 #repo-heading {
-    height: auto;
-    width: auto;
-    position: relative;
-    display: inline-block;
-    left: 50px;
-    top: -5px;
-    img {
+  height: auto;
+  width: auto;
+  position: relative;
+  display: inline-block;
+  left: 50px;
+  top: -5px;
+  img {
 
-        // border: 3px solid $dark-gray;
-        border-radius: 33333px;
-    }
-    span {
-        position: relative;
-        left: 10px;
-    }
-    h3 {
-        display: inline-block;
-        line-height: 18px;
-    }
+    // border: 3px solid $dark-gray;
+    border-radius: 33333px;
+  }
+  span {
+    position: relative;
+    left: 10px;
+  }
+  h3 {
+    display: inline-block;
+    line-height: 18px;
+  }
 }
 
 .title {
-    font-size: 28px;
+  font-size: 28px;
 
 }
 
 .owner {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .fullscreen-donut {
-    position: absolute;
-    right: 20px;
-    top: 50px;
-    z-index: 99999;
+  position: absolute;
+  right: 20px;
+  top: 50px;
+  z-index: 99999;
 }
 
 .fullscreen-linechart {
-    position: absolute;
-    bottom: 47px;
-    left: 0;
-    z-index: 9999;
+  position: absolute;
+  bottom: 47px;
+  left: 0;
+  z-index: 9999;
 
 }
 .fullscreen-ticker {
-    height: 70px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    left: -10px;
-    right: 0;
-    background: #000;
-    padding-top: 10px;
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+  right: 0;
+  background: #000;
+  padding-top: 10px;
 
 }
 
 .donut-top-five-wrapper {
-    position: absolute;
-    right: 340px;
-    top: 120px;
+  position: absolute;
+  right: 340px;
+  top: 120px;
 }
 
 .donut-top-five {
-    text-align: right;
-    font-size: 15px;
+  text-align: right;
+  font-size: 15px;
 }
 .top-five-user {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .ticker-additions {
-    background: #03f;
-    color: #fff;
+  background: #03f;
+  color: #fff;
 }
 
 .ticker-deletions {
-    background: red;
-        color: #fff;
+  background: red;
+    color: #fff;
 
 }
 
 .ticker-text {
-    color: #acacac;
+  color: #acacac;
 }
 
 .ticker-user, .ticker-reponame {
 
-    color: #fff;
+  color: #fff;
 }
 
 // webticker plugin stuff
@@ -456,23 +456,66 @@ h1 {
 }
 
 .legend-destination {
-    z-index: 999999;
-    position: absolute;
-    top: 20%;
-    left: 6%;
-    text-align: left;
+  z-index: 999999;
+  position: absolute;
+  top: 20%;
+  left: 6%;
+  text-align: left;
 
 }
 
 .fsCatagory {
-    font-size: 20px;
-    color: $primary-blue;
+  font-size: 20px;
+  color: $primary-blue;
 }
 
 .fsDataCount {
-    font-size: 80px;
-    color: #acacac;
-    line-height: 65px;
+  font-size: 80px;
+  color: #acacac;
+  line-height: 65px;
 }
+
+
+.legend {
+  -moz-transition-property: display, left, opacity;
+  -moz-transition-duration: 1s;
+  -moz-transition-timing-function: ease-out;
+  -webkit-transition-property: display, left, opacity;
+  -webkit-transition-duration: 1s;
+  -o-transition-property: display, left, opacity;
+  -o-transition-duration: 1s;
+  position: absolute;
+  left: -200px;
+  opacity: 0;
+}
+
+.legendOut {
+  -moz-transition-property: left, opacity, display;
+  -moz-transition-duration: 1s;
+  -moz-transition-timing-function: ease-out;
+  -webkit-transition-property:  left, opacity, display;
+  -webkit-transition-duration: 1s;
+  -o-transition-property: left, opacity, display;
+  -o-transition-duration: 1s;
+  position: absolute;
+  left: -200px;
+  opacity: 0;
+
+}
+
+.legendIn {
+  -moz-transition-property: display, left, opacity;
+  -moz-transition-duration: 1s;
+  -moz-transition-timing-function: ease-out;
+  -webkit-transition-property: display, left, opacity;
+  -webkit-transition-duration: 1s;
+  -o-transition-property: display, left, opacity;
+  -o-transition-duration: 1s;
+  position: absolute;
+  left: 0;
+  opacity: 1;
+
+}
+
 
 
