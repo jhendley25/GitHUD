@@ -4,6 +4,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Mocha Spec Runner</title>
     <link rel="stylesheet" href="lib/mocha/mocha.css">
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/isotopeStyles.css">
+    <link rel="stylesheet" href="styles/webfonts/ss-gizmo.css">
+    <!-- endbuild -->
 </head>
 <body>
     <div id="mocha"></div>
@@ -17,19 +23,25 @@
     <script>var expect = chai.expect</script>
 
     <!-- hidden div for appending donut chart -->
-    <div id="donut-stage"style="display:none;"></div>
+   <!--  <div id="donut-stage"style="display:none;"></div> -->
     <!-- include source files here... -->
+<div class="wrapper">
+    <div class="fullscreen-stage"></div>
+    <div id="donut-stage" class="donut-stage"></div>
 
+  </div>
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/jquery.js"></script>
-    <script src="bower_components/underscore/underscore.js"></script>
-    <script src="bower_components/backbone/backbone.js"></script>
-    <script src="bower_components/backbone-query-parameters/backbone.queryparams.js"></script>
-    <script src="bower_components/isotope/jquery.isotope.min.js"></script>
-    <script src="bower_components/d3/d3.min.js"></script>
-    <script src="bower_components/q/q.js"></script>
-    <!-- endbower -->
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/backbone/backbone.js"></script>
+  <script src="bower_components/backbone-query-parameters/backbone.queryparams.js"></script>
+  <script src="bower_components/isotope/jquery.isotope.min.js"></script>
+
+  <script src="bower_components/q/q.js"></script>
+  <script src="bower_components/nnnick-chartjs/Chart.js"></script>
+  <script src="bower_components/momentjs/moment.js"></script>
+  <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js scripts/plugins.js -->
@@ -63,15 +75,20 @@
     <script src="scripts/env.js"></script>
 
     <!-- build:js scripts/main.js -->
-    <script src="scripts/utilities/keys.js"></script>
-    <script src="scripts/models/repo.js"></script>
-    <script src="scripts/models/user.js"></script>
-    <script src="scripts/views/repo-view.js"></script>
-    <script src="scripts/views/index-view.js"></script>
-    <script src="scripts/views/menu-view.js"></script>
-    <script src="scripts/routers/app-router.js"></script>
-    <!-- endbuild -->
+  <script src="scripts/utilities/keys.js"></script>
+  <script src="scripts/models/repo.js"></script>
+  <script src="scripts/models/user.js"></script>
+  <script src="scripts/views/fullScreen-view.js"></script>
+  <script src="scripts/views/repo-view.js"></script>
+  <script src="scripts/views/index-view.js"></script>
+  <script src="scripts/views/menu-view.js"></script>
+  <script src="scripts/routers/app-router.js"></script>
+  <!-- endbuild -->
 
+
+  <script src="scripts/fonts/ss-gizmo.js"></script>
+  <script src="scripts/misc/jquery.marquee.min.js"></script>
+  <script src="scripts/utilities/ajax-utils.js"></script>
     <!-- include spec files here... -->
     <script src="spec/repoModelTest.js"></script>
     <script src="spec/userModelTest.js"></script>

@@ -1,16 +1,19 @@
+//the test user 'gitHUDtester' has three repos:
+//one empty, one single contrib, and one multi contrib
+
 describe("GitHUD.Models.User", function () {
 
   it("should return proper api endpoint url", function () {
     var user = {
-      username: 'jhendley25'
+      username: 'gitHUDtester'
     }
     var userModel = new GitHUD.Models.User(user)
-    expect(userModel.url()).to.equal('https://api.github.com/users/jhendley25/repos' + GitHUD.utilities.keys());
+    expect(userModel.url()).to.equal('https://api.github.com/users/gitHUDtester/repos' + GitHUD.utilities.keys());
 
   });
   it("should return an array of repos", function(done){
     var user = {
-          username: 'jhendley25'
+          username: 'gitHUDtester'
         }
     var userModel = new GitHUD.Models.User(user)
     userModel.fetch({success: function(){
@@ -18,7 +21,7 @@ describe("GitHUD.Models.User", function () {
           var repos = userModel.get('repos')
 
           //checking that the first repo in the array has a size attr
-          expect(repos[0].size > 0).to.equal(true)
+          expect(repos.length == 3).to.equal(true)
           done()
         }
 })
