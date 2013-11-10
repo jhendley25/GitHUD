@@ -485,7 +485,7 @@ h1 {
   -o-transition-property: display, left, opacity;
   -o-transition-duration: 1s;
   position: absolute;
-  left: -200px;
+  left: 200px;
   opacity: 0;
 }
 
@@ -512,7 +512,7 @@ h1 {
   -o-transition-property: display, left, opacity;
   -o-transition-duration: 1s;
   position: absolute;
-  left: 0;
+  left: 0px;
   opacity: 1;
 
 }

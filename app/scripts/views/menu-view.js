@@ -7,6 +7,7 @@ GitHUD.Views.MenuView = Backbone.View.extend({
 
   events: {
     "click #sort-by button"            : "isotopeSort",
+    "click #filter-by"            : "isotopeFilter",
     "click #submit-user-request"  : "createUrl",
     "click #add-more-user-inputs" : "addInput"
   },
@@ -77,6 +78,11 @@ GitHUD.Views.MenuView = Backbone.View.extend({
     var sortType = $(event.currentTarget).attr('id').replace('sort-','');
 
     $('#donut-stage').isotope('reloadItems').isotope({ sortBy : sortType });
+  },
+  isotopeFilter: function(event){
+
+    var filterType = $(event.currentTarget).attr('data-filter')
+    $('#donut-stage').isotope({ filter : filterType });
   }
 
 })

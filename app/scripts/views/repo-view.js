@@ -53,6 +53,10 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   render: function() {
   // console.log('WTF', this.model)
 
+  // for isotope filtering stuff
+  if (this.model.get("gitHUDMeta").sortData.contribCount > 1){
+    this.$el.addClass('multi-contrib')
+  }
   // add the legend and title
   renderedTemplate = JST["app/templates/repo.html"]({
     repo: this.model
