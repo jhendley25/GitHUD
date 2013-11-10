@@ -15,16 +15,13 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   $(".fullscreen-stage").append(this.el)
   this.render()
   //listen to the window for changes in size
-  // this.listenTo({windowWidth: window.innerWidth}, 'change', this.redrawLinechart())
   var boundDrawLinechart = _.bind(this.drawLinechart, this)
   var throttledRedraw = _.throttle(boundDrawLinechart, 200,{leading: false})
   $( window ).resize(throttledRedraw)
 
   //web ticker freezes and stuff
   this.initMarquee()
-  // listen for this view's model to change, then render
-  //start the slide show (theres a setTimeout somewhere around here)
-  // this.initFsSlideShow()
+
 
   },
 
