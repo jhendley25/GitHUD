@@ -333,6 +333,7 @@ module.exports = function (grunt) {
             test: [
                 'jst',
                 'coffee',
+                'compass',
                 'copy:styles'
             ],
             dist: [

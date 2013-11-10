@@ -12,7 +12,7 @@
     <!-- endbuild -->
 </head>
 <body>
-    <div id="mocha"></div>
+    <div id="mocha" style="position: relative; top: 10px;"></div>
     <script src="lib/mocha/mocha.js"></script>
     <script>mocha.setup('bdd')</script>
 
@@ -25,7 +25,7 @@
     <!-- hidden div for appending donut chart -->
    <!--  <div id="donut-stage"style="display:none;"></div> -->
     <!-- include source files here... -->
-<div class="wrapper">
+<div class="wrapper" style="height: 200px; overflow: hidden;">
     <div class="fullscreen-stage"></div>
     <div id="donut-stage" class="donut-stage"></div>
 
@@ -96,5 +96,11 @@
 
 
     <script>mocha.run()</script>
+    <script>
+    setTimeout(function(){
+      $("html, body").scrollTop(0);
+
+    },1000)
+    </script>
 </body>
 </html>
