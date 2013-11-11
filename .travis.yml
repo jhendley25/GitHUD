@@ -1,0 +1,20 @@
+language:
+    node_js
+node_js:
+    - 0.8
+notifications:
+    hipchat:
+        rooms:
+            - 94ce6003b3520aebbd1370ee230e39@172022
+        template:
+            - '%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}'
+before_script:
+    # install dependencies
+    - gem update --system
+    - gem install compass
+    - npm install -g grunt-cli bower
+    - npm install
+    - bower install
+script:
+    # We want to gate on passing tests and a successful build
+    - grunt test
