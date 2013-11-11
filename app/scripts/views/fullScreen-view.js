@@ -198,50 +198,50 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   initFsSlideShow: function(slideControl, nav){
-  var nav = nav || {}
-  var slideCounter = slideControl.counter || 1
-  var that = this
-  this.headerColor()
-  var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
-    repo: this.model
-  })
-  if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
+    var nav = nav || {}
+    var slideCounter = slideControl.counter || 1
+    var that = this
+    this.headerColor()
+    var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
+      repo: this.model
+    })
+    if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
 
-    $(".ss-play").css('display', 'none')
-    $(".ss-pause").css('display', 'inline-block')
+      $(".ss-play").css('display', 'none')
+      $(".ss-pause").css('display', 'inline-block')
 
 
-    window.intId = setInterval(function(){
-      // $(".linechart-destination").html('')
-      if(slideCounter == 1){
-        $(".fsLegend").addClass("legendOut")
+      window.intId = setInterval(function(){
+        // $(".linechart-destination").html('')
+        if(slideCounter == 1){
+          $(".fsLegend").addClass("legendOut")
 
-        that.additionsSlide(that, fsLinechartTemplate)
-        //increment counter
-        slideCounter += 1
+          that.additionsSlide(that, fsLinechartTemplate)
+          //increment counter
+          slideCounter += 1
 
-      }else if (slideCounter == 2 ){
-        $(".fsLegend").addClass("legendOut")
+        }else if (slideCounter == 2 ){
+          $(".fsLegend").addClass("legendOut")
 
-        that.deletionsSlide(that, fsLinechartTemplate)
-        slideCounter += 1
+          that.deletionsSlide(that, fsLinechartTemplate)
+          slideCounter += 1
 
-      }else{
-        $(".fsLegend").addClass("legendOut")
+        }else{
+          $(".fsLegend").addClass("legendOut")
 
-        that.drawLinechart()
-        slideCounter = 1
-      }
+          that.drawLinechart()
+          slideCounter = 1
+        }
 
-      //5 seconds delay for now
-    },5000)
+        //5 seconds delay for now
+      },5000)
 
-  } else if($(event.target).data('slideshow') == 'stop'){
-    // console.log('intId ', window.intId)
-    console.log('stop slideshow')
-    clearInterval(window.intId)
-    $(".ss-pause").css('display', 'none')
-    $(".ss-play").css('display', 'inline-block')
+    } else if($(event.target).data('slideshow') == 'stop'){
+      // console.log('intId ', window.intId)
+      console.log('stop slideshow')
+      clearInterval(window.intId)
+      $(".ss-pause").css('display', 'none')
+      $(".ss-play").css('display', 'inline-block')
 
   }
 
