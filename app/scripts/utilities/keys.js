@@ -1,6 +1,6 @@
 // if an ENV object has app keys in it, use those
 GitHUD.utilities.keys = function(){
-  return ENV ? '?client_id=' + ENV.clientId + '&client_secret=' + ENV.clientSecret + '&per_page=100' : '';
+  return GitHUD.access_token ? '?access_token=' + GitHUD.access_token + '&per_page=100' : '';
 }
 
 GitHUD.utilities.colorTable = {};
