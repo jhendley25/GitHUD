@@ -338,24 +338,23 @@ h1 {
   z-index: 9999999;
 }
 
-.ss-play {
-  font-size: 30px;
-  position: absolute;
-  right: 55px;
-  top: 30px;
-  cursor: pointer;
-  z-index: 9999999;
-  display: inline-block;
-}
+// .ss-play {
+//   font-size: 30px;
+//   position: absolute;
+//   right: 55px;
+//   top: 30px;
+//   cursor: pointer;
+//   z-index: 9999999;
+//   display: inline-block;
+// }
 
-.ss-stop {
+.slideshow-controls {
   font-size: 30px;
   position: absolute;
-  right: 55px;
-  top: 30px;
+  left: 50%;
+  top: 0px;
   cursor: pointer;
   z-index: 9999999;
-  display: none;
 }
 
 #repo-heading {

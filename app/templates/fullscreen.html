@@ -1,8 +1,14 @@
 <div class="fullscreen-container">
   <div class="fullscreen" id="fullscreen-repo-<%= repo.id %>">
-    <span class="ss-contract" id="exit-fullscreen"></span>
-    <span class="ss-play" id="startSlideshow" data-slideshow="play"></span>
-    <span class="ss-stop" id="startSlideshow" data-slideshow="stop"></span>
+      <span class="ss-contract" id="exit-fullscreen"></span>
+    <div class="slideshow-controls">
+      <span class="ss-skipback"></span>
+      <span class="ss-rewind"></span>
+      <span class="ss-play" id="startSlideshow" data-slideshow="play"></span>
+      <span class="ss-pause" id="startSlideshow" data-slideshow="stop"></span>
+      <span class="ss-fastforward"></span>
+      <span class="ss-skipforward"></span>
+    </div>
     <div class="legend-destination"></div>
     <div id="repo-heading">
       <img src="<%= repo.get('owner').avatar_url %>" style="border: 2px solid <%= repo.get('userColor') %>;">

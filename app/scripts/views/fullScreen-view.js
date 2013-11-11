@@ -147,7 +147,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
 
     $(".ss-play").css('display', 'none')
-    $(".ss-stop").css('display', 'inline-block')
+    $(".ss-pause").css('display', 'inline-block')
 
 
     window.intId = setInterval(function(){
@@ -225,7 +225,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     // console.log('intId ', window.intId)
     console.log('stop slideshow')
     clearInterval(window.intId)
-    $(".ss-stop").css('display', 'none')
+    $(".ss-pause").css('display', 'none')
     $(".ss-play").css('display', 'inline-block')
 
   }
