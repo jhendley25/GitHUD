@@ -2,7 +2,11 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   events: {
   'click #exit-fullscreen' : 'exitFullscreen',
-  'click #startSlideshow'  : 'initFsSlideShow'
+  'click #startSlideshow'  : 'initFsSlideShow',
+  'click #nextSlide'  : 'navigateSlide',
+  'click #previousSlide'  : 'navigateSlide',
+  'click #previousRepo'  : 'navigateRepos',
+  'click #nextRepo'  : 'navigateRepos'
   },
 
 
@@ -137,24 +141,10 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   $(".left-menu button").removeAttr('style')
   },
 
-  initFsSlideShow: function(slideControl){
-  var slideCounter = slideControl.counter || 1
-  var that = this
-  this.headerColor()
-  var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
-    repo: this.model
-  })
-  if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
+  additionsSlide: function(that, fsLinechartTemplate){
 
-    $(".ss-play").css('display', 'none')
-    $(".ss-pause").css('display', 'inline-block')
+    $(".linechart-destination").html('')
 
-
-    window.intId = setInterval(function(){
-      // $(".linechart-destination").html('')
-      console.log('slideCounter is', slideCounter)
-      if(slideCounter == 1){
-        $(".fsLegend").addClass("legendOut")
 
         //define legend data
         var legend = {
@@ -164,9 +154,6 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         }
         //append legend
         that.linechartLegend(legend)
-
-        // $(".legend").addClass("legendIn")
-
 
         // append canvas element
         $(".linechart-destination").append(fsLinechartTemplate)
@@ -181,11 +168,11 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
           scaleOverride : true,
           animation: true
         });
-        //increment counter
-        slideCounter += 1
+  },
 
-      }else if (slideCounter == 2 ){
-        $(".fsLegend").addClass("legendOut")
+  deletionsSlide: function(that, fsLinechartTemplate){
+    $(".linechart-destination").html('')
+    $(".fsLegend").addClass("legendOut")
         //add legend
         var legend = {
           catagory: 'DELETIONS',
@@ -208,13 +195,41 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
           scaleOverride : true,
           animation: true
         });
+  },
+
+  initFsSlideShow: function(slideControl, nav){
+  var nav = nav || {}
+  var slideCounter = slideControl.counter || 1
+  var that = this
+  this.headerColor()
+  var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
+    repo: this.model
+  })
+  if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
+
+    $(".ss-play").css('display', 'none')
+    $(".ss-pause").css('display', 'inline-block')
+
+
+    window.intId = setInterval(function(){
+      // $(".linechart-destination").html('')
+      if(slideCounter == 1){
+        $(".fsLegend").addClass("legendOut")
+
+        that.additionsSlide(that, fsLinechartTemplate)
+        //increment counter
+        slideCounter += 1
+
+      }else if (slideCounter == 2 ){
+        $(".fsLegend").addClass("legendOut")
+
+        that.deletionsSlide(that, fsLinechartTemplate)
         slideCounter += 1
 
       }else{
         $(".fsLegend").addClass("legendOut")
 
         that.drawLinechart()
-
         slideCounter = 1
       }
 
@@ -230,5 +245,20 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   }
 
+  },
+  navigateSlide: function(event){
+    if ($(event.target).data('slideshow') == "next"){
+      console.log('next slide')
+    } else if ($(event.target).data('slideshow') == "previous"){
+      console.log('previous slide')
+    }
+  },
+
+  navigateRepos: function(){
+    if ($(event.target).data('slideshow') == "next-repo"){
+      console.log('next repo')
+    } else if ($(event.target).data('slideshow') == "previous-repo"){
+      console.log('previous repo')
+    }
   }
 })
