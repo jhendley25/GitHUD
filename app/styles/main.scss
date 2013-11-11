@@ -419,11 +419,13 @@ h1 {
   position: absolute;
   right: 340px;
   top: 120px;
+  z-index: 99999;
 }
 
 .donut-top-five {
   text-align: right;
   font-size: 15px;
+  text-shadow: 1px 1px 1px #fff;
 }
 .top-five-user {
   font-size: 20px;

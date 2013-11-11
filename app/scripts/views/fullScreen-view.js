@@ -172,8 +172,13 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         $(".linechart-destination").append(fsLinechartTemplate)
         //get context and call chartjs
         var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+        var maxAdditions = _.max(that.model.get('gitHUDMeta').fsLinechart.additions.datasets[0].data, function(x){ return x })
         new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.additions,{
           scaleShowGridLines : false,
+          scaleSteps : 5,
+          scaleStepWidth : Math.floor(maxAdditions / 5),
+          scaleStartValue : 0,
+          scaleOverride : true,
           animation: true
         });
         //increment counter
@@ -194,8 +199,13 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         $(".linechart-destination").append(fsLinechartTemplate)
         // call chartjs
         var ctx = $("#line-chart-" + that.model.get('id')).get(0).getContext("2d");
+        var maxDeletions = _.max(that.model.get('gitHUDMeta').fsLinechart.deletions.datasets[0].data, function(x){ return x })
         new Chart(ctx).Line(that.model.get('gitHUDMeta').fsLinechart.deletions,{
           scaleShowGridLines : false,
+          scaleSteps : 5,
+          scaleStepWidth : Math.floor(maxDeletions / 5),
+          scaleStartValue : 0,
+          scaleOverride : true,
           animation: true
         });
         slideCounter += 1
