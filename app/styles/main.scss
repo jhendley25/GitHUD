@@ -513,5 +513,19 @@ h1 {
 
 }
 
+//mega-awesome responsive stuff
+
+.medium-view-btns {
+  display: none;
+  vertical-align: bottom;
+  @include respond-to(medium-screens) { display: inline-block; }
+}
+.large-view-btns {
+  display: inline-block;
+  vertical-align: bottom;
+  @include respond-to(medium-screens) { display: none; }
+}
+
+
 
 
