@@ -15,6 +15,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   //hide the content behind the fullscreen view
   $(".donut-stage").css('display', 'none')
 
+
+  //toggle menu button visibility when in full screen mode
   $("#sort-by").hide()
 
   // get the this.el into the page
