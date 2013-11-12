@@ -17,13 +17,14 @@ AppRouter = Backbone.Router.extend({
         $('.logout').show()
         that.navigate('')
       });
-    }
+    } else if (!params) {
 
+      new GitHUD.Views.WelcomeView()
+      console.log('show welcome!')
+    }
     if (params && params.repos) {
       new GitHUD.Views.IndexView({users: params.repos.split(',')});
       console.log('showing repos!')
-    } else {
-      console.log('show welcome!')
     }
   }
 })

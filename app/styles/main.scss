@@ -153,9 +153,7 @@ h1 {
   right: 0;
   padding: 10px;
   background: rgb(240, 240, 240);
-  p {
-    text-shadow: 1px 1px 1px black;
-  }
+
   svg {
     display: block;
     margin: 0 auto;
@@ -526,6 +524,23 @@ h1 {
   @include respond-to(medium-screens) { display: none; }
 }
 
+.welcome-view {
+  width: 300px;
 
+  background: #fff;
+  position: relative;
+  top: 15px;
+  margin: 0 auto;
+  // border: 1px solid red;
+  box-shadow: 1px 1px 1px #ccc;
+  padding: 15px;
+  text-align: center;
+
+}
+
+.login-buttons  {
+  position: relative;
+  bottom: 0px;
+}
 
 
