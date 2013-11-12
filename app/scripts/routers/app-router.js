@@ -8,7 +8,17 @@ AppRouter = Backbone.Router.extend({
   },
 
   mainRoute: function(params) {
-    // console.log(params)
+    that = this;
+    if (params && params.code){
+      $.getJSON('http://githud-auth.herokuapp.com/authenticate/'+params.code, function(data) {
+        GitHUD.access_token = data.token;
+        // clear query string params
+        $('.login').hide()
+        $('.logout').show()
+        that.navigate('')
+      });
+    }
+
     if (params && params.repos) {
       new GitHUD.Views.IndexView({users: params.repos.split(',')});
       console.log('showing repos!')
