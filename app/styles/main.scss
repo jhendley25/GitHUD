@@ -223,6 +223,10 @@ h1 {
   right: 10px;
   background: none;
   z-index: 5001;
+  @include respond-to(ipad){
+    position: absolute;
+    top: 60px;
+  }
 }
 
 .line-chart {
@@ -263,8 +267,12 @@ h1 {
   .muted-text{
     margin: 0;
     color: $muted-text;
+    @include respond-to(ipad){
+      font-size: 8px;
+    }
 
   }
+
 }
 
 #gravatar-icon {

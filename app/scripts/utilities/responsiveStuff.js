@@ -14,8 +14,8 @@ GitHUD.utilities.responsive = {
     },
     height: function(chartType){
       var chartType = chartType || {}
-      if (window.innerHeight <= 1024 && chartType == 'smallLinechart'){
-        return 100
+      if (window.innerWidth <= 768 && chartType == 'smallLinechart'){
+        return 120
       } else if (window.innerHeight > 1024 && chartType == 'smallLinechart'){
         return 150
       }else if (window.innerHeight <= 1024 && chartType == 'smallDonut'){
