@@ -1,4 +1,4 @@
-# GitHUD
+# GitHUD [![Build Status](https://travis-ci.org/jhendley25/GitHUD.png?branch=master)](https://travis-ci.org/jhendley25/GitHUD)
 
 ## About
 
