@@ -5,13 +5,16 @@ GitHUD.Views.WelcomeView = Backbone.View.extend({
 
   className: 'welcome-view',
 
+  events : {
+    "click #getting-started-add-users" : "destroyView"
+  },
 
 
   initialize: function(){
     options = this.options || {}
+    $("#sort-by").hide()
     this.render()
     $("#donut-stage").append(this.el)
-    $("#sort-by").hide()
   },
 
   render: function(){
@@ -21,13 +24,13 @@ GitHUD.Views.WelcomeView = Backbone.View.extend({
     }else{
       console.log("getting started view displayed")
       this.$el.html('')
-      this.$el.append(this.gettingStartedTemplate())
       $("#sort-by").show()
-      $("#getting-started-add-users").click(function(){
-        this.$el.remove()
-      })
+      this.$el.append(this.gettingStartedTemplate())
     }
   },
+  destroyView: function(){
+    this.el.remove()
+  }
 
 
 })
