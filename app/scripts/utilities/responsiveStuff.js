@@ -1,0 +1,27 @@
+GitHUD.utilities.responsive = {
+    width: function(chartType){
+      var chartType = chartType || {}
+      //ipad portrait
+      if (window.innerWidth <= 768 && chartType == 'smallLinechart'){
+        return 300
+      } else if (window.innerWidth > 768 && chartType == 'smallLinechart'){
+        return 452
+      }else if (window.innerWidth <= 768 && chartType == 'smallDonut'){
+        return 70
+      }else if (window.innerWidth > 768 && chartType == 'smallDonut'){
+        return 110
+      }
+    },
+    height: function(chartType){
+      var chartType = chartType || {}
+      if (window.innerHeight <= 1024 && chartType == 'smallLinechart'){
+        return 100
+      } else if (window.innerHeight > 1024 && chartType == 'smallLinechart'){
+        return 150
+      }else if (window.innerHeight <= 1024 && chartType == 'smallDonut'){
+        return 70
+      }else if (window.innerHeight > 1024 && chartType == 'smallDonut'){
+        return 110
+      }
+    }
+}

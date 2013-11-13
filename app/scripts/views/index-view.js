@@ -23,7 +23,21 @@ GitHUD.Views.IndexView = Backbone.View.extend({
   })
 
   // then fetch 'em all!
-  this.users.each(function(user){ user.fetch() });
+  this.users.each(function(user){ user.fetch({
+    success: function(model, response, status){
+      switch(status.xhr.status){
+        case 200 :
+          console.log('successful fetch!')
+          break;
+        case 401 :
+          //this means the user is not authenticated...NOT WORKING
+          $('#donut-stage').html('')
+          new GitHUD.Views.WelcomeView()
+          break;
+      }
+    }
+    })
+  });
 
   // throw the el in the page and render
   $('.wrapper').append(this.el)

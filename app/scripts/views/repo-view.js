@@ -15,7 +15,11 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   // listen for this view's model to change, then render
   this.listenTo(this.model, 'change', function(model){
     this.$el.attr('id', 'repo-'+this.model.get('id'))
-    this.render(model)
+    if (window.innerWidth <= 768){
+      this.renderIpad(model)
+    }else{
+      this.render(model)
+    }
     // initiate isotope after rendering
     // $('.donut-stage').isotope({ sortBy : 'name' });
   })
@@ -29,6 +33,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   //202 means the server has accepted the request and is crunching data
   //200 means the server has returned the appropriate data
   //409 means the repo is empty
+  //401 means unauthenticated user
 
   fetchFx: function(){
 
@@ -42,15 +47,24 @@ GitHUD.Views.RepoView = Backbone.View.extend({
           console.log('bad status: ', status.xhr.status)
           var throttledFetch = _.throttle(that.fetchFx(), 1000)
           break;
-        case 409 :
-          //this means the repo is empty...not usre how to handle this just yet
+        case 401 :
+          //this means the user is not authenticated...NOT WORKING
+          $('#donut-stage').html('')
+          new GitHUD.Views.WelcomeView()
       }
     }
   })
 
   },
 
+  renderIpad: function(){
+
+  },
+
   render: function() {
+
+  //dimensions and such
+  this.model.get('gitHUDMeta')
   // console.log('WTF', this.model)
 
   // for isotope filtering stuff

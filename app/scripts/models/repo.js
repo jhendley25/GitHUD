@@ -70,6 +70,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
       forks: 0
 
     },
+
     sortData, gitHUDMeta;
 
 
