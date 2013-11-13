@@ -14,11 +14,15 @@ $primary-blue: #0086cb;
 //thanks to the sass way
 //http://thesassway.com/intermediate/responsive-web-design-in-sass-using-media-queries-in-sass-32
 $break-small: 320px;
+$break-ipad: 768px;
 $break-large: 1024px;
 
 @mixin respond-to($media) {
   @if $media == handhelds {
   @media only screen and (max-width: $break-small) { @content; }
+  }
+  @if $media == ipad {
+  @media only screen and (max-width: $break-ipad) { @content; }
   }
   @else if $media == medium-screens {
   @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
@@ -181,6 +185,10 @@ h1 {
     position: relative;
     display: inline-block;
     background: white;
+    @include respond-to(ipad){
+      width: 350px;
+      height: 200px;
+    }
   }
 }
 
@@ -196,10 +204,10 @@ h1 {
   text-align: right;
 }
 
-.owner-title {
-  font-size: 15px;
-  color: $primary-blue;
-}
+// .owner-title {
+//   font-size: 15px;
+//   color: $primary-blue;
+// }
 
 .repo-title {
   font-size: 30px;

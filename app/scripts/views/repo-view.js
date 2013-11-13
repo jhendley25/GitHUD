@@ -15,11 +15,10 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   // listen for this view's model to change, then render
   this.listenTo(this.model, 'change', function(model){
     this.$el.attr('id', 'repo-'+this.model.get('id'))
-    if (window.innerWidth <= 768){
-      this.renderIpad(model)
-    }else{
+
+
       this.render(model)
-    }
+
     // initiate isotope after rendering
     // $('.donut-stage').isotope({ sortBy : 'name' });
   })
@@ -54,10 +53,6 @@ GitHUD.Views.RepoView = Backbone.View.extend({
       }
     }
   })
-
-  },
-
-  renderIpad: function(){
 
   },
 

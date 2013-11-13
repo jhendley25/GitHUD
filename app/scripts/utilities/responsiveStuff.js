@@ -3,7 +3,7 @@ GitHUD.utilities.responsive = {
       var chartType = chartType || {}
       //ipad portrait
       if (window.innerWidth <= 768 && chartType == 'smallLinechart'){
-        return 300
+        return 350
       } else if (window.innerWidth > 768 && chartType == 'smallLinechart'){
         return 452
       }else if (window.innerWidth <= 768 && chartType == 'smallDonut'){
