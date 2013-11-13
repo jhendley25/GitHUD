@@ -16,6 +16,7 @@ GitHUD.Views.WelcomeView = Backbone.View.extend({
   render: function(){
     this.$el.append(this.welcomeTemplate())
     console.log('rendering welcome view')
+    
   },
 
   navMain: function(){

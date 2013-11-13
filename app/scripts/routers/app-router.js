@@ -9,22 +9,33 @@ AppRouter = Backbone.Router.extend({
 
   mainRoute: function(params) {
     that = this;
-    if (params && params.code){
-      $.getJSON('http://githud-auth.herokuapp.com/authenticate/'+params.code, function(data) {
-        GitHUD.access_token = data.token;
-        // clear query string params
-        $('.login').hide()
-        $('.logout').show()
-        that.navigate('')
-      });
-    } else if (!params) {
+    //if the cookie exists, set the access token
+    if ( docCookies.getItem("access_token") ){
+      GitHUD.access_token = docCookies.getItem("access_token")
 
-      new GitHUD.Views.WelcomeView()
-      console.log('show welcome!')
-    }
-    if (params && params.repos) {
-      new GitHUD.Views.IndexView({users: params.repos.split(',')});
-      console.log('showing repos!')
+
+      //and if a url query is present, do that too
+      if (params && params.repos) {
+        new GitHUD.Views.IndexView({users: params.repos.split(',')});
+        console.log('showing repos!')
+      }
+
+    } else {
+      //after the user clicks login and returns from github auth steps
+      if (params && params.code){
+        $.getJSON('http://githud-auth.herokuapp.com/authenticate/'+params.code, function(data) {
+          docCookies.setItem("access_token", data.token)
+          GitHUD.access_token = docCookies.getItem("access_token");
+          $('.login').hide()
+          $('.logout').show()
+          // clear query string params
+          that.navigate('')
+        });
+        //if the user is not logged in and has not yet tried to do so
+      } else if (!params) {
+        new GitHUD.Views.WelcomeView()
+        console.log('show welcome!')
+      }
     }
   }
 })
