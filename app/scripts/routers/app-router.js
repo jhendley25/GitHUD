@@ -18,6 +18,8 @@ AppRouter = Backbone.Router.extend({
       if (params && params.repos) {
         new GitHUD.Views.IndexView({users: params.repos.split(',')});
         console.log('showing repos!')
+      } else {
+        new GitHUD.Views.WelcomeView({auth: true})
       }
 
     } else {
@@ -33,7 +35,7 @@ AppRouter = Backbone.Router.extend({
         });
         //if the user is not logged in and has not yet tried to do so
       } else if (!params) {
-        new GitHUD.Views.WelcomeView()
+        new GitHUD.Views.WelcomeView({auth: false})
         console.log('show welcome!')
       }
     }
