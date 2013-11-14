@@ -26,7 +26,7 @@ AppRouter = Backbone.Router.extend({
       //after the user clicks login and returns from github auth steps
       if (params && params.code){
         $.getJSON('http://githud-auth.herokuapp.com/authenticate/'+params.code, function(data) {
-          docCookies.setItem("access_token", data.token)
+          docCookies.setItem("access_token", data.token, new Date(2020, 5, 12))
           GitHUD.access_token = docCookies.getItem("access_token");
           $('.login').hide()
           $('.logout').show()
