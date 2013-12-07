@@ -16,7 +16,7 @@ GitHUD.Views.IndexView = Backbone.View.extend({
     //do not display forked repos
     if (repo.fork === false) {
       new GitHUD.Views.RepoView({
-      model: new GitHUD.Models.Repo(repo)
+        model: new GitHUD.Models.Repo(repo)
       })
     }
     })

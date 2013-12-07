@@ -80,8 +80,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   $(".legend").addClass("legendIn")
   $(".legend-DELETIONS").addClass("legendOut")
   $(".linechart-destination").append(fsLinechartTemplate)
-  console.log(this)
-  console.log(this.model)
+
   var ctx2 = $("#line-chart-" + this.model.get('id')).get(0).getContext("2d");
 
   var maxCommits = _.max(this.model.get('gitHUDMeta').graphData.truncatedWeeklyData.datasets[0].data, function(x){ return x })
