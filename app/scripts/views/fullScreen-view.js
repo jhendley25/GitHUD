@@ -293,6 +293,31 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       }
     } else if ($(event.target).data('slideshow') == "previous"){
       console.log('previous slide')
+
+
+      switch(GitHUD.slideCounter) {
+        case 3:
+          console.log('nav to additionsSlide,',GitHUD.slideCounter)
+          $(".legend-destination").html('')
+          $(".linechart-destination").html('')
+          this.additionsSlide(that, fsLinechartTemplate)
+          GitHUD.slideCounter -= 1
+          break;
+        case 1:
+          console.log('nav to deletionsSlide',GitHUD.slideCounter)
+          $(".legend-destination").html('')
+          $(".linechart-destination").html('')
+          this.deletionsSlide(that, fsLinechartTemplate)
+          GitHUD.slideCounter = 3
+          break;
+        case 2:
+          console.log('nav to commitsSlide',GitHUD.slideCounter)
+          $(".legend-destination").html('')
+          $(".linechart-destination").html('')
+          this.drawLinechart(that, fsLinechartTemplate)
+          GitHUD.slideCounter -= 1
+          break;
+      }
     }
   },
 
