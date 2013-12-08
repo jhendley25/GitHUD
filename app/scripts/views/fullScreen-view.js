@@ -67,6 +67,10 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   drawLinechart: function(){
+
+    // this slide is number 1
+
+
   var legend = {
     catagory: 'COMMITS',
     icon: 'ss-loading',
@@ -147,8 +151,10 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   additionsSlide: function(that, fsLinechartTemplate){
 
-    $(".linechart-destination").html('')
+    // this slide is number 2
 
+    $(".linechart-destination").html('')
+    var that = this
 
         //define legend data
         var legend = {
@@ -175,6 +181,11 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   deletionsSlide: function(that, fsLinechartTemplate){
+
+    //this slide is number 3
+
+    var that = this
+
     $(".linechart-destination").html('')
     $(".fsLegend").addClass("legendOut")
         //add legend
@@ -203,7 +214,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   initFsSlideShow: function(slideControl, nav){
     var nav = nav || {}
-    var slideCounter = slideControl.counter || 1
+    GitHUD.slideCounter = slideControl.counter || 1
     var that = this
     this.headerColor()
     var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
@@ -217,24 +228,24 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
       window.intId = setInterval(function(){
         // $(".linechart-destination").html('')
-        if(slideCounter == 1){
+        if(GitHUD.slideCounter == 1){
           $(".fsLegend").addClass("legendOut")
 
           that.additionsSlide(that, fsLinechartTemplate)
           //increment counter
-          slideCounter += 1
+          GitHUD.slideCounter += 1
 
-        }else if (slideCounter == 2 ){
+        }else if (GitHUD.slideCounter == 2 ){
           $(".fsLegend").addClass("legendOut")
 
           that.deletionsSlide(that, fsLinechartTemplate)
-          slideCounter += 1
+          GitHUD.slideCounter += 1
 
         }else{
           $(".fsLegend").addClass("legendOut")
 
           that.drawLinechart()
-          slideCounter = 1
+          GitHUD.slideCounter = 1
         }
 
         //5 seconds delay for now
@@ -251,8 +262,35 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   },
   navigateSlide: function(event){
+    var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
+      repo: this.model
+    })
     if ($(event.target).data('slideshow') == "next"){
       console.log('next slide')
+      var currentSlide = GitHUD.slideCounter
+      switch(currentSlide) {
+        case 1:
+          console.log('nav to additionsSlide')
+          $(".legend-destination").html('')
+          $(".linechart-destination").html('')
+          this.additionsSlide(that, fsLinechartTemplate)
+          GitHUD.slideCounter += 1
+          break;
+        case 2:
+          console.log('nav to deletionsSlide')
+          $(".legend-destination").html('')
+          $(".linechart-destination").html('')
+          this.deletionsSlide(that, fsLinechartTemplate)
+          GitHUD.slideCounter += 1
+          break;
+        case 3:
+          console.log('nav to commitsSlide')
+          $(".legend-destination").html('')
+          $(".linechart-destination").html('')
+          this.drawLinechart(that, fsLinechartTemplate)
+          GitHUD.slideCounter = 1
+          break;
+      }
     } else if ($(event.target).data('slideshow') == "previous"){
       console.log('previous slide')
     }
@@ -264,5 +302,9 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     } else if ($(event.target).data('slideshow') == "previous-repo"){
       console.log('previous repo')
     }
+  },
+
+  chooseSlide: function(){
+    // switch(currentSlide)
   }
 })
