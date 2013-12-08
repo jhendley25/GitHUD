@@ -15,6 +15,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   //hide the content behind the fullscreen view
   $(".donut-stage").css('display', 'none')
 
+  this.navObj = options.navObj || {}
 
   //toggle menu button visibility when in full screen mode
   $("#sort-by").hide()
@@ -324,12 +325,15 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   navigateRepos: function(){
     if ($(event.target).data('slideshow') == "next-repo"){
       console.log('next repo')
+      this.exitFullscreen()
+      $("#"+this.navObj.nextElemId).find("#fullscreen").click()
+
     } else if ($(event.target).data('slideshow') == "previous-repo"){
       console.log('previous repo')
+      this.exitFullscreen()
+      $("#"+this.navObj.previousElemId).find("#fullscreen").click()
     }
   },
 
-  chooseSlide: function(){
-    // switch(currentSlide)
-  }
+
 })

@@ -132,9 +132,18 @@ GitHUD.Views.RepoView = Backbone.View.extend({
 
   // console.log(this.model)
   },
-  initFullscreen: function(){
-  new GitHUD.Views.FullScreenView({
-    model: this.model
-  })
+  initFullscreen: function(event){
+
+    //get the id's of closest repo elements for navigation purposes
+    //this solves the problem of correctly navigating through the repos when they have been sorted
+    var navObj = {}
+    var thisElem = $(event.target).parent()
+    navObj.nextElemId = $(thisElem).next().attr('id')
+    navObj.previousElemId = $(thisElem).prev().attr('id')
+
+    // this.model.set('nextRepo', )
+    new GitHUD.Views.FullScreenView({
+      model: this.model, navObj: navObj
+    })
   }
 })
