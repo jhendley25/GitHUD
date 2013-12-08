@@ -41,9 +41,12 @@ GitHUD.Views.MenuView = Backbone.View.extend({
   },
 
   toggleActive: function(event){
-    $(".menu-button").removeClass('active')
-    $(event.currentTarget).addClass('active')
+    if($(event.target).parent().attr('id') != "add-user-btn" && $(event.target).attr('id') != 'add-user-btn'){
+      $(".menu-button").removeClass('active')
+      $(event.currentTarget).addClass('active')
+    }
   },
+
 
   isotopeInit: function() {
 
