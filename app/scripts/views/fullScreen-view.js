@@ -218,15 +218,15 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     GitHUD.slideCounter = slideControl.counter || 1
     var that = this
     this.headerColor()
+
     var fsLinechartTemplate = JST["app/templates/fullscreen-linechart.html"]({
       repo: this.model
     })
-    if ($(event.target).data('slideshow') == 'play' || slideControl.autoplay == true) {
+    if (slideControl.autoplay == true || $(event.target).data('slideshow') == 'play') {
 
       $(".ss-play").css('display', 'none')
       $(".ss-pause").css('display', 'inline-block')
-
-
+      this.repoSlideshow()
       window.intId = setInterval(function(){
         // $(".linechart-destination").html('')
         if(GitHUD.slideCounter == 1){
@@ -256,6 +256,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       // console.log('intId ', window.intId)
       console.log('stop slideshow')
       clearInterval(window.intId)
+      clearInterval(window.repoSlideshowInt)
       $(".ss-pause").css('display', 'none')
       $(".ss-play").css('display', 'inline-block')
 
@@ -322,8 +323,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     }
   },
 
-  navigateRepos: function(){
-    if ($(event.target).data('slideshow') == "next-repo"){
+  navigateRepos: function(options){
+    if (options.navTo = 'next-repo' || $(event.target).data('slideshow') == "next-repo"){
       console.log('next repo')
       this.exitFullscreen()
       $("#"+this.navObj.nextElemId).find("#fullscreen").click()
@@ -334,6 +335,13 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       $("#"+this.navObj.previousElemId).find("#fullscreen").click()
     }
   },
+
+  repoSlideshow: function(){
+    var that = this
+    window.repoSlideshowInt = setInterval(function(){
+      that.navigateRepos({navTo: "next-repo"})
+    },30000)
+  }
 
 
 })
