@@ -114,6 +114,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   exitFullscreen: function(){
   clearInterval(window.intId)
+  clearInterval(window.repoSlideshowInt)
   $("#sort-by").show()
   this.$el.remove()
   $(".donut-stage").css('display', 'inline-block')
