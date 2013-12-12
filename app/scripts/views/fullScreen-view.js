@@ -19,6 +19,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
 
   //toggle menu button visibility when in full screen mode
   $("#sort-by").hide()
+  $(".slideshow-controls").show()
 
   // get the this.el into the page
   $(".fullscreen-stage").append(this.el)
@@ -116,6 +117,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   clearInterval(window.intId)
   clearInterval(window.repoSlideshowInt)
   $("#sort-by").show()
+  $(".slideshow-controls").hide()
   this.$el.remove()
   $(".donut-stage").css('display', 'inline-block')
   this.resetHeader()

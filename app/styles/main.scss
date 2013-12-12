@@ -363,9 +363,10 @@ h1 {
   font-size: 30px;
   position: absolute;
   left: 50%;
-  top: 0px;
+  top: -70px;
   cursor: pointer;
   z-index: 9999999;
+  // display: none;
 }
 
 #repo-heading {
@@ -565,4 +566,5 @@ h1 {
   position: relative;
 
 }
+
 
