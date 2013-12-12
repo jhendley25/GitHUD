@@ -16,6 +16,9 @@ $primary-blue: #0086cb;
 $break-small: 320px;
 $break-ipad: 768px;
 $break-large: 1024px;
+$break-ipad-safari-min-width: 970px;
+$break-ipad-safari-max-width: 990px;
+$break-ipad-safari: 980px;
 
 @mixin respond-to($media) {
   @if $media == handhelds {
@@ -29,6 +32,12 @@ $break-large: 1024px;
   }
   @else if $media == wide-screens {
   @media only screen and (min-width: $break-large) { @content; }
+  }
+  // @else if $media == ipadFS {
+  // @media only screen and (min-width: $break-ipad-safari-min-width) and (max-width: $break-ipad-safari-max-width) { @content; }
+  // }
+  @else if $media == ipadFS {
+  @media only screen and (width: $break-ipad-safari)  { @content; }
   }
 }
 
@@ -431,6 +440,10 @@ h1 {
   right: 340px;
   top: 120px;
   z-index: 99999;
+  @include respond-to(ipadFS) {
+    right: 240px;
+    top: 80px;
+  }
 }
 
 .donut-top-five {
@@ -486,6 +499,9 @@ h1 {
   font-size: 80px;
   color: #acacac;
   line-height: 65px;
+  @include respond-to(ipadFS){
+    font-size: 60px;
+  }
 }
 
 

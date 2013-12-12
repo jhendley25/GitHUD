@@ -23,5 +23,19 @@ GitHUD.utilities.responsive = {
       }else if (window.innerHeight > 1024 && chartType == 'smallDonut'){
         return 110
       }
+    },
+    ipadDonut: function(chartType){
+      console.log('ipad donut responsive width called, innerWidth: ', window.innerWidth)
+      var chartType = chartType || {}
+      if (window.innerWidth > 970 && window.innerWidth < 990 && chartType == 'ipadDonutChart'){
+        return 200
+      }
+    },
+    ipadLinechart: function(chartType){
+      console.log('ipad linechart responsive width called, innerWidth', window.innerWidth)
+      var chartType = chartType || {}
+      if (window.innerWidth > 970 && window.innerWidth < 990 && chartType == 'ipadLinechart'){
+        return 240
+      }
     }
 }

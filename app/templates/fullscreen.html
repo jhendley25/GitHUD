@@ -45,7 +45,7 @@
       </div>
 
 
-  <canvas id='donut-chart-<%= repo.id %>' class="fullscreen-donut" width='310' height='310'></canvas>
+  <canvas id='donut-chart-<%= repo.id %>' class="fullscreen-donut" width='<%= GitHUD.utilities.responsive.ipadDonut("ipadDonutChart") %>' height='<%= GitHUD.utilities.responsive.ipadDonut("ipadDonutChart") %>'></canvas>
   <span class="linechart-destination"></span>
   <div class="fullscreen-ticker ticker-text">
 

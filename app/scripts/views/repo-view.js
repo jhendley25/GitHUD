@@ -44,7 +44,7 @@ GitHUD.Views.RepoView = Backbone.View.extend({
           break;
         case 202 :
           console.log('bad status: ', status.xhr.status)
-          var throttledFetch = _.throttle(that.fetchFx(), 1000)
+          that.reFetchOnError()
           break;
         case 401 :
           //this means the user is not authenticated...NOT WORKING
@@ -55,6 +55,26 @@ GitHUD.Views.RepoView = Backbone.View.extend({
   })
 
   },
+
+  reFetchOnError: function(){
+    var that = this
+    window.fetchInt = setInterval(function (){
+      that.model.fetch({
+        success: function(model, response, status){
+          switch(status.xhr.status){
+            case 200 :
+              clearInterval(window.fetchInt)
+              break;
+            case 202 :
+              console.log("bad fetch, re-fetching")
+              break;
+        }
+      }
+      })
+    },500)
+  },
+
+
 
   render: function() {
 
