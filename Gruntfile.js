@@ -20,6 +20,12 @@ module.exports = function (grunt) {
     };
 
     grunt.initConfig({
+        'gh-pages': {
+            options: {
+              base: 'dist'
+            },
+            src: ['**']
+          },
         yeoman: yeomanConfig,
         watch: {
             templates: {
@@ -384,7 +390,7 @@ module.exports = function (grunt) {
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
-        // 'concat',
+        'concat',
         'cssmin',
         'uglify',
         'copy:dist',
@@ -400,4 +406,5 @@ module.exports = function (grunt) {
 
     // Automatic notifications when tasks fail.
     grunt.loadNpmTasks('grunt-notify');
+    grunt.loadNpmTasks('grunt-gh-pages');
 };
