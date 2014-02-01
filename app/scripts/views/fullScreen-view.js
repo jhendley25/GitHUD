@@ -85,8 +85,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   })
 
   this.linechartLegend(legend)
-  $(".legend").addClass("legendIn")
-  $(".legend-DELETIONS").addClass("legendOut")
+  // $(".legend").addClass("legendIn")
+  // $(".legend-DELETIONS").addClass("legendOut")
   $(".linechart-destination").append(fsLinechartTemplate)
 
   var ctx2 = $("#line-chart-" + this.model.get('id')).get(0).getContext("2d");
@@ -193,7 +193,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     var that = this
 
     $(".linechart-destination").html('')
-    $(".fsLegend").addClass("legendOut")
+    // $(".fsLegend").addClass("legendOut")
+    
         //add legend
         var legend = {
           catagory: 'DELETIONS',
@@ -202,7 +203,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         }
         //append legend
         that.linechartLegend(legend)
-        $(".legend-ADDITIONS").addClass("legendOut")
+        // $(".legend-ADDITIONS").addClass("legendOut")
         //append canvas element
         $(".linechart-destination").append(fsLinechartTemplate)
         // call chartjs
@@ -236,20 +237,20 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         // $(".linechart-destination").html('')
         // $(".fullscreen-stage").html('')
         if(GitHUD.slideCounter == 1){
-          $(".fsLegend").addClass("legendOut")
+          // $(".fsLegend").addClass("legendOut")
 
           that.additionsSlide(that, fsLinechartTemplate)
           //increment counter
           GitHUD.slideCounter += 1
 
         }else if (GitHUD.slideCounter == 2 ){
-          $(".fsLegend").addClass("legendOut")
+          // $(".fsLegend").addClass("legendOut")
 
           that.deletionsSlide(that, fsLinechartTemplate)
           GitHUD.slideCounter += 1
 
         }else{
-          $(".fsLegend").addClass("legendOut")
+          // $(".fsLegend").addClass("legendOut")
 
           that.drawLinechart()
           GitHUD.slideCounter = 1
