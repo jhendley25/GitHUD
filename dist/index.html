@@ -1,0 +1,97 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GitHUD</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/sass-bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/isotopeStyles.css">
+    <link rel="stylesheet" href="styles/webfonts/ss-gizmo.css">
+    <!-- endbuild -->
+
+</head>
+<body>
+  <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outda ted</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div class="wrapper">
+    <div class="fullscreen-stage"></div>
+    <div id="donut-stage" class="donut-stage"></div>
+
+  </div>
+
+  <!-- build:js scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/backbone/backbone.js"></script>
+  <script src="bower_components/backbone-query-parameters/backbone.queryparams.js"></script>
+  <script src="bower_components/isotope/jquery.isotope.min.js"></script>
+
+
+  <script src="bower_components/nnnick-chartjs/Chart.js"></script>
+  <script src="bower_components/momentjs/moment.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js scripts/plugins.js -->
+  <script src="bower_components/sass-bootstrap/js/modal.js"></script>
+  <script src="bower_components/sass-bootstrap/js/dropdown.js"></script>
+  <!-- endbuild -->
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+      e.src='//www.google-analytics.com/analytics.js';
+      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+      ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
+
+  <script type="text/javascript">
+    var GitHUD = {
+        Models: [],
+        Collections: [],
+        Views: [],
+        Routers: [],
+        utilities: {},
+        slideCounter: 1
+    }
+  </script>
+
+  <!-- build:js(.tmp) scripts/templates.js -->
+  <script src="scripts/templates.js"></script>
+  <!-- endbuild -->
+
+  <script src="scripts/env.js"></script>
+
+  <!-- build:js scripts/main.js -->
+  <script src="scripts/utilities/cookie.js"></script>
+  <script src="scripts/utilities/responsiveStuff.js"></script>
+  <script src="scripts/utilities/keys.js"></script>
+  <script src="scripts/models/repo.js"></script>
+  <script src="scripts/models/user.js"></script>
+  <script src="scripts/views/fullScreen-view.js"></script>
+  <script src="scripts/views/repo-view.js"></script>
+  <script src="scripts/views/index-view.js"></script>
+  <script src="scripts/views/welcome-view.js"></script>
+  <script src="scripts/views/menu-view.js"></script>
+  <script src="scripts/routers/app-router.js"></script>
+
+  <!-- endbuild -->
+
+
+  <script src="scripts/fonts/ss-gizmo.js"></script>
+  <script src="scripts/misc/jquery.marquee.min.js"></script>
+  <script src="scripts/utilities/ajax-utils.js"></script>
+</body>
+</html>
