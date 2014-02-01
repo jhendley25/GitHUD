@@ -583,14 +583,11 @@ h1 {
 
 }
 
-.switch-repo {
+#switch-repo {
   display: inline-block;
   font-size: 18px;
   position: relative;
   top: -10px;
   left: 14px;
-
-  input {
-    margin-right: 8px;
-  }
+  margin-right: 8px;
 }
