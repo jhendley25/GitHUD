@@ -507,26 +507,26 @@ h1 {
 
 
 .legend {
-  -moz-transition-property: display, left, opacity;
-  -moz-transition-duration: 1s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-property: display, left, opacity;
-  -webkit-transition-duration: 1s;
-  -o-transition-property: display, left, opacity;
-  -o-transition-duration: 1s;
+  // -moz-transition-property: display, left, opacity;
+  // -moz-transition-duration: 1s;
+  // -moz-transition-timing-function: ease-out;
+  // -webkit-transition-property: display, left, opacity;
+  // -webkit-transition-duration: 1s;
+  // -o-transition-property: display, left, opacity;
+  // -o-transition-duration: 1s;
   position: absolute;
   left: 200px;
   opacity: 0;
 }
 
 .legendOut {
-  -moz-transition-property: left, opacity, display;
-  -moz-transition-duration: 1s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-property:  left, opacity, display;
-  -webkit-transition-duration: 1s;
-  -o-transition-property: left, opacity, display;
-  -o-transition-duration: 1s;
+  // -moz-transition-property: left, opacity, display;
+  // -moz-transition-duration: 1s;
+  // -moz-transition-timing-function: ease-out;
+  // -webkit-transition-property:  left, opacity, display;
+  // -webkit-transition-duration: 1s;
+  // -o-transition-property: left, opacity, display;
+  // -o-transition-duration: 1s;
   position: absolute;
   left: -200px;
   opacity: 0;
@@ -534,13 +534,13 @@ h1 {
 }
 
 .legendIn {
-  -moz-transition-property: display, left, opacity;
-  -moz-transition-duration: 1s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-property: display, left, opacity;
-  -webkit-transition-duration: 1s;
-  -o-transition-property: display, left, opacity;
-  -o-transition-duration: 1s;
+  // -moz-transition-property: display, left, opacity;
+  // -moz-transition-duration: 1s;
+  // -moz-transition-timing-function: ease-out;
+  // -webkit-transition-property: display, left, opacity;
+  // -webkit-transition-duration: 1s;
+  // -o-transition-property: display, left, opacity;
+  // -o-transition-duration: 1s;
   position: absolute;
   left: 0px;
   opacity: 1;
