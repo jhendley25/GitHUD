@@ -126,18 +126,19 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   initMarquee: function(){
-  $('.marquee').marquee({
-  //speed in milliseconds of the marquee
-    speed: 15000,
-    //gap in pixels between the tickers
-    gap: 50,
-    //gap in pixels between the tickers
-    delayBeforeStart: 0,
-    //'left' or 'right'
-    direction: 'left',
+    console.log('fuck')
+  // $('.marquee').marquee({
+  // //speed in milliseconds of the marquee
+  //   speed: 15000,
+  //   //gap in pixels between the tickers
+  //   gap: 50,
+  //   //gap in pixels between the tickers
+  //   delayBeforeStart: 0,
+  //   //'left' or 'right'
+  //   direction: 'left',
 
-    duplicated: true
-  });
+  //   duplicated: true
+  // });
 
   },
 
