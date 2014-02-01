@@ -352,7 +352,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
         console.log('dont move motha fucka')
       }
 
-    },3000)
+    },30000)
   }
 
 
