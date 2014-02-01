@@ -60,6 +60,8 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   },
 
   linechartLegend: function(legend){
+
+
   legend = legend || {}
   linechartLegendTemplate = JST["app/templates/linechartLegend.html"]({
     legend: legend,
@@ -232,6 +234,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
       this.repoSlideshow()
       window.intId = setInterval(function(){
         // $(".linechart-destination").html('')
+        // $(".fullscreen-stage").html('')
         if(GitHUD.slideCounter == 1){
           $(".fsLegend").addClass("legendOut")
 
@@ -342,8 +345,9 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
   repoSlideshow: function(){
     var that = this
     window.repoSlideshowInt = setInterval(function(){
+      $(".fullscreen-stage").find('canvas').remove()
       that.navigateRepos({navTo: "next-repo"})
-    },30000)
+    },3000)
   }
 
 
