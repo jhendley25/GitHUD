@@ -348,7 +348,7 @@ GitHUD.Views.FullScreenView = Backbone.View.extend({
     window.repoSlideshowInt = setInterval(function(){
       $(".fullscreen-stage").find('canvas').remove()
       that.navigateRepos({navTo: "next-repo"})
-    },3000)
+    },30000)
   }
 
 
