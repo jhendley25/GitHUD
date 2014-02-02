@@ -1,5 +1,5 @@
 // Generated on 2013-09-25 using generator-webapp 0.4.2
-'use strict';
+// 'use strict';
 
 // # Globbing
 // for performance reasons we're only matching one level down:
@@ -317,7 +317,7 @@ module.exports = function (grunt) {
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
                         'styles/fonts/{,*/}*.*',
-                        'bower_components/sass-bootstrap/fonts/*.*'
+                        'bower_components/{,*/}*.*'
                     ]
                 }]
             },

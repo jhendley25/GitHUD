@@ -7,14 +7,8 @@
 ## Contributions
 
 Like any open-source project, everyone is welcome to send PRs and open issues.  It is my hope that this will take on a life of its own.
-
-Since github's api doesn't like client-side-only authentication, we'll be getting a tiny server going at some point.  
+ 
 
 ## Current status
 
-Still very much under development.  
-
-On the short-list:
-
-* Oauth stuff
-* Fullscreen repo view  
+Made it to 0.0.1.  Some interesting bugs on page load, but working for the most part.
