@@ -1,0 +1,9 @@
+{
+  "name": "backbone-query-parameters",
+  "version": "0.3.0",
+  "main": "backbone.queryparams.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jhudson8/backbone-query-parameters.git"
+  }
+}
