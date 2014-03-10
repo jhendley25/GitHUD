@@ -68,7 +68,7 @@ features:
   <div id="container" class="super-list variable-sizes clearfix">
     {% for elem_number in site.random_order limit:30 %}
       {% assign element = site.elements[elem_number] %}
-      {% include element-partial.html %}
+      <!-- {% include element-partial.html %} -->
     {% endfor %}
     {% for feature in page.features %}
       <div class="element feature {{ feature.category }} width2 height2">
@@ -112,7 +112,7 @@ features:
         }
       });
     
-      {% include option-set-buttons.js %}
+      // {% include option-set-buttons.js %}
 
     
       // Sites using Isotope markup
