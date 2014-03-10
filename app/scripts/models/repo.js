@@ -71,7 +71,7 @@ GitHUD.Models.Repo = Backbone.Model.extend({
 
     },
 
-    sortData, gitHUDMeta;ai
+    sortData, gitHUDMeta;
 
 
   _.each(response, function (user, i) {
