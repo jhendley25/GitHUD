@@ -1,12 +1,14 @@
 /**
- * Isotope v1.5.25
+ * Isotope v1.5.26
  * An exquisite jQuery plugin for magical layouts
  * http://isotope.metafizzy.co
  *
- * Commercial use requires one-time license fee
- * http://metafizzy.co/#licenses
+ * Commercial use requires one-time purchase of a commercial license
+ * http://isotope.metafizzy.co/docs/license.html
  *
- * Copyright 2012 David DeSandro / Metafizzy
+ * Non-commercial use is licensed under the MIT License
+ *
+ * Copyright 2014 Metafizzy
  */
 
 /*jshint asi: true, browser: true, curly: true, eqeqeq: true, forin: false, immed: false, newcap: true, noempty: true, strict: true, undef: true */
@@ -18,6 +20,7 @@
 
   // get global vars
   var document = window.document;
+  var docElem = document.documentElement;
   var Modernizr = window.Modernizr;
 
   // helper function
@@ -31,7 +34,7 @@
   var prefixes = 'Moz Webkit O Ms'.split(' ');
 
   var getStyleProperty = function( propName ) {
-    var style = document.documentElement.style,
+    var style = docElem.style,
         prefixed;
 
     // test standard property first
@@ -84,11 +87,9 @@
     csstransforms3d: function() {
       var test = !!getStyleProperty('perspective');
       // double check for Chrome's false positive
-      if ( test ) {
-        var vendorCSSPrefixes = ' -o- -moz- -ms- -webkit- -khtml- '.split(' '),
-            mediaQuery = '@media (' + vendorCSSPrefixes.join('transform-3d),(') + 'modernizr)',
-            $style = $('<style>' + mediaQuery + '{#modernizr{height:3px}}' + '</style>')
-                        .appendTo('head'),
+      if ( test && 'webkitPerspective' in docElem.style ) {
+        var $style = $('<style>@media (transform-3d),(-webkit-transform-3d)' +
+              '{#modernizr{height:3px}}</style>').appendTo('head'),
             $div = $('<div id="modernizr" />').appendTo('html');
 
         test = $div.height() === 3;
