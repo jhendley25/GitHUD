@@ -97,7 +97,7 @@ module.exports = function (grunt) {
                     base: [
                         '.tmp',
                         'test',
-                        yeomanConfig.app,
+                        yeomanConfig.app
                     ]
                 }
             },
