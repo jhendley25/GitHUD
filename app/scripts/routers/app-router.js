@@ -8,6 +8,7 @@ AppRouter = Backbone.Router.extend({
   },
 
   mainRoute: function(params) {
+    console.log('mainRoute FIRED!');
     that = this;
     //if the cookie exists, set the access token
     if ( docCookies.getItem("access_token") ){
