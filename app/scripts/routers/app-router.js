@@ -47,7 +47,7 @@ $(function(){
   GitHUD.router = new AppRouter()
   Backbone.history.start({
     pushState: true,
-    root: '/'
+    root: '/GitHUD/'
   })
 })
 
