@@ -7,7 +7,7 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     // show elapsed time at the end
     require('time-grunt')(grunt);
     // load all grunt tasks
@@ -22,10 +22,10 @@ module.exports = function (grunt) {
     grunt.initConfig({
         'gh-pages': {
             options: {
-              base: 'dist'
+                base: 'dist'
             },
             src: ['**']
-          },
+        },
         yeoman: yeomanConfig,
         watch: {
             templates: {
@@ -97,7 +97,7 @@ module.exports = function (grunt) {
                     base: [
                         '.tmp',
                         'test',
-                        yeomanConfig.app,
+                        yeomanConfig.app
                     ]
                 }
             },
@@ -109,11 +109,11 @@ module.exports = function (grunt) {
             }
         },
         jst: {
-          compile: {
-            files: {
-              ".tmp/scripts/templates.js": ["<%= yeoman.app %>/templates/**/*.html"]
+            compile: {
+                files: {
+                    ".tmp/scripts/templates.js": ["<%= yeoman.app %>/templates/**/*.html"]
+                }
             }
-          }
         },
         clean: {
             dist: {
@@ -354,7 +354,15 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('server', function (target) {
+
+
+
+
+
+
+
+
+    grunt.registerTask('server', function(target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
         }
