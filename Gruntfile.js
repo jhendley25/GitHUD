@@ -97,7 +97,7 @@ module.exports = function (grunt) {
                     base: [
                         '.tmp',
                         'test',
-                        yeomanConfig.app,
+                        yeomanConfig.app
                     ]
                 }
             },
@@ -316,8 +316,8 @@ module.exports = function (grunt) {
                         '*.{ico,png,txt}',
                         '.htaccess',
                         'images/{,*/}*.{webp,gif}',
-                        'styles/fonts/{,*/}*.*',
-                        'bower_components/{,*/}*.*'
+                        'styles/fonts/{,*/}*.*'
+                        // 'bower_components/{,*/}*.*'
                     ]
                 }]
             },
